@@ -53,7 +53,7 @@ $( document ).ready(function() {
 	*/
 	
 	$(".icon.whatsapp").on('click', function(){
-		window.open('https://wa.me/xxxxxxxxxxxxx', '_blank');
+		window.open('https://wa.me/905412989803', '_blank');
 	});
 	
 	$(".icon.map.TURKEY").on('click', function(){
