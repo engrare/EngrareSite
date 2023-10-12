@@ -53,14 +53,6 @@ $( document ).ready(function() {
 	});
 	*/
 	
-	$(".icon.whatsapp").on('click', function(){
-		window.open('https://wa.me/905412989803', '_blank');
-	});
-	
-	$(".icon.map.TURKEY").on('click', function(){
-		window.open('https://goo.gl/maps/4X9SkuMErJdEcfG67', '_blank');
-	});
-	
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
