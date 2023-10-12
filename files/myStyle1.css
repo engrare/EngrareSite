@@ -913,6 +913,16 @@ p {
   color: #ffffff;
 }
 
+.wrapper .mail:hover,
+.wrapper .mail:hover .tooltip,
+.wrapper .mail:hover .tooltip::before {
+  background-color: #de5347;
+  color: #ffffff;
+}
+
+
+
+
 .wrapper .xtwitter:hover,
 .wrapper .xtwitter:hover .tooltip,
 .wrapper .xtwitter:hover .tooltip::before {
