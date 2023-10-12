@@ -58,6 +58,8 @@ $( document ).ready(function() {
 		var button_index = $(this).attr('id').slice(15, 16);
 		console.log(button_index);
 		$('html, body').animate({scrollTop: window_height*button_index}, 400);
+		if(ismenuopen)
+			openLeftMenu();
 		//console.log($(this).eq(1));
 	});
 	
@@ -211,7 +213,7 @@ function beReadyPage() {
 	}
 }
 
-function openLeftMenu () {
+function openLeftMenu() {
 	$(".fixed_menu_all_buttons_cont").stop();
 	$(".menu_closer").stop();
 	$('.fixed_menu_all_buttons_cont').animate(
