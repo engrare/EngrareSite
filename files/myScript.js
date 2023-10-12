@@ -1,6 +1,7 @@
 //Copyright 2023 Kaya Sertel. All Rights Reserved.
 var ismenuopen = false;
-var window_height, window_width, old_active_index = 0, current_active_index = 0, trans_click_pressed = false;
+var st;
+var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
 $( document ).ready(function() {
@@ -58,6 +59,14 @@ $( document ).ready(function() {
 	
 	$(".icon.map.TURKEY").on('click', function(){
 		window.open('https://goo.gl/maps/4X9SkuMErJdEcfG67', '_blank');
+	});
+	
+	$(".fixed_menu_button").on('click', function(){
+		$('html, body').stop();
+		var button_index = $(this).attr('id').slice(15, 16);
+		console.log(button_index);
+		$('html, body').animate({scrollTop: window_height*button_index}, 400);
+		//console.log($(this).eq(1));
 	});
 	
 	function changeTransClick(old_index, new_index) {
@@ -149,8 +158,25 @@ $( document ).ready(function() {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
 		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-		$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_2").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*3))-150) + 'px, 0px)');
+		$("#sliding_photo_3").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*4))-150) + 'px, 0px)');
+		$("#sliding_photo_4").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*5))-150) + 'px, 0px)');
+		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*6))-150) + 'px, 0px)');
+		
+		var lastbtnindex = 0, newbtnindex = 0;
+		newbtnindex = Math.floor(st/window_height+0.05) + 1;
+		
+		if(lastbtnindex != newbtnindex) {
+			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
+			lastbtnindex = newbtnindex;
+		}
+		
+		
 	});
+
+
 //}
 
 /*$(window).scroll(function(event){
