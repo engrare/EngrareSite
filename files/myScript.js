@@ -1,5 +1,6 @@
 //Copyright 2023 Kaya Sertel. All Rights Reserved.
 var ismenuopen = false;
+var is_member_open = false, is_sponsor_open = false;
 var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
@@ -52,17 +53,30 @@ $( document ).ready(function() {
 		$(this).removeClass("swiper_button_hover");
 	});
 	*/
+	$( ".fixed_menu_right_cont" ).hover(
+  function() {
+    $( ".settings_button_top" ).addClass( "fa-spin" );
+  }, function() {
+    $( ".settings_button_top" ).removeClass( "fa-spin" );
+  }
+);
+	
+	
+
+
 	
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
-		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + button_index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
+		ScrollPart(button_index);
 		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
 		
 		if(ismenuopen)
 			openLeftMenu();
 		//console.log($(this).eq(1));
 	});
+	
+
 	
 	function changeTransClick(old_index, new_index) {
 		var elementID = "transClick_";
@@ -149,6 +163,48 @@ $( document ).ready(function() {
 	});
 });
 
+
+	function ScrollPart(index) {
+		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
+	}
+
+
+
+	function OpenCloseForm(num) {
+		if(num == 2) {
+			if(is_sponsor_open) {
+			
+				$('#sponsorship_cont_outer').css("height", "");
+				$('#sponsorship_cont').css("display", "");
+				$('.sponsorship_form_iframe_outer').css("display", "");
+
+			} else {
+				$('#sponsorship_cont_outer').css("height", "1600px");
+				$('#sponsorship_cont').css("display", "none");
+				$('.sponsorship_form_iframe_outer').css("display", "flex");
+
+			}
+
+			is_sponsor_open = !is_sponsor_open;
+		
+		} else {
+			if(is_member_open) {
+			
+				$('#membership_cont_outer').css("height", "");
+				$('#membership_cont').css("display", "");
+				$('.membership_form_iframe_outer').css("display", "");
+
+			} else {
+				$('#membership_cont_outer').css("height", "3400px");
+				$('#membership_cont').css("display", "none");
+				$('.membership_form_iframe_outer').css("display", "flex");
+
+			}
+
+			is_member_open = !is_member_open;
+		}
+}
+
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
@@ -161,7 +217,13 @@ $( document ).ready(function() {
 		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
 		
 		var lastbtnindex = 0, newbtnindex = 0;
-		newbtnindex = Math.floor(st/(window_height - 60)) + 1;
+		console.log($(".main_container_2").length);
+		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
+			newbtnindex++;
+			if($(".main_container_2").length == newbtnindex)
+				break;
+		}
+		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
 		
 		if(lastbtnindex != newbtnindex) {
 			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
@@ -201,6 +263,7 @@ function beReadyPage() {
 	
 	st = $(window).scrollTop();
 	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
 	
 	if(window_width < 620) { 
 		//$(".mapouter").css("width", window_width - 20);
@@ -208,14 +271,12 @@ function beReadyPage() {
 		//$(".gmap_canvas").css("width", window_width - 20);
 		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
 		$("#map1").css("width", window_width - 20);
-		$("#map1").css("height", window_height - $(".social_and_text_part").height() - $(".copywrite_part").height() - $(".fixed_menu_top").height() - 80);
 		
 	} else {
 		//$(".mapouter").css("width", 600);
 		//$(".gmap_iframe").css("width", 600);
 		//$(".gmap_canvas").css("width", 600);
-		$("#map1").css("width", 600);
-		$("#map1").css("height", 400);
+		$("#map1").css("width", window_width - 300);
 	}
 }
 
