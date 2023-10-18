@@ -6,13 +6,13 @@
 <link rel="icon" href="./files/photos/title_icon.png" type="image/gif" sizes="16x16">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0, minimum-scale=1">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png" />
 <meta property="og:image:width" content="100" />
 <meta property="og:image:height" content="100" />
-<meta property="og:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png" />
 <meta property="twitter:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png"  />
 <meta property="og:title" content="Team Engrare WebSitesi">
 <meta property="og:url" content="https://engrare.github.io/website/">
-<meta property="og:description" content="egrare takımının websitesine hoş geldiniz.">
+<meta property="og:description" content="engrare takımının websitesine hoş geldiniz.">
 <meta content="egrare takımının websitesine hoş geldiniz." name="description">
 <noscript>
 <style>
@@ -139,9 +139,10 @@
 		</div>
 		<div class="fixed_menu_right_cont">
 			<div class="fixed_menu_button fixed_menu_button_3">
-			<div class="notification_num">3</div>
-				<i class="fa fa-bell notification_bell"></i>
-			
+			<!--<div class="notification_num">3</div>
+				<i class="fa fa-bell notification_bell"></i>-->
+				<div class="notification_num"><i class="fa-solid fa-gear settings_button_top"></i></div>
+			<i class="fa-solid fa-gear settings_button_top"></i> 
 			</div>
 		</div>
 			
@@ -197,7 +198,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Engrare Takımı</h1>
 						</div>
-						<a href="detail/detail.html#product_1" class="go_furniture_detail_a">
+						<a class="go_furniture_detail_a" onclick="ScrollPart(1)">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Detayını Gör</p>
 							</div>
@@ -214,14 +215,14 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Engrare'a Destek ol!</h1>
 						</div>
-						<a href="detail/detail.html#product_2" class="go_furniture_detail_a">
+						<a class="go_furniture_detail_a" onclick="ScrollPart(5)">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Sponsorluk Başvurusu Yap</p>
 							</div>
 						</a>
 					</div>
 				</div>
-				<img src="files/photos/money_bg.jpg" class="swiper_slide_img" />w
+				<img src="files/photos/money_bg.jpg" class="swiper_slide_img" />
 			</div>
 			<div class="swiper-slide">
 				<div class="go_furniture_detail_outer"></div>
@@ -230,7 +231,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Hazırlıklarımız</h1>
 						</div>
-						<a href="detail/detail.html#product_3" class="go_furniture_detail_a">
+						<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Detayını gör</p>
 							</div>
@@ -246,7 +247,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Engrarelı Ol!</h1>
 						</div>
-						<a href="detail/detail.html#product_4" class="go_furniture_detail_a">
+						<a class="go_furniture_detail_a" onclick="ScrollPart(4)">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Başvuru için Tıkla</p>
 							</div>
@@ -320,14 +321,23 @@
 	
 	
 
-<div class="main_container_2">
+<div class="main_container_2" id="membership_cont_outer">
 	<div class="main_container_2_bg_photo_part">
 		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_4"/>
 	</div>
 	<div class="main_container_2_text_part">
+		<div class="membership_form_iframe_outer">
+		<a class="go_furniture_detail_a" onclick="OpenCloseForm(1)">
+			<div class="go_furniture_detail_cont_2">
+				<p class="go_furniture_detail_txt">Üye Alım Formunu Kapat</p>
+			</div>
+		</a>
+			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvTn5McU7fDOC9uBnRjqX2M4Z-cpuMG-oI1-1qSebOcoMgJQ/viewform?embedded=true" width="100%" height="3210" frameborder="0" marginheight="0" marginwidth="0"class="membership_form_iframe">Loading…</iframe>
+		</div>
+		<div class="text_part_inner_cont" id="membership_cont">
 		<h1>Üye Alımı</h1>
 	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a href="https://docs.google.com/forms/d/e/1FAIpQLScvTn5McU7fDOC9uBnRjqX2M4Z-cpuMG-oI1-1qSebOcoMgJQ/viewform?usp=sharing" class="go_furniture_detail_a" target="_blank">
+		<a class="go_furniture_detail_a" onclick="OpenCloseForm(1)">
 			<div class="go_furniture_detail_cont_2">
 				<p class="go_furniture_detail_txt">Form için tıkla</p>
 			</div>
@@ -338,21 +348,34 @@
 			</div>
 		</a>-->
 	</div>
+	</div>
 </div>
 	
 
-<div class="main_container_2">
+<div class="main_container_2" id="sponsorship_cont_outer">
 	<div class="main_container_2_bg_photo_part">
 		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_5"/>
 	</div>
 	<div class="main_container_2_text_part">
+		<div class="sponsorship_form_iframe_outer">
+		<a class="go_furniture_detail_a" onclick="OpenCloseForm(2)">
+			<div class="go_furniture_detail_cont_2">
+				<p class="go_furniture_detail_txt">Sponsorluk Formunu Kapat</p>
+			</div>
+		</a>
+		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnS6v8xfdv8wYeqp5fnFl70ZXsQyZGB7irnU-t_jNkXx7yMg/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0" class="sponsorship_form_iframe">Yükleniyor…</iframe>
+		</div>
+		<div class="text_part_inner_cont" id="sponsorship_cont">
 		<h1>Sponsorluk İsteği</h1>
 	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a href="https://docs.google.com/forms/d/e/1FAIpQLSdnS6v8xfdv8wYeqp5fnFl70ZXsQyZGB7irnU-t_jNkXx7yMg/viewform?usp=sharing" class="go_furniture_detail_a" target="_blank">
+		<a class="go_furniture_detail_a" onclick="OpenCloseForm(2)">
 			<div class="go_furniture_detail_cont_2">
 				<p class="go_furniture_detail_txt">Bizi desteklemek için tıklayınız.</p>
 			</div>
 		</a>
+			
+		
+	</div>
 	</div>
 </div>
 
