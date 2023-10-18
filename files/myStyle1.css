@@ -119,8 +119,6 @@ p {
 	height: 13px;
 	width: 13px;
 	font-size: 13px;
-	color: white;
-	background: red;
 	display: flex;
 	align-items: center;
     justify-content: center;
@@ -175,7 +173,6 @@ p {
 	
 	.fixed_menu_right_cont  {
 		display: block;
-		visibility: hidden;
 	}
 }
 
@@ -854,6 +851,40 @@ p {
 	height: 100%;
 }
 
+.text_part_inner_cont {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+}
+
+
+
+.sponsorship_form_iframe {
+	margin: 20px;
+	
+}
+
+.sponsorship_form_iframe_outer {
+	display: none;
+    width: 100%;
+    height: 100%;
+	    flex-direction: column;
+    align-items: center;
+	
+}
+
+.membership_form_iframe {
+	margin: 20px;
+	
+}
+
+.membership_form_iframe_outer {
+	display: none;
+    width: 100%;
+    height: 100%;
+	flex-direction: column;
+    align-items: center;
+}
 
 
 .wrapper {
