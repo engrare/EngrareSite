@@ -179,7 +179,7 @@ $( document ).ready(function() {
 				$('.sponsorship_form_iframe_outer').css("display", "");
 
 			} else {
-				$('#sponsorship_cont_outer').css("height", "1800px");
+				$('#sponsorship_cont_outer').css("height", "auto");
 				$('#sponsorship_cont').css("display", "none");
 				$('.sponsorship_form_iframe_outer').css("display", "flex");
 
@@ -195,7 +195,7 @@ $( document ).ready(function() {
 				$('.membership_form_iframe_outer').css("display", "");
 
 			} else {
-				$('#membership_cont_outer').css("height", "3900px");
+				$('#membership_cont_outer').css("height", "auto");
 				$('#membership_cont').css("display", "none");
 				$('.membership_form_iframe_outer').css("display", "flex");
 
