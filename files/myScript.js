@@ -179,7 +179,7 @@ $( document ).ready(function() {
 				$('.sponsorship_form_iframe_outer').css("display", "");
 
 			} else {
-				$('#sponsorship_cont_outer').css("height", "1750px");
+				$('#sponsorship_cont_outer').css("height", "1800px");
 				$('#sponsorship_cont').css("display", "none");
 				$('.sponsorship_form_iframe_outer').css("display", "flex");
 
