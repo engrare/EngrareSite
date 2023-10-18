@@ -1,473 +1,336 @@
-<!-- Copyright 2023 Kaya Sertel. All Rights Reserved.  -->
-<!DOCTYPE html>
-<html  lang="tr" dir="ltr" data-cast-api-enabled="true">
-<head>
-<title>Engrare</title>
-<link rel="icon" href="./files/photos/title_icon.png" type="image/gif" sizes="16x16">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0, minimum-scale=1">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png" />
-<meta property="og:image:width" content="100" />
-<meta property="og:image:height" content="100" />
-<meta property="twitter:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png"  />
-<meta property="og:title" content="Team Engrare WebSitesi">
-<meta property="og:url" content="https://engrare.github.io/website/">
-<meta property="og:description" content="engrare takımının websitesine hoş geldiniz.">
-<meta content="egrare takımının websitesine hoş geldiniz." name="description">
-<noscript>
-<style>
-.main_noscript_div {
-	height:	300px;
-	width: 450px;
-	position: fixed;
-	z-index: 20;
-	top: 50%;
-	left: 50%;
-	margin-left: -227px;
-	margin-top: -152px;
-	background-color: grey;
-	color: white;
-	font-family: Atkinson Hyperlegible, sans-serif;
-	border-radius: 10px;
-	border: solid 4px white;
-}
-.noscript_text {
-	font-size: 25px;
-	text-align: center;
-	margin: 30px 40px;
-}
-.noscript_header {
-	text-align: center;
-	margin: 20px;
-}
-.noscript_button {
-	font-size: 20px;
-	position: fixed;
-	width: 150px;
-	height: 80px;
-	text-align: center;
-	margin-left: 50%;
-	left: -75px;
-	font-family: Atkinson Hyperlegible, sans-serif;
-	box-shadow: 4px 4px black;
-	cursor: pointer;
-	border: solid 2px black;
-}
-.noscript_button:hover {
-	box-shadow: 2px 2px black;
-	background-color: blue;
-	color: white;
-}
-.cover_page {
-	background-color: black;
-	opacity: 0.9;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	z-index: 19;
-}
- </style>
-<div class="main_noscript_div">
-<h1 class="noscript_header">JavaScript Error</h1>
-<h3 class="noscript_text">It looks like JavaScript closed or not supported in your browser</h3>
-<form target="_blank" action="https://support.google.com/adsense/answer/12654?hl=en"><button class="noscript_button">click for help!</button></form>
-</div>
-<div class="cover_page"></div>
-</noscript>
-<link href='https://fonts.googleapis.com/css?family=Atkinson Hyperlegible|Bebas Neue|Montserrat' rel='stylesheet'>
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<!-- Add the Swiper library -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+//Copyright 2023 Kaya Sertel. All Rights Reserved.
+var ismenuopen = false;
+var is_member_open = false, is_sponsor_open = false;
+var st;
+var window_height, window_width, old_active_index = 0;
+var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
-<!-- Add the Swiper styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
-
-<script src="files/myScript.js"></script>
-<link rel="stylesheet" href="files/myStyle1.css">
-
-
-</head>
-
-<body>
-
-<!--<div class="fixed_menu_top"></div>-->
-<div class="menu_closer" onclick="openLeftMenu()"></div>
-
-<div class="fixed_menu_top noselect">
-	<div class="fixed_menu_cont">
-		<div class="fixed_menu_left_cont">
-			<div class="fixed_menu_button bar_button" onclick="openLeftMenu()">
-				<i class="fa fa-bars menu_opener"></i>
-			</div>
-			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_0">
-					<p>Engrare</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_1">
-					<p>Biz Kimiz?</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_2">
-					<p>Vizyonumuz</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_3">
-					<p>Misyonumuz</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_4">
-					<p>Üye Alımı</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_5">
-					<p>Sponsorluk</p>
-				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_6">
-					<p>İletişim</p>
-				</div>
-			</div>
-			
-		</div>
-		<div class="fixed_menu_logo_part">
-			<img src="./files/photos/engrare_logo.png" height="80%">
-			<div class="fixed_menu_logo_text_part">
-				<p class="fixed_menu_logo_text">Engrare</p>
-				<hr class="fixed_menu_logo_hr" />
-				<p class="fixed_menu_logo_text">Teknofest Team</p>
-			</div>
-		</div>
-		<div class="fixed_menu_right_cont">
-			<div class="fixed_menu_button fixed_menu_button_3">
-			<!--<div class="notification_num">3</div>
-				<i class="fa fa-bell notification_bell"></i>-->
-				<div class="notification_num"><i class="fa-solid fa-gear settings_button_top"></i></div>
-			<i class="fa-solid fa-gear settings_button_top"></i> 
-			</div>
-		</div>
-			
-	</div>
-</div>
-<!--<div class="fixed_menu_top noselect"  id="navbar">
-	<div class="fixed_menu_top_backgorund">
-	</div>
-	<div class="fixed_menu_container">
-		<div class="category">
-
-			<a href="#ikinci" style="position: relative;" class="microphone_button_top_a">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-microphone mini_logo_top" style="position: relative; top: 2px;" ></i>
-				</div>
-			</a>
-		</div>
-
-		<div class="top_part_logo">
-			<p style="margin-block-start: 0px; margin-block-end: 0px;position: relative;">ÖRNEK ŞİRKET İSMİ / LOGO</p>
-		</div>
-		<div class="contect">
-
-		<a class="notification_bell"><div class="icon_top_div"><i class="fa-regular fa-bell"></i><div class="notification_number">5</div></div></a>
-			<a class="top_button_2">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-cart-shopping top_button_2"></i>
-				</div>
-			</a>
-			<a class="search_part_a">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-magnifying-glass mini_logo_top"></i>
-				</div>
-			</a>
-<a class="user_photo_click" href="./login/login.html" style=" padding-bottom: 4px;"><img src="./Files/pp.jpg" class="user_photo"><i class="fa fa-sign-in sign_in"><p style="display: inline; margin: 0px; font-family: Bebas Neue;"> User</p></i>
-</a>
-		</div>
-	</div>
-</div>-->
-
-<div class="main_div">
-
-<div class="fixed_menu_space"></div>
-
-<div class="main_container_2" style="height: calc(100% - 50px)">
-<div class="swiper-container-wrapper">
-	<div class="swiper-container swiper_cont">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrare Takımı</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(1)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Detayını Gör</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img src="files/photos/slayt1.jpg" class="swiper_slide_img" />
-				
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrare'a Destek ol!</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(5)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Sponsorluk Başvurusu Yap</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img src="files/photos/money_bg.jpg" class="swiper_slide_img" />
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Hazırlıklarımız</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Detayını gör</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img src="files/photos/odulfoto.jpg" class="swiper_slide_img" />
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrarelı Ol!</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(4)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Başvuru için Tıkla</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img src="files/photos/jointeambg.jpg" class="swiper_slide_img" />
-			</div>
-		</div>
-	</div>
-
-	<!-- Add the navigation buttons -->
-	<div class="swiper-button-prev left_right_buttons_swipper"></div>
-	<div class="swiper-button-next left_right_buttons_swipper"></div>
-	<div class="transition_sign">
-		<div class="transition_sign_cont">
-
-			<div class="trans_click trans_active" id="transClick_0"></div>
-			<div class="trans_click" id="transClick_1"></div>
-			<div class="trans_click" id="transClick_2"></div>
-			<div class="trans_click" id="transClick_3"></div>
-
-
-		</div>
-	</div>
-  
-</div>
-</div>
-
-<div class="main_container_2">
-	<div class="main_container_2_bg_photo_part">
-		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_1"/>
-	</div>
-	<div class="main_container_2_text_part">
-		<h1>Biz Kimiz?</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-
-	</div>
-</div>
-
-
-<div class="main_container_2">
-	<div class="main_container_2_bg_photo_part">
-		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_2"/>
-	</div>
-	<div class="main_container_2_text_part">
-		<h1>Vizyonumuz</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<!--<a href="https://www.google.com/" class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Detayını gör</p>
-			</div>
-		</a>-->
-	</div>
-</div>
+$( document ).ready(function() {
+	var mySwiper = new Swiper('.swiper-container', {
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev'
+		},
+		autoplay: {
+			delay: 3000, // change delay as needed
+		},
+		/*on: {
+			slideNextTransitionEnd: (swiper) => {
+				//console.log('SWIPED RIGHT');
+				if(!trans_click_pressed) {
+					if(current_active_index == mySwiper.slides.length - 1)
+						current_active_index = 0;
+					else
+						current_active_index++;
+				}
+				trans_click_pressed = false;
+				//new_active_index = current_active_index;//mySwiper.activeIndex;
+				changeTransClick(old_active_index, current_active_index);
+				old_active_index = current_active_index;
+			},
+			slidePrevTransitionEnd: (swiper) => {
+				//console.log('SWIPED LEFT');
+				if(!trans_click_pressed) {
+					if(current_active_index == 0)
+						current_active_index = mySwiper.slides.length - 1;
+					else
+						current_active_index--;
+				}
+				trans_click_pressed = false;
+				//new_active_index = current_active_index;//mySwiper.activeIndex;
+				changeTransClick(old_active_index, current_active_index);
+				old_active_index = current_active_index;
+			}
+		},*/
+		loop: true,
+	});
 	
-<div class="main_container_2">
-	<div class="main_container_2_bg_photo_part">
-		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_3"/>
-	</div>
-	<div class="main_container_2_text_part">
-		<h1>Misyonumuz</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<!--<a href="https://www.google.com/" class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Detayını gör</p>
-			</div>
-		</a>-->
-	</div>
-</div>
+	/*$( ".left_right_buttons_swipper" ).hover(function() {
+		$(this).css({"-webkit-transform": "translateY(-5px)"});
+		$(this).addClass("swiper_button_hover");
+	}, function() {
+		$(this).css({"-webkit-transform": "translateY(0px)"});
+		$(this).removeClass("swiper_button_hover");
+	});
+	*/
+	$( ".fixed_menu_right_cont" ).hover(
+  function() {
+    $( ".settings_button_top" ).addClass( "fa-spin" );
+  }, function() {
+    $( ".settings_button_top" ).removeClass( "fa-spin" );
+  }
+);
 	
 	
 
-<div class="main_container_2" id="membership_cont_outer">
-	<div class="main_container_2_bg_photo_part">
-		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_4"/>
-	</div>
-	<div class="main_container_2_text_part">
-		<div class="membership_form_iframe_outer">
-		<a class="go_furniture_detail_a" onclick="OpenCloseForm(1)">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Üye Alım Formunu Kapat</p>
-			</div>
-		</a>
-			<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvTn5McU7fDOC9uBnRjqX2M4Z-cpuMG-oI1-1qSebOcoMgJQ/viewform?embedded=true" width="100%" height="3210" frameborder="0" marginheight="0" marginwidth="0"class="membership_form_iframe">Loading…</iframe>
-		</div>
-		<div class="text_part_inner_cont" id="membership_cont">
-		<h1>Üye Alımı</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a class="go_furniture_detail_a" onclick="OpenCloseForm(1)">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Form için tıkla</p>
-			</div>
-		</a>
-		<!--<a href="https://www.google.com/" class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Detayını gör</p>
-			</div>
-		</a>-->
-	</div>
-	</div>
-</div>
-	
 
-<div class="main_container_2" id="sponsorship_cont_outer">
-	<div class="main_container_2_bg_photo_part">
-		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_5"/>
-	</div>
-	<div class="main_container_2_text_part">
-		<div class="sponsorship_form_iframe_outer">
-		<a class="go_furniture_detail_a" onclick="OpenCloseForm(2)">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Sponsorluk Formunu Kapat</p>
-			</div>
-		</a>
-		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdnS6v8xfdv8wYeqp5fnFl70ZXsQyZGB7irnU-t_jNkXx7yMg/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0" class="sponsorship_form_iframe">Yükleniyor…</iframe>
-		</div>
-		<div class="text_part_inner_cont" id="sponsorship_cont">
-		<h1>Sponsorluk İsteği</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a class="go_furniture_detail_a" onclick="OpenCloseForm(2)">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Bizi desteklemek için tıklayınız.</p>
-			</div>
-		</a>
-			
+	
+	$(".fixed_menu_button").on('click', function(){
+		$('html, body').stop();
+		var button_index = $(this).attr('id').slice(15, 16);
+		ScrollPart(button_index);
+		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
 		
-	</div>
-	</div>
-</div>
+		if(ismenuopen)
+			openLeftMenu();
+		//console.log($(this).eq(1));
+	});
+	
 
+	
+	function changeTransClick(old_index, new_index) {
+		var elementID = "transClick_";
+		document.getElementById(elementID + old_index).className = "trans_click";
+		document.getElementById(elementID + new_index).className = "trans_click trans_active";
+	}
+	
+	$(".left_right_buttons_swipper").on('click', function(){
+		setTimeout(function() { mySwiper.autoplay.start();}, 6000);
+	});
+	
+	$(".trans_click").on('click', function(){
+		var index = $(this).attr('id').slice(11, 12);
+		if(index == mySwiper.realIndex)
+			return;
+		mySwiper.slideToLoop(index);
+	});
+	
+	beReadyPage();
+	
+	
+	/*
+	// Define the function to go to the last slide from the first slide
+	function goToLastSlide() {
+		mySwiper.slideTo(mySwiper.slides.length - 1);
+	}
 
-<div class="contect_part main_container_2">
-	<div class="contect_part_cont">
-		<div class="contect_part_cont_2">
+	// Define the function to go to the first slide from the last slide
+	function goToFirstSlide() {
+		mySwiper.slideTo(0);
+	}
 
-			<div class="social_media">
-				<div class="social_and_text_part">
-					<h1 class="contect_social_header">İletişim ve Destekçilerimiz</h1>
-						<div class="wrapper social_media_part" style="margin: 0px;">
-							<div class="social_grup_cont">
-								<a href="https://wa.me/905412989803" target="_blank"><div class="icon whatsapp">
-									<div class="tooltip">WhatsApp</div>
-										<span><i class="fa-brands fa-whatsapp"></i></span>
-									</div>
-								</a>
-								<div class="icon linkedin">
-									<div class="tooltip">LinkedIn</div>
-									<span><i class="fa-brands fa-linkedin"></i></span>
-								</div>
-							</div>
-							<div class="social_grup_cont">
-  <div class="icon xtwitter">
-    <div class="tooltip">X</div>
-    <span><i class="fa-brands fa-x-twitter"></i></span>
-  </div>
-  <a href="https://www.instagram.com/engrare.co/" target="_blank"><div class="icon instagram">
-    <div class="tooltip">Instagram</div>
-    <span><i class="fa-brands fa-instagram"></i></span>
-  </div>
-	  </a>
- <!-- <div class="icon telegram">
-    <div class="tooltip">Telegram</div>
-    <span><i class="fa-brands fa-telegram"></i></span>
-  </div>
-  <div class="icon youtube">
-    <div class="tooltip">YouTube</div>
-    <span><i class="fa-brands fa-youtube"></i></span>
-  </div>
-  <div class="icon map UK">
-    <div class="tooltip">UK</div>
-    <span><i class="fa fa-map"></i></span>
-  </div>-->
-  </div>
-<div class="social_grup_cont">
-  <a href="https://maps.app.goo.gl/B9vYVUaMijcD9bns8" target="_blank"><div class="icon map TURKEY">
-    <div class="tooltip">Adresi gör</div>
-    <span><i class="fa fa-map"></i></span>
-  </div></a>
-      <form action="mailto:engrare.co@gmail.com" method="post" enctype="text/plain">
-		  <button class="mail_button">
-         <div class="icon mail" type="submit">
-    <div class="tooltip">Mail</div>
-    <span><i class="fa-regular fa-envelope"></i></span>
-  </div></button>
-      </form>
-	</div>
+// Add a click event listener to the first slide to go to the last slide
+	var firstSlide = document.querySelector('.swiper-slide:first-of-type');
+	firstSlide.addEventListener('click', function() {
+		if (mySwiper.activeIndex == 0) {
+			for(var i = 0; i < mySwiper.slides.length - 1; i++)
+				mySwiper.slideNext(i*30);
+			current_active_index = 3;
+			alert(mySwiper.activeIndex);
+		}
+	});
 
-</div>
-					
-</div>
-<div class="maps">
-	<div class="maps_cont">
-		<div class="mapouter"><div class="gmap_canvas"><iframe id="map1" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1506.5817246596514!2d29.131488877676745!3d40.9559980557768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac77debfec47d%3A0x7a7592ba572b48b9!2sM5%20(Makine%20ve%20End%C3%BCstri%20M%C3%BChendisli%C4%9Fi)!5e0!3m2!1str!2str!4v1696669891312!5m2!1str!2str"></iframe>
+	// Add a click event listener to the last slide to go to the first slide
+	var lastSlide = document.querySelector('.swiper-slide:last-of-type');
+	lastSlide.addEventListener('click', function() {
+		if (mySwiper.activeIndex == mySwiper.slides.length - 1) {
+			goToFirstSlide();
+			current_active_index = 0;
+		}
+	});*/
+	
+	$(window).scroll(function(event){
+		if($(this).scrollTop() > window_height) {
+			mySwiper.autoplay.stop();
+		}
+		else {
+			mySwiper.autoplay.start();
+		}
+	});
+	
+	var mySwiper = $(".swiper-container")[0].swiper;
+	//mySwiper.autoplay.stop();
+	mySwiper.autoplay.start();
+	$('.go_furniture_detail_a').mouseenter(function() {
+		mySwiper.autoplay.stop();
+	}).mouseleave(function() {
+		mySwiper.autoplay.start();
+	})
+	
+	mySwiper.on('slideChange', function () {
+		if (mySwiper.autoplay.running) {
+			//console.log('Slide changed automatically');
+		} else {
+			mySwiper.autoplay.stop();
+			setTimeout(function() { mySwiper.autoplay.start();}, 6000);
+			//console.log('Slide changed by user');
+		}
+		
+		mySwiper.slideToLoop(mySwiper.realIndex);
+		changeTransClick(old_active_index, mySwiper.realIndex);
+		old_active_index = mySwiper.realIndex;
 			
-			
-
-			
-			
-			
-			</div><style></style></div>
-		<!--<div class="mapouter"><div class="gmap_canvas"><iframe id="map2" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=pinaldi&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div><style></style></div>-->
-	</div>
-</div>
-<!--<iframe title="" class="YouTube_video noselect" width="480" height="270" src="https://www.youtube.com/embed/oo3SvcydIJ0?start=1000controls=1"frameborder="0" 
-allowfullscreen>
-</iframe>
-advertisement 
-consaltincy
-website
--->
-</div>
-</div>
-</div>
-<div class="copywrite_part">
-<p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare©®™</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
-</div>
-</div>
+	});
+});
 
 
-</body>
+	function ScrollPart(index) {
+		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
+	}
 
-</html>
+
+
+	function OpenCloseForm(num) {
+		if(num == 2) {
+			if(is_sponsor_open) {
+			
+				$('#sponsorship_cont_outer').css("height", "");
+				$('#sponsorship_cont').css("display", "");
+				$('.sponsorship_form_iframe_outer').css("display", "");
+
+			} else {
+				$('#sponsorship_cont_outer').css("height", "1700px");
+				$('#sponsorship_cont').css("display", "none");
+				$('.sponsorship_form_iframe_outer').css("display", "flex");
+
+			}
+
+			is_sponsor_open = !is_sponsor_open;
+		
+		} else {
+			if(is_member_open) {
+			
+				$('#membership_cont_outer').css("height", "");
+				$('#membership_cont').css("display", "");
+				$('.membership_form_iframe_outer').css("display", "");
+
+			} else {
+				$('#membership_cont_outer').css("height", "3800px");
+				$('#membership_cont').css("display", "none");
+				$('.membership_form_iframe_outer').css("display", "flex");
+
+			}
+
+			is_member_open = !is_member_open;
+		}
+}
+
+//if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
+	$(window).scroll(function(event){
+		st = $(this).scrollTop();
+		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
+		st - $("#sliding_photo_1").offset().top
+		$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st/1*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_2").css('transform', 'translate3d(0px, ' + (st/2*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_3").css('transform', 'translate3d(0px, ' + (st/3*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_4").css('transform', 'translate3d(0px, ' + (st/4*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
+		
+		var lastbtnindex = 0, newbtnindex = 0;
+		console.log($(".main_container_2").length);
+		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
+			newbtnindex++;
+			if($(".main_container_2").length == newbtnindex)
+				break;
+		}
+		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
+		
+		if(lastbtnindex != newbtnindex) {
+			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
+			lastbtnindex = newbtnindex;
+		}
+		
+		
+	});
+
+
+//}
+
+/*$(window).scroll(function(event){
+	st = $(this).scrollTop();
+	$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
+});*/
+
+
+
+$( window ).resize(function() {
+	beReadyPage();
+	setTimeout(function() { beReadyPage();}, 100);
+});
+
+
+
+function beReadyPage() {
+	window_height = parseInt($( window ).height());
+	window_width = parseInt($( window ).width());
+	if(ismenuopen) 
+		$(".menu_closer").css("display", window_width > 1086 ? "none" : "block");
+	$(".swiper-container-wrapper").css("height", window_height - parseInt($( ".fixed_menu_top" ).height()));
+	//$(".main_container_2").css("height", window_height);
+	$(".main_container_2_bg_photo").css("height", window_height + 150);
+	//$(".main_container_2_bg_photo").css("height", window_width);
+	
+	st = $(window).scrollTop();
+	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
+	
+	if(window_width < 620) { 
+		//$(".mapouter").css("width", window_width - 20);
+		//$(".gmap_iframe").css("width", window_width - 20);
+		//$(".gmap_canvas").css("width", window_width - 20);
+		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
+		$("#map1").css("width", window_width - 20);
+		
+	} else {
+		//$(".mapouter").css("width", 600);
+		//$(".gmap_iframe").css("width", 600);
+		//$(".gmap_canvas").css("width", 600);
+		$("#map1").css("width", window_width - 300);
+	}
+}
+
+function openLeftMenu() {
+	$(".fixed_menu_all_buttons_cont").stop();
+	$(".menu_closer").stop();
+	$('.fixed_menu_all_buttons_cont').animate(
+		{ left: ismenuopen ? -200 : 0 }, 200);
+	if(ismenuopen) {
+		$(".menu_closer").fadeOut(200);
+		$(".menu_opener").addClass('fa-bars');
+		$(".menu_opener").addClass('fa');
+		
+		$(".menu_opener").removeClass('fa-regular');
+		$(".menu_opener").removeClass('fa-solid');
+		$(".menu_opener").removeClass('fa-xmark');
+		
+		$("html body").css("overflow-y", "auto");
+		if(!is_mobile_phone) {
+			$(".main_div").css("width", "100%");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
+		}
+		console.log(is_mobile_phone);
+	}
+	else {
+		$(".menu_closer").fadeIn(200);
+		$(".menu_opener").removeClass('fa-bars');
+		$(".menu_opener").removeClass('fa');
+		
+		$(".menu_opener").addClass('fa-regular');
+		$(".menu_opener").addClass('fa-solid');
+		$(".menu_opener").addClass('fa-xmark');
+		
+		$("html body").css("overflow-y", "hidden");
+		if(!is_mobile_phone) {
+			$(".main_div").css("width", "calc(100% - 14px)");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
+		}
+	}
+	//fa-regular fa-solid fa-xmark
+
+	ismenuopen = !ismenuopen;
+
+	//overflow: hidden;
+}
+
+/*setTimeout(function() { changeImgg(); }, 5000);
+
+function changeImgg() {
+	if(is_change_on_going && !is_trans_button_clicked)
+		transImg(transNum+1);
+	is_trans_button_clicked = false;
+	setTimeout(function() { changeImgg(); }, 5000);
+}*/
+
+setTimeout(function() { beReadyPage();}, 200);
+setTimeout(function() { beReadyPage();}, 500);
