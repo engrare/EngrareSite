@@ -13,7 +13,7 @@
 <meta property="og:title" content="Team Engrare WebSitesi">
 <meta property="og:url" content="https://engrare.github.io/website/">
 <meta property="og:description" content="engrare takımının websitesine hoş geldiniz.">
-<meta content="egrare takımının websitesine hoş geldiniz." name="description">
+<meta content="engrare takımının websitesine hoş geldiniz." name="description">
 <noscript>
 <style>
 .main_noscript_div {
@@ -126,6 +126,7 @@
 				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_6">
 					<p>İletişim</p>
 				</div>
+
 			</div>
 			
 		</div>
@@ -137,7 +138,7 @@
 				<p class="fixed_menu_logo_text">Teknofest Team</p>
 			</div>
 		</div>
-		<div class="fixed_menu_right_cont">
+		<div class="fixed_menu_right_cont" onClick="GoToSettingsPage()">
 			<div class="fixed_menu_button fixed_menu_button_3">
 			<!--<div class="notification_num">3</div>
 				<i class="fa fa-bell notification_bell"></i>-->
@@ -198,7 +199,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Engrare Takımı</h1>
 						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(1)">
+						<a class="go_furniture_detail_a" onclick="appandTomain()"> <!--ScrollPart(1)-->
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Detayını Gör</p>
 							</div>
@@ -277,19 +278,20 @@
 </div>
 </div>
 
-<div class="main_container_2">
+
+<div class="main_container_2" id="main_container_0">
 	<div class="main_container_2_bg_photo_part">
 		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_1"/>
 	</div>
 	<div class="main_container_2_text_part">
-		<h1>Biz Kimiz?</h1>
-	  <h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
+		<h1 id="header_part">Biz Kimiz?</h1>
+	  <h3 id="content_part">örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
 
 	</div>
 </div>
 
 
-<div class="main_container_2">
+<div class="main_container_2" style="display: none;">
 	<div class="main_container_2_bg_photo_part">
 		<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" id="sliding_photo_2"/>
 	</div>
@@ -464,6 +466,7 @@ website
 </div>
 <div class="copywrite_part">
 <p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare©®™</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
+</div>
 </div>
 </div>
 
