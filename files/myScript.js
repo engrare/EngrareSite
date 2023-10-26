@@ -5,7 +5,156 @@ var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
+
+var website_data_obj = {
+	"account": {
+		"whatsapp": {
+			"link": "https://wa.me/905412989803/"
+		},
+		"instagram": {
+			"link": "https://www.instagram.com/engrare.co/",
+			"nickname": "engrare.co",
+			"password": "kaya123"
+		},
+		"twitter": {
+			"link": "https://x.com/engrare.co/",
+			"nickname": "engrare.co",
+			"password": "kaya1234"
+		}
+	},
+	"website": {
+		"slide": {
+			"name": "Engrare",
+			"content": [
+				{
+					"header": "Engrare Takımı",
+					"buttontext": "Detayları Gör",
+					"link": "",
+					"gocorner": "1",
+					"bgimglink": ""
+				},
+				{
+					"header": "Engrare\'a Destek Ol!",
+					"buttontext": "Sponsorluk Başvurusu Yap",
+					"link": "",
+					"gocorner": "5",
+					"bgimglink": ""
+				},
+				{
+					"header": "Hazırlarımız",
+					"buttontext": "Detayları Gör",
+					"link": "",
+					"gocorner": "2",
+					"bgimglink": ""
+				},
+				{
+					"header": "Engrare Takımı",
+					"buttontext": "Detayları Gör",
+					"link": "",
+					"gocorner": "4",
+					"bgimglink": ""
+				},
+			]
+		},
+		"corner": [
+			{
+				"name": "Biz Kimiz?",
+				"header": "Biz Kimiz?",
+				"text": "örnek yazı 1 bu bir yazıdır. \nistediğiniz kadar uzatabilirsiniz.",
+				"buttontext": "",
+				"btnlink": "",
+				"bgimglink": ""
+			},
+			{
+				"name": "Vizyonumuz",
+				"header": "Vizyonumuz",
+				"text": "örnek yazı 2 bu bir yazıdır. \nistediğiniz kadar uzatabilirsiniz.",
+				"buttontext": "",
+				"btnlink": "",
+				"bgimglink": ""
+			},
+			{
+				"name": "Misyonumuz",
+				"header": "Misyonumuz",
+				"text": "örnek yazı 3 bu bir yazıdır. \nistediğiniz kadar uzatabilirsiniz.",
+				"buttontext": "",
+				"btnlink": "",
+				"bgimglink": ""
+			},
+			{
+				"name": "Üye Alımı",
+				"header": "Üye Alımı",
+				"text": "örnek yazı 4 bu bir yazıdır. \nistediğiniz kadar uzatabilirsiniz.",
+				"buttontext": "Form için tıkla",
+				"btnlink": "",
+				"bgimglink": ""
+			},
+			{
+				"name": "Sponsorluk",
+				"header": "Sponsorluk İsteği",
+				"text": "örnek yazı 5 bu bir yazıdır. \nistediğiniz kadar uzatabilirsiniz.",
+				"buttontext": "Bizi desteklemek için tıklayınız.",
+				"btnlink": "",
+				"bgimglink": ""
+			}
+		]
+	}
+};
+
+
+
+function appandTomain() {
+var objlen = website_data_obj.website.corner.length;
+console.log(objlen);
+	for(var i = 0; i < objlen; i++) {
+		if(i > 0) {
+			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
+		}
+		$('#main_container_' + i).children( ".main_container_2_text_part" ).children( "#header_part" ).text(website_data_obj.website.corner[i].header);
+		$('#main_container_' + i).children( ".main_container_2_text_part" ).children( "#content_part" ).text(website_data_obj.website.corner[i].text);
+		/*$('#search_result_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
+		$('#search_result_' + i).children( ".search_result_div" ).children( ".user_password" ).text(myObj[i].password);
+		$("#search_result_" + i + " .search_result_div .user_permission_degree .permission_box_outer_btn .permission_box_outer .permission_box_inner").removeClass("permission_box_inner_checked");
+		$("#search_result_" + i + " .search_result_div .user_username").attr("label", myObj[i].username + " kullanıcısını kullanıcı adı");
+		$("#search_result_" + i + " .search_result_div .user_password").attr("label", myObj[i].username + " kullanıcısını şifresi");
+		$("#search_result_" + i + " .search_result_div .low_level_permission").attr("label", myObj[i].username + " kullanıcısını düşük seviye kullanıcı yapma butonu");
+		$("#search_result_" + i + " .search_result_div .top_level_permission").attr("label", myObj[i].username + " kullanıcısını yüksek seviye kullanıcı yapma butonu");
+		
+		$("#search_result_" + i + " .search_result_div .remove_user_button").attr("label", myObj[i].username + " kullanıcısını kaldırma butonu");
+		$("#search_result_" + i + " .search_result_div .edit_user_button").attr("label", myObj[i].username + " kullanıcısını düzenleme butonu");
+		
+		if(myObj[i].permission == "low-level") {
+			$('#search_result_' + i).children( ".search_result_div" ).children( ".user_permission_degree" ).children(".low_level_permission").children(".permission_box_outer").children(".permission_box_inner").addClass("permission_box_inner_checked");
+			$('#search_result_' + i).children( ".search_result_div" ).children( ".user_permission_degree" ).children(".low_level_permission").css("display", "flex");
+		} else {
+			$('#search_result_' + i).children( ".search_result_div" ).children( ".user_permission_degree" ).children(".low_level_permission").css("display", "none");
+		}*/
+
+		
+	}
+var objlen = website_data_obj.website.corner.length;
+	for(var i = 0; i < objlen; i++) {
+		if(i > 0) {
+			//$( '#main_container_' + (i - 1)).clone().appendTo( ".main_div" ).prop('id', 'main_container_' + i);
+			$( '#fixed_menu_but_' + (i - 1)).clone().appendTo( ".fixed_menu_all_buttons_cont" ).prop('id', 'fixed_menu_but_' + i);
+		}
+		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
+		
+
+		
+	}
+	
+			
+	
+}
+
+
+//for(let i = 0; i < website_data_obj.corner.length())
+
+
 $( document ).ready(function() {
+	appandTomain();
+	console.log(website_data_obj.website.corner.length);
 	var mySwiper = new Swiper('.swiper-container', {
 		navigation: {
 			nextEl: '.swiper-button-next',
@@ -206,6 +355,12 @@ $( document ).ready(function() {
 
 			is_member_open = !is_member_open;
 		}
+}
+
+
+function GoToSettingsPage() {
+	//window.location.href = window.location.href + "../settings/set.html";
+	
 }
 
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
