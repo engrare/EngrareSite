@@ -5,54 +5,187 @@ var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
-$( document ).ready(function() {
-	var mySwiper = new Swiper('.swiper-container', {
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-		autoplay: {
-			delay: 3000, // change delay as needed
-		},
-		/*on: {
-			slideNextTransitionEnd: (swiper) => {
-				//console.log('SWIPED RIGHT');
-				if(!trans_click_pressed) {
-					if(current_active_index == mySwiper.slides.length - 1)
-						current_active_index = 0;
-					else
-						current_active_index++;
-				}
-				trans_click_pressed = false;
-				//new_active_index = current_active_index;//mySwiper.activeIndex;
-				changeTransClick(old_active_index, current_active_index);
-				old_active_index = current_active_index;
-			},
-			slidePrevTransitionEnd: (swiper) => {
-				//console.log('SWIPED LEFT');
-				if(!trans_click_pressed) {
-					if(current_active_index == 0)
-						current_active_index = mySwiper.slides.length - 1;
-					else
-						current_active_index--;
-				}
-				trans_click_pressed = false;
-				//new_active_index = current_active_index;//mySwiper.activeIndex;
-				changeTransClick(old_active_index, current_active_index);
-				old_active_index = current_active_index;
+var usernames = [];
+var passwords = [];
+var encrypted_key = null;
+var final_repo_key;
+var JSONdata = null;
+const key_cookie = "repokeycookie";
+//var final_repo_key = "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";
+
+function encodeString(inputString, shiftString) {
+  let encodedString = '';
+
+  for (let i = 0; i < inputString.length; i++) {
+    const char = inputString.charAt(i);
+    const charCode = char.charCodeAt(0);
+
+    const shiftChar = shiftString.charAt(i % shiftString.length);
+    const shiftValue = shiftChar.charCodeAt(0);
+
+    // Calculate the shifted character and ensure it's within the ASCII range (32-126)
+    let shiftedCharCode = charCode + shiftValue;
+
+    // Ensure the shifted character is within the ASCII range (32-126)
+    while (shiftedCharCode > 126) {
+      shiftedCharCode -= 95;
+    }
+
+    while (shiftedCharCode < 32) {
+      shiftedCharCode += 95;
+    }
+
+    // Check if the shifted character is a double-quote (") and adjust it
+    if (shiftedCharCode === 34) {
+      shiftedCharCode++;
+      // Ensure it's still within the ASCII range (32-126)
+      if (shiftedCharCode > 126) {
+        shiftedCharCode = 32;
+      }
+    }
+
+    // Append the shifted character to the encoded string
+    encodedString += String.fromCharCode(shiftedCharCode);
+  }
+
+  return encodedString;
+}
+
+function decodeString(encodedString, shiftString) {
+  let decodedString = '';
+
+  for (let i = 0; i < encodedString.length; i++) {
+    const char = encodedString.charAt(i);
+    const charCode = char.charCodeAt(0);
+
+    const shiftChar = shiftString.charAt(i % shiftString.length);
+    const shiftValue = shiftChar.charCodeAt(0);
+
+    // Reverse the shifting to get the original character
+    let originalCharCode = charCode - shiftValue;
+
+    // Ensure the original character is within the ASCII range (32-126)
+    while (originalCharCode > 126) {
+      originalCharCode -= 95;
+    }
+
+    while (originalCharCode < 32) {
+      originalCharCode += 95;
+    }
+
+    // Check if the original character is a double-quote (") and adjust it
+    if (originalCharCode === 34) {
+      originalCharCode--;
+      // Ensure it's still within the ASCII range (32-126)
+      if (originalCharCode < 32) {
+        originalCharCode = 126;
+      }
+    }
+
+    // Append the original character to the decoded string
+    decodedString += String.fromCharCode(originalCharCode);
+  }
+
+  return decodedString;
+}
+
+
+
+function repoGetRestrictedData(real_key, state) {
+    // const apiKey = "ghp_asdafadgsfgadfadsadasd"; // Replace with your actual GitHub API key
+    const apiKey = real_key; // Replace with your actual GitHub API key
+    const repoOwner = "eylulberil";
+    const repoName = "ristrecded-engrare-data";
+    const filePath = "data.json";
+    const branchName = "main";
+
+    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branchName}`;
+
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${apiKey}`);
+
+    fetch(url, { headers })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
+        })
+        .then(data => {
+            const content = data.content;
+            // Explicitly set character encoding to handle special characters
+            const decodedContent = decodeBase64Content(content);
+            const gottenjsonData = JSON.parse(decodedContent);
+			if(readCookie(key_cookie) == "") {
+				menuState(2);
+				setCookie(key_cookie, real_key, 365);
 			}
-		},*/
-		loop: true,
+			JSONdata = gottenjsonData;
+        })
+        //.catch(error => $( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500));
+        .catch(error => {
+    console.log(error);
+    	$( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500);
 	});
+}
+
+function decodeBase64Content(content) {
+    const decoded = atob(content);
+    // Convert the decoded content to UTF-8
+    const text = new TextDecoder("utf-8").decode(new Uint8Array(decoded.split('').map(c => c.charCodeAt(0))));
+
+    return text;
+}
+
+
+fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
+  .then(response => response.json())
+  .then(myObj => {
+	//var objlen = Object.keys(myObj).length;
+	//console.log(objlen);
+	//console.log(myObj[1].username);
 	
-	/*$( ".left_right_buttons_swipper" ).hover(function() {
-		$(this).css({"-webkit-transform": "translateY(-5px)"});
-		$(this).addClass("swiper_button_hover");
-	}, function() {
-		$(this).css({"-webkit-transform": "translateY(0px)"});
-		$(this).removeClass("swiper_button_hover");
-	});
-	*/
+	
+	/*for(var i = 0; i < objlen; i++) {
+		usernames.push(myObj[i].username);
+		passwords.push(myObj[i].password);
+	}
+	
+	console.log(usernames);*/
+	encrypted_key = myObj[0];
+	console.log(encrypted_key);
+	
+  })
+  .catch(error => {
+    // Handle any errors that occur during the fetch request
+    console.log('Error:', error);
+  });
+	
+	
+function menuState(state) {
+	if(state == 0) {
+		$( "#login_part" ).css( "display", "none" );
+		$( "#loading_part" ).css( "display", "flex" );
+		$( "#main_menu" ).css( "display", "none" );
+		
+	} else if(state == 1) {
+		$( "#login_part" ).css( "display", "flex" );
+		$( "#loading_part" ).css( "display", "none" );
+		$( "#main_menu" ).css( "display", "none" );
+	} else if(state == 2) {
+		$( "#login_part" ).css( "display", "none" );
+		$( "#loading_part" ).css( "display", "none" );
+		$( "#main_menu" ).css( "display", "flex" );
+		
+	}
+	
+}
+
+
+
+
+$( document ).ready(function() {
 	$( ".fixed_menu_right_cont" ).hover(
   function() {
     $( ".settings_button_top" ).addClass( "fa-spin" );
@@ -60,8 +193,14 @@ $( document ).ready(function() {
     $( ".settings_button_top" ).removeClass( "fa-spin" );
   }
 );
+
+	console.log(readCookie("repokeycookie"));
 	
-	
+if(readCookie("repokeycookie") == "") {
+	menuState(1);
+} else {
+	menuState(2);
+}
 
 
 	
@@ -76,18 +215,6 @@ $( document ).ready(function() {
 		//console.log($(this).eq(1));
 	});
 	
-
-	
-	function changeTransClick(old_index, new_index) {
-		var elementID = "transClick_";
-		document.getElementById(elementID + old_index).className = "trans_click";
-		document.getElementById(elementID + new_index).className = "trans_click trans_active";
-	}
-	
-	$(".left_right_buttons_swipper").on('click', function(){
-		setTimeout(function() { mySwiper.autoplay.start();}, 6000);
-	});
-	
 	$(".trans_click").on('click', function(){
 		var index = $(this).attr('id').slice(11, 12);
 		if(index == mySwiper.realIndex)
@@ -98,69 +225,14 @@ $( document ).ready(function() {
 	beReadyPage();
 	
 	
-	/*
-	// Define the function to go to the last slide from the first slide
-	function goToLastSlide() {
-		mySwiper.slideTo(mySwiper.slides.length - 1);
-	}
-
-	// Define the function to go to the first slide from the last slide
-	function goToFirstSlide() {
-		mySwiper.slideTo(0);
-	}
-
-// Add a click event listener to the first slide to go to the last slide
-	var firstSlide = document.querySelector('.swiper-slide:first-of-type');
-	firstSlide.addEventListener('click', function() {
-		if (mySwiper.activeIndex == 0) {
-			for(var i = 0; i < mySwiper.slides.length - 1; i++)
-				mySwiper.slideNext(i*30);
-			current_active_index = 3;
-			alert(mySwiper.activeIndex);
-		}
-	});
-
-	// Add a click event listener to the last slide to go to the first slide
-	var lastSlide = document.querySelector('.swiper-slide:last-of-type');
-	lastSlide.addEventListener('click', function() {
-		if (mySwiper.activeIndex == mySwiper.slides.length - 1) {
-			goToFirstSlide();
-			current_active_index = 0;
-		}
-	});*/
 	
 	$(window).scroll(function(event){
 		if($(this).scrollTop() > window_height) {
-			mySwiper.autoplay.stop();
 		}
 		else {
-			mySwiper.autoplay.start();
 		}
 	});
 	
-	var mySwiper = $(".swiper-container")[0].swiper;
-	//mySwiper.autoplay.stop();
-	mySwiper.autoplay.start();
-	$('.go_furniture_detail_a').mouseenter(function() {
-		mySwiper.autoplay.stop();
-	}).mouseleave(function() {
-		mySwiper.autoplay.start();
-	})
-	
-	mySwiper.on('slideChange', function () {
-		if (mySwiper.autoplay.running) {
-			//console.log('Slide changed automatically');
-		} else {
-			mySwiper.autoplay.stop();
-			setTimeout(function() { mySwiper.autoplay.start();}, 6000);
-			//console.log('Slide changed by user');
-		}
-		
-		mySwiper.slideToLoop(mySwiper.realIndex);
-		changeTransClick(old_active_index, mySwiper.realIndex);
-		old_active_index = mySwiper.realIndex;
-			
-	});
 });
 
 
@@ -214,6 +286,20 @@ function GoToSettingsPage() {
 	
 }
 
+function loginPressed() {
+	if(encrypted_key != null) {
+		let key = $( "#password" ).first().val();
+		if(key.length) {
+			console.log(key);
+			final_repo_key = decodeString(encrypted_key, key);
+			console.log(final_repo_key);
+			repoGetRestrictedData(final_repo_key, 1);
+		}
+	}
+	else
+		setTimeout(function() { loginPressed(); }, 500);
+}
+
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
@@ -251,6 +337,11 @@ function GoToSettingsPage() {
 	$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
 });*/
 
+$(document).keydown(function(e) {
+	if(e.keyCode == 13) {
+		loginPressed();
+	}
+});
 
 
 $( window ).resize(function() {
@@ -305,8 +396,8 @@ function openLeftMenu() {
 		
 		$("html body").css("overflow-y", "auto");
 		if(!is_mobile_phone) {
-			$(".main_div").css("width", "100%");
-			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
+			//$(".main_div").css("width", "100%");
+			//$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
 		}
 		console.log(is_mobile_phone);
 	}
@@ -321,8 +412,8 @@ function openLeftMenu() {
 		
 		$("html body").css("overflow-y", "hidden");
 		if(!is_mobile_phone) {
-			$(".main_div").css("width", "calc(100% - 14px)");
-			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
+			//$(".main_div").css("width", "calc(100% - 14px)");
+			//$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
 		}
 	}
 	//fa-regular fa-solid fa-xmark
@@ -343,3 +434,37 @@ function changeImgg() {
 
 setTimeout(function() { beReadyPage();}, 200);
 setTimeout(function() { beReadyPage();}, 500);
+
+
+function deleteCookie(cookieName) {
+    document.cookie = cookieName + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+function readCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function Logout() {
+	deleteCookie(key_cookie);
+	menuState(1);
+}
+
