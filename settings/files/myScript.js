@@ -11,7 +11,6 @@ var encrypted_key = null;
 var final_repo_key;
 var JSONdata = null;
 const key_cookie = "repokeycookie";
-//var final_repo_key = "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";
 
 function encodeString(inputString, shiftString) {
   let encodedString = '';
@@ -126,7 +125,8 @@ function repoGetRestrictedData(real_key, state) {
         //.catch(error => $( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500));
         .catch(error => {
     console.log(error);
-    	$( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500);
+
+    	$( "#login_warning_msg" ).text("Giriş bilgisi hatalı.").show().fadeOut(1500);
 	});
 }
 
@@ -164,20 +164,29 @@ fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
 	
 	
 function menuState(state) {
+	$( "#buttons_outer_div, #main_menu, #login_part, #loading_part, #website_design_outer, #social_media_acc_outer" ).css( "display", "none" );
+	$( ".fixed_menu_button" ).removeClass('fixed_menu_button_selected');
+	
 	if(state == 0) {
-		$( "#login_part" ).css( "display", "none" );
 		$( "#loading_part" ).css( "display", "flex" );
-		$( "#main_menu" ).css( "display", "none" );
-		
+		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
 	} else if(state == 1) {
 		$( "#login_part" ).css( "display", "flex" );
-		$( "#loading_part" ).css( "display", "none" );
-		$( "#main_menu" ).css( "display", "none" );
+		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
 	} else if(state == 2) {
-		$( "#login_part" ).css( "display", "none" );
-		$( "#loading_part" ).css( "display", "none" );
 		$( "#main_menu" ).css( "display", "flex" );
+		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
+	} else if(state == 3) {
+		$( "#website_design_outer" ).css( "display", "flex" );
+		$( "#fixed_menu_but_3" ).addClass("fixed_menu_button_selected");
 		
+	} else if (state == 4) {
+		$( "#social_media_acc_outer" ).css( "display", "flex" );
+		$( "#fixed_menu_but_4" ).addClass("fixed_menu_button_selected");
+		
+	} else if(state == 5) {
+		$( "#buttons_outer_div" ).css( "display", "flex" );
+		$( "#fixed_menu_but_5" ).addClass("fixed_menu_button_selected");
 	}
 	
 }
@@ -201,13 +210,15 @@ if(readCookie("repokeycookie") == "") {
 } else {
 	menuState(2);
 }
+//menuState(2);
 
 
 	
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
-		ScrollPart(button_index);
+		menuState(button_index);
+		//ScrollPart(button_index);
 		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
 		
 		if(ismenuopen)
@@ -235,57 +246,6 @@ if(readCookie("repokeycookie") == "") {
 	
 });
 
-
-	function ScrollPart(index) {
-		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
-	}
-
-
-
-	function OpenCloseForm(num) {
-		if(num == 2) {
-			if(is_sponsor_open) {
-			
-				$('#sponsorship_cont_outer').css("height", "");
-				$('#sponsorship_cont').css("display", "");
-				$('.sponsorship_form_iframe_outer').fadeOut(500);
-
-			} else {
-				$('#sponsorship_cont_outer').css("height", "auto");
-				$('#sponsorship_cont').css("display", "none");
-				$('.sponsorship_form_iframe_outer').fadeIn(500);
-				$('.sponsorship_form_iframe_outer').css("display", "flex");
-				
-
-			}
-
-			is_sponsor_open = !is_sponsor_open;
-		
-		} else {
-			if(is_member_open) {
-			
-				$('#membership_cont_outer').css("height", "");
-				$('#membership_cont').css("display", "");
-				$('.membership_form_iframe_outer').fadeOut(500);
-
-			} else {
-				$('#membership_cont_outer').css("height", "auto");
-				$('#membership_cont').css("display", "none");
-				$('.membership_form_iframe_outer').fadeIn(500);
-				$('.membership_form_iframe_outer').css("display", "flex");
-
-			}
-
-			is_member_open = !is_member_open;
-		}
-}
-
-
-function GoToSettingsPage() {
-	//window.location.href = window.location.href + "../settings/set.html";
-	
-}
-
 function loginPressed() {
 	if(encrypted_key != null) {
 		let key = $( "#password" ).first().val();
@@ -303,28 +263,6 @@ function loginPressed() {
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
-		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-		st - $("#sliding_photo_1").offset().top
-		$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st/1*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#sliding_photo_2").css('transform', 'translate3d(0px, ' + (st/2*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#sliding_photo_3").css('transform', 'translate3d(0px, ' + (st/3*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#sliding_photo_4").css('transform', 'translate3d(0px, ' + (st/4*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
-		
-		var lastbtnindex = 0, newbtnindex = 0;
-		console.log($(".main_container_2").length);
-		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
-			newbtnindex++;
-			if($(".main_container_2").length == newbtnindex)
-				break;
-		}
-		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
-		
-		if(lastbtnindex != newbtnindex) {
-			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
-			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
-			lastbtnindex = newbtnindex;
-		}
 		
 		
 	});
@@ -338,10 +276,57 @@ function loginPressed() {
 });*/
 
 $(document).keydown(function(e) {
-	if(e.keyCode == 13) {
-		loginPressed();
-	}
+	var key = e.keyCode;
+	
+		switch(key) {
+			case 13:
+				loginPressed();
+				break;
+			case 87:
+			case 38:
+				PressGoButtons(1);
+				break;
+			case 65:
+			case 37:
+				PressGoButtons(2);
+				break;
+			case 68:
+			case 39:
+				PressGoButtons(4);
+				break;
+			case 83:
+			case 40:
+				PressGoButtons(5);
+				break;
+			case 32:
+				PressGoButtons(3);
+				break;
+		}
+	console.log(key);
 });
+
+function PressGoButtons(index) {
+	$("#forward_button, #stop_button, #left_button, #right_button, #backward_button").css("color", "");
+	var id;
+	switch(index) {
+		case 1:
+			id = "#forward_button";
+			break;
+		case 2:
+			id = "#left_button";
+			break;
+		case 3:
+			id = "#stop_button";
+			break;
+		case 4:
+			id = "#right_button";
+			break;
+		case 5:
+			id = "#backward_button";
+			break;
+	}
+	$(id).css("color", "red");
+}
 
 
 $( window ).resize(function() {
@@ -356,28 +341,6 @@ function beReadyPage() {
 	window_width = parseInt($( window ).width());
 	if(ismenuopen) 
 		$(".menu_closer").css("display", window_width > 1086 ? "none" : "block");
-	$(".swiper-container-wrapper").css("height", window_height - parseInt($( ".fixed_menu_top" ).height()));
-	//$(".main_container_2").css("height", window_height);
-	$(".main_container_2_bg_photo").css("height", window_height + 150);
-	//$(".main_container_2_bg_photo").css("height", window_width);
-	
-	st = $(window).scrollTop();
-	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
-	
-	if(window_width < 620) { 
-		//$(".mapouter").css("width", window_width - 20);
-		//$(".gmap_iframe").css("width", window_width - 20);
-		//$(".gmap_canvas").css("width", window_width - 20);
-		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
-		$("#map1").css("width", window_width - 20);
-		
-	} else {
-		//$(".mapouter").css("width", 600);
-		//$(".gmap_iframe").css("width", 600);
-		//$(".gmap_canvas").css("width", 600);
-		$("#map1").css("width", window_width - 300);
-	}
 }
 
 function openLeftMenu() {
