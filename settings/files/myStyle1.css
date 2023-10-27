@@ -879,41 +879,58 @@ p {
 
 .main_container_inner_bg {
 	position: absolute;
-	font-size: 150px;
+	font-size: 130px;
 	color: rgba(255,255,255,0.3);
 }
 
-.main_container_inner_text {
-	
-}
 
-
-
-.sponsorship_form_iframe {
-	margin: 20px;
-	
-}
-
-.sponsorship_form_iframe_outer {
+.buttons_outer_div {
 	display: none;
-    width: 100%;
-    height: 100%;
-	    flex-direction: column;
-    align-items: center;
-	
-}
-
-.membership_form_iframe {
-	margin: 20px;
-	
-}
-
-.membership_form_iframe_outer {
-	display: none;
-    width: 100%;
-    height: 100%;
 	flex-direction: column;
     align-items: center;
+}
+
+.direction_buttons {
+	height: 80px;
+	width: 80px;
+	margin: 8px;
+	cursor: pointer;
+	font-size: 45px;
+}
+
+.direction_buttons:hover {
+	color: #2C3B05;
+}
+
+.website_design_outer {
+	height: 100%;
+	width: 100%;
+}
+
+@media only screen and (min-width: 351px) and (max-width: 501px) { 
+	.main_menu_content_outer { 
+		height: 150px;
+		width: 150px;
+		margin: 5px;
+	}
+	
+	.main_container_inner_bg {
+		font-size: 85px;
+	}
+	
+}
+
+@media only screen and (max-width: 350px) {
+		.main_menu_content_outer { 
+		height: 120px;
+		width: 120px;
+		margin: 5px;
+		font-size: 12px;
+	}
+	
+	.main_container_inner_bg {
+		font-size: 60px;
+	}
 }
 
 
