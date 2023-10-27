@@ -84,6 +84,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-solid.css">
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-light.css">
 
 <script src="files/myScript.js"></script>
 <link rel="stylesheet" href="files/myStyle1.css">
@@ -103,28 +105,28 @@
 				<i class="fa fa-bars menu_opener"></i>
 			</div>
 			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left">
+				<div class="fixed_menu_button fixed_menu_buttons_left"  onclick="window.open('../index.html', '_blank');">
 					<p>Ana Sayfaya Dön</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_1">
+				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_2">
 					<p>API Sayfası</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_2">
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_3">
 					<p>Websitesi Düzeni</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_3">
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_4">
 					<p>Sosyal Medya</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_4">
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_5">
 					<p>RoboControl</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_5">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="window.open('https://drive.google.com/file/d/1YfEugs-8TowZ0vRTspxL71VGcNfp0lRu/view?usp=drive_link', '_blank');">
 					<p>Android App</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_6">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="window.open('https://drive.google.com/drive/u/0/folders/1x9uElz-Rip2d2WYt6gTvHXdgqOup1xJO', '_blank');">
 					<p>Drive</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_7" onClick="Logout()">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="Logout()">
 					<p>Çıkış Yap</p>
 				</div>
 			</div>
@@ -173,9 +175,9 @@
 			
 		</div>
 		<div class="main_menu" id="main_menu">
-			<div class="main_menu_content_outer">
+			<div class="main_menu_content_outer" onclick="menuState(3)">
 				<div class="main_container_inner_bg">
-					<i class="fa-regular fa-envelope"></i>
+					<i class="fa-duotone fa-browser"></i>
 				</div>
 				<div class="main_container_inner_text">
 	 				 <h2>Websitesini Düzenle</h2>
@@ -184,9 +186,9 @@
 			
 			
 			</div>
-			<div class="main_menu_content_outer">
+			<div class="main_menu_content_outer" onclick="menuState(4)">
 				<div class="main_container_inner_bg">
-					<i class="fa-regular fa-envelope"></i>
+					<i class="fa-duotone fa-photo-film"></i>
 				</div>
 				<div class="main_container_inner_text">
 	 				 <h2>Sosyal Medya Ayarları</h2>
@@ -195,20 +197,31 @@
 			
 			
 			</div>
-			<div class="main_menu_content_outer">
+			<div class="main_menu_content_outer" onclick="menuState(5)">
 				<div class="main_container_inner_bg">
-					<i class="fa-regular fa-envelope"></i>
+					<i class="fa-light fa-gamepad-modern"></i>
 				</div>
 				<div class="main_container_inner_text">
-	 				 <h2>Robot Control App</h2>
+	 				 <h2>Web Robot Control App</h2>
 				</div>
 				
 			
 			
 			</div>
-			<div class="main_menu_content_outer">
+			<div class="main_menu_content_outer" onclick="window.open('https://drive.google.com/file/d/1YfEugs-8TowZ0vRTspxL71VGcNfp0lRu/view?usp=drive_link', '_blank');">
 				<div class="main_container_inner_bg">
-					<i class="fa-regular fa-envelope"></i>
+					<i class="fa-regular fa-mobile-signal-out"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Android Robo Control App</h2>
+				</div>
+				
+			
+			
+			</div>
+			<div class="main_menu_content_outer" onclick="window.open('https://drive.google.com/drive/u/0/folders/1x9uElz-Rip2d2WYt6gTvHXdgqOup1xJO', '_blank');">
+				<div class="main_container_inner_bg">
+					<i class="fa-brands fa-google-drive"></i>
 				</div>
 				<div class="main_container_inner_text">
 	 				 <h2>Drive Klasörüne git</h2>
@@ -218,7 +231,19 @@
 			
 			</div>
 		</div>
-
+		<div class="buttons_outer_div" id="buttons_outer_div">
+			<button class="direction_buttons" id="forward_button" onclick="PressGoButtons(1)"><i class="fa-sharp fa-solid fa-arrow-up"></i></button>
+				<div>
+			<button class="direction_buttons" id="left_button" onclick="PressGoButtons(2)"><i class="fa-sharp fa-solid fa-arrow-left"></i></button>
+			<button class="direction_buttons" id="stop_button" onclick="PressGoButtons(3)"><i class="fa-regular fa-stop"></i></button>
+			<button class="direction_buttons" id="right_button" onclick="PressGoButtons(4)"><i class="fa-sharp fa-solid fa-arrow-right"></i></button>
+				</div>
+			<button class="direction_buttons" id="backward_button" onclick="PressGoButtons(5)"><i class="fa-sharp fa-solid fa-arrow-down"></i></button>
+		</div>
+		<div class="website_design_outer" id="website_design_outer">
+		</div>
+		<div class="social_media_acc_outer" id="social_media_acc_outer">
+		</div>
 	</div>
 	<div class="copywrite_part">
 <p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare©®™</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
