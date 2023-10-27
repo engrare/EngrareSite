@@ -49,9 +49,11 @@ p {
 
 .main_div {
 	width: 100%;
-	overflow-x: hidden;
-	height: auto;
+	height: 100vh;
+	overflow: hidden;
 	position: relative;
+	    display: flex;
+    flex-direction: column;
 	z-index: 0;
 }
 
@@ -329,10 +331,6 @@ p {
 		height: 50px;
 	}
 	
-	.main_container_2 {
-		height: calc(100vh - 50px);
-	}
-	
 	.fixed_menu_space {
 		height: 50px;
 	}
@@ -402,9 +400,7 @@ p {
 	
 	
 	
-	.main_container_2 {
-		height: calc(100vh - 45px);
-	}
+
 	
 	.fixed_menu_space {
 		height: 45px;
@@ -477,9 +473,7 @@ p {
 		height: 55px;
 	}
 	
-	.main_container_2 {
-		height: calc(100vh - 55px);
-	}
+
 	
 	.fixed_menu_space {
 		height: 55px;
@@ -571,10 +565,6 @@ p {
 	
 	.fixed_menu_top {
 		height: 60px;
-	}
-	
-	.main_container_2 {
-		height: calc(100vh - 60px);
 	}
 	
 	.fixed_menu_space {
@@ -816,8 +806,11 @@ p {
 }
 
 .main_container_2 {
+	height: 100%;
+	display: flex;
 	position: relative;
 	width: 100%;
+	flex-direction: column;
 }
 
 .main_container_2_bg_photo_part {
@@ -851,10 +844,37 @@ p {
 	height: 100%;
 }
 
+.login_part_inner {
+	display: none;
+	    flex-direction: column;
+    align-items: center;
+}
+
 .text_part_inner_cont {
 	display: flex;
 	flex-direction: column;
     align-items: center;
+}
+
+.main_menu {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.main_menu_content_outer {
+	height: 200px;
+	width: 200px;
+	margin: 20px;
+	display: flex;
+	border-radius: 20px;
+	overflow: hidden;
+	background-color: black;
+	color: white;
+	justify-content: center;
+    align-items: center;
+	cursor: pointer;
 }
 
 
@@ -1137,17 +1157,7 @@ background-position: 20%;
 	text-align: center;
 }
 
-@mixin stroke($color: #000, $size: 1px) {
-  text-shadow:
-    -#{$size} -#{$size} 0 $color,
-     0        -#{$size} 0 $color,
-     #{$size} -#{$size} 0 $color,
-     #{$size}  0        0 $color,
-     #{$size}  #{$size} 0 $color,
-     0         #{$size} 0 $color,
-    -#{$size}  #{$size} 0 $color,
-    -#{$size}  0        0 $color;
-}
+
 
 .fix_stroke {
    paint-order: stroke fill;
