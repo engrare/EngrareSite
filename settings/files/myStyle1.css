@@ -877,6 +877,16 @@ p {
 	cursor: pointer;
 }
 
+.main_container_inner_bg {
+	position: absolute;
+	font-size: 150px;
+	color: rgba(255,255,255,0.3);
+}
+
+.main_container_inner_text {
+	
+}
+
 
 
 .sponsorship_form_iframe {
