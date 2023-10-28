@@ -9,6 +9,7 @@ var temp_acc_id;
 var is_acc_edit = false;
 var encrypted_key = null;
 var JSONdata = null;
+var websiteJSON = null;
 const key_cookie = "repokeycookie";
 
 function encodeString(inputString, shiftString) {
@@ -119,14 +120,11 @@ function repoGetRestrictedData(real_key) {
 				menuState(2);
 				setCookie(key_cookie, real_key, 365);
 			}
-			console.log(gottenjsonData);
 			JSONdata = gottenjsonData;
         })
-        //.catch(error => $( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500));
         .catch(error => {
-    console.log(error);
-
-    	$( "#login_warning_msg" ).text("Giriş bilgisi hatalı.").show().fadeOut(1500);
+    		console.log(error);
+    		$( "#login_warning_msg" ).text("Giriş bilgisi hatalı.").show().fadeOut(1500);
 	});
 }
 
@@ -144,6 +142,34 @@ fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
   .then(myObj => {
 	encrypted_key = myObj[0];
 	console.log(encrypted_key);
+	
+  })
+  .catch(error => {
+    // Handle any errors that occur during the fetch request
+    console.log('Error:', error);
+  });
+
+
+fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json')
+  .then(response => response.json())
+  .then(myObj => {
+	websiteJSON = myObj;
+	var objlen = websiteJSON.website.slide.content.length;
+	for(var i = 0; i < objlen; i++) {
+		if(i > 0) {
+			$( '#slayt_select_num_' + (i - 1)).clone().insertAfter( '#slayt_select_num_' + (i - 1) ).prop('id', 'slayt_select_num_' + i).text(i + 1);
+		}
+		//$('#main_container_' + i).children( ".main_container_2_text_part" ).children( "#content_part" ).text(website_data_obj.website.corner[i].text);
+	}
+	
+	objlen = websiteJSON.website.corner.length;
+	
+	for(var i = 0; i < objlen; i++) {
+		if(i > 0) {
+			$( '#container_select_num_' + (i - 1)).clone().insertAfter( '#container_select_num_' + (i - 1) ).prop('id', 'container_select_num_' + i).text(i + 1);
+		}
+	}
+	//websiteJSON.website.slide.content.length
 	
   })
   .catch(error => {
@@ -182,8 +208,6 @@ function menuState(state) {
 	} else if (state == 4) {
 		$( "#social_media_acc_outer" ).css( "display", "flex" );
 		$( "#fixed_menu_but_4" ).addClass("fixed_menu_button_selected");
-		//JSONdata
-		//$( "#wp_number" ).text(JSONdata.account.whatsapp.nickname);
 		$( "#tw_nick" ).text(JSONdata.account.twitterX.nickname);
 		$( "#tw_pass" ).text(JSONdata.account.twitterX.password);
 		$( "#map_link" ).text(JSONdata.account.maps.link);
@@ -248,9 +272,18 @@ $( document ).ready(function() {
 			$("#AccountNameInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(0)").text());
 			$("#AccountPassInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(1)").text());
 		}
-			
-		//copyToClipboard($(this).attr('id'));
 	});
+	
+	
+	$(".num_selection_button").on('click', function(){
+		$(".num_selection_button").removeClass("num_btn_selected");
+		$(this).addClass( "num_btn_selected" );
+		$(".website_edit_info_part").css("display", "flex");
+		//websiteJSON.website.corner[].name
+		//$(".website_edit_info_part").css("display", "flex");
+	});
+	
+	
 	
 	beReadyPage();
 	
@@ -501,6 +534,11 @@ function submitOneAcc() {
 	if($('#AccountPassInput').val() != "")
 		$(temp_acc_id).children(".copy_button:eq(1)").text($('#AccountPassInput').val());
 	$("#editing_div").css("display", "none");
+}
+
+function cancelWebsiteEdit() {
+	$(".website_edit_info_part").css("display", "none");
+	$(".num_selection_button").removeClass( "num_btn_selected" );
 }
 
 
