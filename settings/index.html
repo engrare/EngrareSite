@@ -338,7 +338,7 @@
 			<h2 id="warning_for_acc_upload"></h2>
 		</div>
 		<div class="website_design_outer" id="website_design_outer">
-			<div class="social_media_inner social_media_edit_button" onclick="submitwebJSON()">
+			<div class="social_media_inner social_media_edit_button" onClick="SubmitWebContentJSON()">
 				<div class="social_media_inner_bg">
 					<i class="fa-duotone fa-cloud-arrow-up"></i>
 				</div>
@@ -351,14 +351,14 @@
 						<h2>Slaytlar</h2>
 						
 						<div class="website_select_numbers_outer" id="slayt_select_numbers_outer">
-							<div class="num_selection_button" id="slayt_select_num_0">1</div>
+							<div class="num_selection_button" id="slayt_select_num_0" onClick="numSelectionChange('#slayt_select_num_0')">1</div>
 						</div>
 						
 					</div>
 					<div class="website_select_outer" id="container_select_outer">
 						<h2>Konteynerler</h2>
 						<div class="website_select_numbers_outer" id="container_select_numbers_outer">
-							<div class="num_selection_button" id="container_select_num_0">1</div>
+							<div class="num_selection_button" id="container_select_num_0" onClick="numSelectionChange('#container_select_num_0')">1</div>
 						</div>
 					</div>
 				</div>
@@ -366,12 +366,12 @@
 					<div class="main_container_2_bg_photo_part">
 						<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo"  id="preview_bg_img" alt="" />
 					</div>
-					<div class="main_container_2_text_part main_container_2_text_part_mini">
-						<h3>Misyonumuz</h3>
-					  	<p>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</p>
-						<a class="go_furniture_detail_a">
+					<div class="main_container_2_text_part main_container_2_text_part_mini" id="main_container_2_text_part_mini">
+						<h3 id="cont_header">Misyonumuz</h3>
+					  	<p id="cont_text">örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</p>
+						<a class="go_furniture_detail_a" id="go_detail_button_preview">
 						<div class="go_furniture_detail_cont_2">
-							<p class="go_furniture_detail_txt">Detayını gör</p>
+							<p class="go_furniture_detail_txt" id="cont_textbox">Detayını gör</p>
 						</div>
 						</a>
 						<div class="go_furniture_detail_cont_1">
@@ -380,7 +380,7 @@
 							</div>
 							<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
 								<div class="go_furniture_detail_cont_2">
-									<p class="go_furniture_detail_txt">Detayını gör</p>
+									<p class="go_furniture_detail_txt" id="slide_textbox">Detayını gör</p>
 								</div>
 							</a>
 						</div>
@@ -393,14 +393,21 @@
 			
 				<div class="edit_account_inner">
 					<i class="fa-solid fa-x" style="cursor: pointer; color: black;" onclick="cancelWebsiteEdit()"></i>
-					<p>Name: </p>
-					<input class="text_area" type="text" id="websiteNameInput">
-					<p>Header: </p>
-					<input class="text_area" type="text" id="websiteHeaderInput">
-					<p>Text: </p>
-					<textarea class="text_area" id="websiteTextInput" rows="4" cols="50"></textarea>
+					<div class="content_parts content_part_0"><p>Name: </p>
+					<input class="text_area" type="text" id="websiteNameInput"></div>
+					<div class="content_parts content_part_1"><p>Header: </p>
+					<input class="text_area" type="text" id="websiteHeaderInput"></div>
+					<div class="content_parts content_part_2"><p>Text: </p>
+					<textarea class="text_area" id="websiteTextInput" rows="4" cols="50"></textarea></div>
+					<div class="content_parts content_part_4"><p>Button Text: </p><input class="text_area" type="text" id="websitebtntextInput">
+ 					 </div>
+					<div class="content_parts content_part_5"><p>Where button go: </p><input class="text_area" type="text" id="websitewheretogoInput">
+ 					 </div>
+					<div class="content_parts content_part_6"><p>Background Img Link: </p>
+					<input class="text_area" type="text" id="websitebgLinkInput"></div>
+
 				</div>	
-				<button onClick="submitOneAcc()">Submit</button>
+				<button onClick="submitOneWebPart()">Submit</button>
 			
 			</div>
 		</div>
