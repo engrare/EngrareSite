@@ -6,6 +6,7 @@ var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
 var temp_acc_id;
+var temp_web_id;
 var is_acc_edit = false;
 var encrypted_key = null;
 var JSONdata = null;
@@ -157,7 +158,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 	var objlen = websiteJSON.website.slide.content.length;
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
-			$( '#slayt_select_num_' + (i - 1)).clone().insertAfter( '#slayt_select_num_' + (i - 1) ).prop('id', 'slayt_select_num_' + i).text(i + 1);
+			$( '#slayt_select_num_' + (i - 1)).clone().insertAfter( '#slayt_select_num_' + (i - 1) ).prop('id', 'slayt_select_num_' + i).text(i + 1).attr("onclick","numSelectionChange('#slayt_select_num_" + i + "')");
 		}
 		//$('#main_container_' + i).children( ".main_container_2_text_part" ).children( "#content_part" ).text(website_data_obj.website.corner[i].text);
 	}
@@ -166,7 +167,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 	
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
-			$( '#container_select_num_' + (i - 1)).clone().insertAfter( '#container_select_num_' + (i - 1) ).prop('id', 'container_select_num_' + i).text(i + 1);
+			$( '#container_select_num_' + (i - 1)).clone().insertAfter( '#container_select_num_' + (i - 1) ).prop('id', 'container_select_num_' + i).text(i + 1).attr("onclick","numSelectionChange('#container_select_num_" + i + "')");
 		}
 	}
 	//websiteJSON.website.slide.content.length
@@ -231,6 +232,90 @@ function menuState(state) {
 }
 
 
+function numSelectionChange(elementid) {
+	temp_web_id = elementid;
+	$(".num_selection_button").removeClass("num_btn_selected");
+	$(elementid).addClass( "num_btn_selected" );
+	$(".website_edit_info_part").css("display", "flex");
+	
+	
+	var strlength = elementid.length;
+	element_index = elementid.substr(strlength - 1, strlength);
+	
+	if(strlength == 19) {
+		$("#websiteNameInput").val(websiteJSON.website.slide.name);
+		$("#websiteHeaderInput").val(websiteJSON.website.slide.content[element_index].header);
+		$("#websiteTextInput").val("");
+		$("#websitebtntextInput").val(websiteJSON.website.slide.content[element_index].buttontext);
+		$("#websitewheretogoInput").val(websiteJSON.website.slide.content[element_index].gocorner);
+		$("#websitebgLinkInput").val(websiteJSON.website.slide.content[element_index].bgimglink);
+	} else {
+		$("#websiteNameInput").val(websiteJSON.website.corner[element_index].name);
+		$("#websiteHeaderInput").val(websiteJSON.website.corner[element_index].header);
+		$("#websiteTextInput").val(websiteJSON.website.corner[element_index].text);
+		$("#websitebtntextInput").val(websiteJSON.website.corner[element_index].buttontext);
+		$("#websitewheretogoInput").val(websiteJSON.website.corner[element_index].btnlink);
+		$("#websitebgLinkInput").val(websiteJSON.website.corner[element_index].bgimglink);
+	}
+	
+	createPreview(elementid);
+	//$("#websiteNameInput").text(websiteJSON.website.corner[].name);
+	
+	//
+	//$(".website_edit_info_part").css("display", "flex");
+}
+
+function createPreview(elementid) {
+	var strlength = elementid.length;
+	element_index = elementid.substr(strlength - 1, strlength);
+	
+	if(strlength == 19) {
+		$(".go_furniture_detail_cont_1").css("display", "");
+		$("#cont_header").css("display", "none");
+		$("#cont_text").css("display", "none");
+		$("#go_detail_button_preview").css("display", "none");
+		$("#main_container_2_text_part_mini").css("justify-content", "");
+		$(".img_slogan_txt").text(websiteJSON.website.slide.content[element_index].header);
+		$("#slide_textbox").text(websiteJSON.website.slide.content[element_index].buttontext);
+		$('#preview_bg_img').attr('src', websiteJSON.website.slide.content[element_index].bgimglink);
+	} else {
+		$(".go_furniture_detail_cont_1").css("display", "none");
+		$("#cont_header").css("display", "");
+		$("#cont_text").css("display", "");
+		$("#go_detail_button_preview").css("display", "");
+		$("#main_container_2_text_part_mini").css("justify-content", "center");
+		$("#cont_header").text(websiteJSON.website.corner[element_index].header);
+		$("#cont_text").text(websiteJSON.website.corner[element_index].text);
+		$("#slide_textbox").text(websiteJSON.website.corner[element_index].buttontext);
+		$('#preview_bg_img').attr('src', websiteJSON.website.corner[element_index].bgimglink);
+	}
+}
+
+function submitOneWebPart() {
+	
+	var strlength = temp_web_id.length;
+	element_index = temp_web_id.substr(strlength - 1, strlength);
+	
+	if(strlength == 19) {
+		websiteJSON.website.slide.name = $("#websiteNameInput").val();
+		websiteJSON.website.slide.content[element_index].header = $("#websiteHeaderInput").val();
+		websiteJSON.website.slide.content[element_index].buttontext = $("#websitebtntextInput").val();
+		websiteJSON.website.slide.content[element_index].gocorner = $("#websitewheretogoInput").val();
+		websiteJSON.website.slide.content[element_index].bgimglink = $("#websitebgLinkInput").val();
+	} else {
+		websiteJSON.website.corner[element_index].name = $("#websiteNameInput").val();
+		websiteJSON.website.corner[element_index].header = $("#websiteHeaderInput").val();
+		websiteJSON.website.corner[element_index].text = $("#websiteTextInput").val();
+		websiteJSON.website.corner[element_index].buttontext = $("#websitebtntextInput").val();
+		websiteJSON.website.corner[element_index].btnlink = $("#websitewheretogoInput").val();
+		websiteJSON.website.corner[element_index].bgimglink = $("#websitebgLinkInput").val();
+	}
+	
+	
+	createPreview(temp_web_id);
+}
+
+
 
 
 $( document ).ready(function() {
@@ -272,15 +357,6 @@ $( document ).ready(function() {
 			$("#AccountNameInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(0)").text());
 			$("#AccountPassInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(1)").text());
 		}
-	});
-	
-	
-	$(".num_selection_button").on('click', function(){
-		$(".num_selection_button").removeClass("num_btn_selected");
-		$(this).addClass( "num_btn_selected" );
-		$(".website_edit_info_part").css("display", "flex");
-		//websiteJSON.website.corner[].name
-		//$(".website_edit_info_part").css("display", "flex");
 	});
 	
 	
@@ -541,8 +617,12 @@ function cancelWebsiteEdit() {
 	$(".num_selection_button").removeClass( "num_btn_selected" );
 }
 
+function SubmitWebContentJSON() {
+	uploadJSON(websiteJSON, readCookie(key_cookie), 1);
+}
 
-function uploadJSON(json_object, key) {
+
+function uploadJSON(json_object, key, isWebUpload) {
   // Update the data as desired
   /*const updatedData = {
     someKey: 'çok seviyorum'
@@ -551,8 +631,12 @@ function uploadJSON(json_object, key) {
   //const token = 'ghp_ıaıjdfıoahjıthfq3hıahgıahegıfhıaehgodebngo';
   var token = key;
   const repoOwner = 'eylulberil';
-  const repoName = 'ristrecded-engrare-data';
-  const filePath = './data.json';
+  var repoName = 'ristrecded-engrare-data';
+  var filePath = './data.json';
+	if(arguments.length == 3) {
+	  var repoName = 'engrare-data';
+	  var filePath = './data.json';
+	}
 
   // Convert the updated data to JSON
   const updatedJsonData = JSON.stringify(json_object, null, 2);
