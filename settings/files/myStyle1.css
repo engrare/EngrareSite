@@ -896,6 +896,7 @@ p {
 	margin: 8px;
 	cursor: pointer;
 	font-size: 45px;
+	border-radius: 10px;
 }
 
 .direction_buttons:hover {
@@ -903,8 +904,67 @@ p {
 }
 
 .website_design_outer {
-	height: 100%;
+	display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.social_media_acc_outer {
+	display: none;
+	align-items: center;
+    justify-content: center;
+    flex-direction: column;
+	margin: 20px;
+}
+
+.social_media_inner_bg {
+	position: absolute;
+	z-index: 3;
+	font-size: 60px;
+	color: rgba(255,255,255,0.44);
+}
+
+.social_media_inner_outer {
+	display: flex;
+	align-items: center;
+    justify-content: center;
+    flex-direction: row;
+	flex-wrap: wrap;
+	margin: 20px;
+}
+
+
+.social_media_inner {
+	position: relative;
+	z-index: 4;
+	background: black;
+	color: white;
+	height: 120px;
+	width: 120px;
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	font-size: 25px;
+	border-radius: 20px;
+	margin: 15px;
+	overflow: hidden;
+}
+
+.copy_button {
+	position: relative;
+	z-index: 5;
+	background: rgba(184,71,71,0.33);
+	font-size: 10px;
 	width: 100%;
+	height: 20px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+	cursor: pointer;
+	border: 1px solid black;
+	
 }
 
 @media only screen and (min-width: 351px) and (max-width: 501px) { 
@@ -945,6 +1005,7 @@ p {
 	font-family: Atkinson Hyperlegible, sans-serif;
 	position: relative;
 	/*background-color: #ffffff;*/
+
 	color: white;
 	border-radius: 50px;
 	padding: 15px;
