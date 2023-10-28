@@ -5,10 +5,9 @@ var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
-var usernames = [];
-var passwords = [];
+var temp_acc_id;
+var is_acc_edit = false;
 var encrypted_key = null;
-var final_repo_key;
 var JSONdata = null;
 const key_cookie = "repokeycookie";
 
@@ -90,7 +89,7 @@ function decodeString(encodedString, shiftString) {
 
 
 
-function repoGetRestrictedData(real_key, state) {
+function repoGetRestrictedData(real_key) {
     // const apiKey = "ghp_asdafadgsfgadfadsadasd"; // Replace with your actual GitHub API key
     const apiKey = real_key; // Replace with your actual GitHub API key
     const repoOwner = "eylulberil";
@@ -120,6 +119,7 @@ function repoGetRestrictedData(real_key, state) {
 				menuState(2);
 				setCookie(key_cookie, real_key, 365);
 			}
+			console.log(gottenjsonData);
 			JSONdata = gottenjsonData;
         })
         //.catch(error => $( "#login_warning_msg" ).text("giriş bilgisi hatalı.").show().fadeOut(1500));
@@ -142,17 +142,6 @@ function decodeBase64Content(content) {
 fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
   .then(response => response.json())
   .then(myObj => {
-	//var objlen = Object.keys(myObj).length;
-	//console.log(objlen);
-	//console.log(myObj[1].username);
-	
-	
-	/*for(var i = 0; i < objlen; i++) {
-		usernames.push(myObj[i].username);
-		passwords.push(myObj[i].password);
-	}
-	
-	console.log(usernames);*/
 	encrypted_key = myObj[0];
 	console.log(encrypted_key);
 	
@@ -169,6 +158,7 @@ function menuStateButton(state) {
 		menuState(1);
 	} else {
 		menuState(state);
+		repoGetRestrictedData(readCookie("repokeycookie"));
 	}
 }
 
@@ -192,6 +182,22 @@ function menuState(state) {
 	} else if (state == 4) {
 		$( "#social_media_acc_outer" ).css( "display", "flex" );
 		$( "#fixed_menu_but_4" ).addClass("fixed_menu_button_selected");
+		//JSONdata
+		//$( "#wp_number" ).text(JSONdata.account.whatsapp.nickname);
+		$( "#tw_nick" ).text(JSONdata.account.twitterX.nickname);
+		$( "#tw_pass" ).text(JSONdata.account.twitterX.password);
+		$( "#map_link" ).text(JSONdata.account.maps.link);
+		$( "#ig_nick" ).text(JSONdata.account.instagram.nickname);
+		$( "#ig_pass" ).text(JSONdata.account.instagram.password);
+		$( "#mail_address" ).text(JSONdata.account.mail.nickname);
+		$( "#mail_pass" ).text(JSONdata.account.mail.password);
+		$( "#dc_nick" ).text(JSONdata.account.discord.nickname);
+		$( "#dc_pass" ).text(JSONdata.account.discord.password);
+		$( "#git_name" ).text(JSONdata.account.github.nickname);
+		$( "#git_pass" ).text(JSONdata.account.github.password);
+		$( "#spoti_name" ).text(JSONdata.account.spotify.nickname);
+		$( "#spoti_pass" ).text(JSONdata.account.spotify.password);
+		
 		
 	} else if(state == 5) {
 		$( "#buttons_outer_div" ).css( "display", "flex" );
@@ -230,11 +236,20 @@ $( document ).ready(function() {
 		//console.log($(this).eq(1));
 	});
 	
-	$(".trans_click").on('click', function(){
-		var index = $(this).attr('id').slice(11, 12);
-		if(index == mySwiper.realIndex)
-			return;
-		mySwiper.slideToLoop(index);
+	
+	
+	$(".copy_button").on('click', function(){
+		if(!is_acc_edit) {
+			copyToClipboard("#" + $(this).attr('id'));
+		} else {
+			$("#editing_div").css("display", "flex");
+			temp_acc_id = "#" + $(this).parent().attr("id");
+			$("#account_adding_info").text("Editing: " + $(temp_acc_id).children(".social_header").text());
+			$("#AccountNameInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(0)").text());
+			$("#AccountPassInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(1)").text());
+		}
+			
+		//copyToClipboard($(this).attr('id'));
 	});
 	
 	beReadyPage();
@@ -255,9 +270,9 @@ function loginPressed() {
 		let key = $( "#password" ).first().val();
 		if(key.length) {
 			console.log(key);
-			final_repo_key = decodeString(encrypted_key, key);
+			var final_repo_key = decodeString(encrypted_key, key);
 			console.log(final_repo_key);
-			repoGetRestrictedData(final_repo_key, 1);
+			repoGetRestrictedData(final_repo_key);
 		}
 	}
 	else
@@ -434,4 +449,129 @@ function setCookie(cname, cvalue, exdays) {
 function Logout() {
 	deleteCookie(key_cookie);
 	menuState(1);
+}
+
+
+function copyToClipboard(element) {
+	var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+  
+}
+
+function accEditMode() {
+	if(!is_acc_edit) {
+		$("#social_media_edit_button").text("Stop Editing");
+		
+	} else {
+		$("#social_media_edit_button").text("Editle");
+		$("#editing_div").css("display", "none");
+	}
+		
+	
+	
+	is_acc_edit = !is_acc_edit;
+}
+
+
+function submitACC_JSON() {
+	
+	JSONdata.account.twitterX.nickname = $( "#tw_nick" ).text();
+	JSONdata.account.twitterX.password = $( "#tw_pass" ).text();
+	JSONdata.account.maps.link = $( "#map_link" ).text();
+	JSONdata.account.instagram.nickname = $( "#ig_nick" ).text();
+	JSONdata.account.instagram.password = $( "#ig_pass" ).text();
+	JSONdata.account.mail.nickname = $( "#mail_address" ).text();
+	JSONdata.account.mail.password = $( "#mail_pass" ).text();
+	JSONdata.account.discord.nickname = $( "#dc_nick" ).text();
+	JSONdata.account.discord.password = $( "#dc_pass" ).text();
+	JSONdata.account.github.nickname = $( "#git_name" ).text();
+	JSONdata.account.github.password = $( "#git_pass" ).text();
+	JSONdata.account.spotify.nickname = $( "#spoti_name" ).text();
+	JSONdata.account.spotify.password = $( "#spoti_pass" ).text();
+	uploadJSON(JSONdata, readCookie(key_cookie));
+}
+
+
+function submitOneAcc() {
+	if($('#AccountNameInput').val() != "")
+		$(temp_acc_id).children(".copy_button:eq(0)").text($('#AccountNameInput').val());
+	if($('#AccountPassInput').val() != "")
+		$(temp_acc_id).children(".copy_button:eq(1)").text($('#AccountPassInput').val());
+	$("#editing_div").css("display", "none");
+}
+
+
+function uploadJSON(json_object, key) {
+  // Update the data as desired
+  /*const updatedData = {
+    someKey: 'çok seviyorum'
+  };*/
+
+  //const token = 'ghp_ıaıjdfıoahjıthfq3hıahgıahegıfhıaehgodebngo';
+  var token = key;
+  const repoOwner = 'eylulberil';
+  const repoName = 'ristrecded-engrare-data';
+  const filePath = './data.json';
+
+  // Convert the updated data to JSON
+  const updatedJsonData = JSON.stringify(json_object, null, 2);
+
+  // Fetch the current file details, including SHA
+  fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    }
+  })
+    .then((response) => {
+      if (response.ok) {
+		  return response.json();
+      } else {
+		throw new Error('Failed to fetch file details');
+      }
+    })
+    .then((fileData) => {
+      const currentSHA = fileData.sha;
+
+      // Remove backslashes before quotes
+      const contentWithoutBackslashes = updatedJsonData.replace(/\\/g, '').replace(/^"(.*)"$/, '$1');
+
+      // Encode the JSON data to base64
+      const encoder = new TextEncoder();
+      const data = encoder.encode(contentWithoutBackslashes);
+      const contentBase64 = btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
+
+      // Make an HTTP request to update the file
+      return fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: 'Update JSON file',
+          content: contentBase64,
+          sha: currentSHA
+        })
+      });
+    })
+    .then((response) => {
+      if (response.ok) {
+        console.log('JSON file updated successfully');
+		  $("#warning_for_acc_upload").text("Başarıyla güncelleme yapıldı.").show().fadeOut(1500);
+		  return 0;
+      } else {
+		  $("#warning_for_acc_upload").text("Güncelleme başarısız oldu.").show().fadeOut(1500);
+        throw new Error('Failed to update JSON file');
+		  return 1;
+      }
+    })
+    .catch((error) => {
+	  ("#warning_for_acc_upload").text("Güncelleme başarısız oldu.").show().fadeOut(1500);
+      console.error('Error updating JSON file:', error.message);
+    });
 }
