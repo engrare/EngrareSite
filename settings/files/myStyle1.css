@@ -3,6 +3,7 @@
 body {
     margin: 0px !important;
 	color: white;
+	font-family: Atkinson Hyperlegible, sans-serif;
 }
 
 /* width */
@@ -136,6 +137,36 @@ p {
 	background: white;
 	color: black;
 }
+
+
+.editing_div {
+	background-color: black;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	z-index: 10;
+	border-top-left-radius: 10px;
+	display: none;
+	flex-direction: column;
+}
+
+.edit_account_inner {
+	display: flex;
+	flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.editing_div_header {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.account_adding_info {
+	margin: 5px;
+}
+
 
 @keyframes button_background_hover_ani {
 	from {	
@@ -907,7 +938,7 @@ p {
 	display: none;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .social_media_acc_outer {
@@ -932,6 +963,14 @@ p {
     flex-direction: row;
 	flex-wrap: wrap;
 	margin: 20px;
+}
+
+.social_media_edit_button {
+	cursor: pointer;
+}
+
+.social_media_edit_button:hover {
+	color: rgba(166,166,166,1.00);
 }
 
 
@@ -965,6 +1004,10 @@ p {
 	cursor: pointer;
 	border: 1px solid black;
 	
+}
+
+.copy_button:hover {
+	background: rgba(184,71,71,0.7);
 }
 
 @media only screen and (min-width: 351px) and (max-width: 501px) { 
