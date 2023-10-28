@@ -163,6 +163,15 @@ fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
   });
 	
 	
+
+function menuStateButton(state) {
+	if(readCookie("repokeycookie") == "") {
+		menuState(1);
+	} else {
+		menuState(state);
+	}
+}
+
 function menuState(state) {
 	$( "#buttons_outer_div, #main_menu, #login_part, #loading_part, #website_design_outer, #social_media_acc_outer" ).css( "display", "none" );
 	$( ".fixed_menu_button" ).removeClass('fixed_menu_button_selected');
@@ -205,19 +214,14 @@ $( document ).ready(function() {
 
 	console.log(readCookie("repokeycookie"));
 	
-if(readCookie("repokeycookie") == "") {
-	menuState(1);
-} else {
-	menuState(2);
-}
-//menuState(2);
+	menuStateButton(2);
 
 
 	
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
-		menuState(button_index);
+		menuStateButton(button_index);
 		//ScrollPart(button_index);
 		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
 		
@@ -283,6 +287,7 @@ $(document).keydown(function(e) {
 				loginPressed();
 				break;
 			case 87:
+
 			case 38:
 				PressGoButtons(1);
 				break;
@@ -430,4 +435,3 @@ function Logout() {
 	deleteCookie(key_cookie);
 	menuState(1);
 }
-
