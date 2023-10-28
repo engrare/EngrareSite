@@ -151,7 +151,20 @@
 			
 	</div>
 </div>
-
+	
+	
+<div class="editing_div" id="editing_div">
+	<div class="edit_account_inner">
+		<div class="editing_div_header"><h3 class="account_adding_info" id="account_adding_info">Old info: </h3><i class="fa-solid fa-x" style="margin: 5px; cursor: pointer;" onClick="accEditMode()"></i></div>
+		<p>Nickname: </p>
+	 	<input type="text" id="AccountNameInput">
+		<p>Password: </p>
+	 	<input type="text" id="AccountPassInput">
+	</div>	
+	<button onClick="submitOneAcc()">Submit</button>
+	
+	
+</div>
 
 <div class="main_div">
 
@@ -242,15 +255,20 @@
 				</div>
 			<button class="direction_buttons" id="backward_button" onclick="PressGoButtons(5)"><i class="fa-sharp fa-solid fa-arrow-down"></i></button>
 		</div>
-		<div class="website_design_outer" id="website_design_outer">
-			
-		</div>
 		<div class="social_media_acc_outer" id="social_media_acc_outer">
-			<div class="social_media_inner">
-				<div class="social_media_inner_bg">
-					<i class="fa-solid fa-pen-to-square"></i>
+			<div style="display: flex;">
+				<div class="social_media_inner social_media_edit_button" onclick="accEditMode()">
+					<div class="social_media_inner_bg">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</div>
+					<div class="social_media_edit_button" id="social_media_edit_button">Editle</div>
 				</div>
-				<div class="social_media_edit_button">Editle</div>
+				<div class="social_media_inner social_media_edit_button" onclick="submitACC_JSON()">
+					<div class="social_media_inner_bg">
+						<i class="fa-duotone fa-cloud-arrow-up"></i>
+					</div>
+					<div class="social_media_edit_button">Submitle</div>
+				</div>
 			</div>
 			<div class="social_media_inner_outer">
 			
@@ -258,64 +276,75 @@
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-whatsapp"></i>
 					</div>
-					<p class="social_header" id="social_header_0">WhatsApp</p>
-					<div class="copy_button" id="nick_copy_0">+905412989803</div>
+					<p class="social_header">WhatsApp</p>
+					<div class="copy_button" id="wp_number">+905412989803</div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_1">
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-x-twitter"></i>
 					</div>
-					<p class="social_header" id="social_header_1">Twitter</p>
-					<div class="copy_button" id="nick_copy_1"></div>
-					<div class="copy_button" id="pass_copy_1"></div>
+					<p class="social_header">Twitter</p>
+					<div class="copy_button" id="tw_nick"></div>
+					<div class="copy_button" id="tw_pass"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_2">
 					<div class="social_media_inner_bg">
 						<i class="fa-regular fa-location-dot"></i>
 					</div>
-					<p class="social_header" id="social_header_2">Maps</p>
-					<div class="copy_button" id="nick_copy_2"></div>
+					<p class="social_header">Maps</p>
+					<div class="copy_button" id="map_link"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_3">
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-instagram"></i>
 					</div>
-					<p class="social_header" id="social_header_3">Instagram</p>
-					<div class="copy_button" id="nick_copy_3"></div>
-					<div class="copy_button" id="pass_copy_3"></div>
+					<p class="social_header">Instagram</p>
+					<div class="copy_button" id="ig_nick"></div>
+					<div class="copy_button" id="ig_pass"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_4">
 					<div class="social_media_inner_bg">
 						<i class="fa-regular fa-envelope"></i>
 					</div>
-					<p class="social_header" id="social_header_4">Mail</p>
-					<div class="copy_button" id="nick_copy_4"></div>
-					<div class="copy_button" id="pass_copy_4"></div>
+					<p class="social_header">Mail</p>
+					<div class="copy_button" id="mail_address"></div>
+					<div class="copy_button" id="mail_pass"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_5">
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-discord"></i>
 					</div>
-					<p class="social_header" id="social_header_5">Discord</p>
-					<div class="copy_button" id="nick_copy_5"></div>
-					<div class="copy_button" id="pass_copy_5"></div>
+					<p class="social_header">Discord</p>
+					<div class="copy_button" id="dc_nick"></div>
+					<div class="copy_button" id="dc_pass"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_6">
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-github"></i>
 					</div>
-					<p class="social_header" id="social_header_6">GitHub</p>
-					<div class="copy_button" id="nick_copy_6"></div>
-					<div class="copy_button" id="pass_copy_6"></div>
+					<p class="social_header">GitHub</p>
+					<div class="copy_button" id="git_name"></div>
+					<div class="copy_button" id="git_pass"></div>
 				</div>
 				<div class="social_media_inner" id="social_media_inner_7">
 					<div class="social_media_inner_bg">
 						<i class="fa-brands fa-spotify"></i>
 					</div>
-					<p class="social_header" id="social_header_7">Spotify</p>
-					<div class="copy_button" id="nick_copy_7"></div>
-					<div class="copy_button" id="pass_copy_7"></div>
+					<p class="social_header">Spotify</p>
+					<div class="copy_button" id="spoti_name"></div>
+					<div class="copy_button" id="spoti_pass"></div>
 				</div>
+			</div>
+			<h2 id="warning_for_acc_upload"></h2>
+		</div>
+		<div class="website_design_outer" id="website_design_outer">
+			<div class="editing_selection_part_outer">
+				Websitesi Düzeni
+				<h2>Slaytlar</h2>
+				<h2>Konteynerler</h2>
+			</div>
+			<div class="editing_preview_outer">
+				preview
 			</div>
 		</div>
 	</div>
