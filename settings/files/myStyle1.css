@@ -876,7 +876,7 @@ p {
 }
 
 .main_container_2_text_part_mini {
-	justify-content: flex-end !important;
+	justify-content: flex-end;
 }
 
 .login_part_inner {
@@ -1075,6 +1075,17 @@ p {
 
 .text_area {
 	width: 100%;
+}
+
+
+.content_parts {
+	display: flex;
+    align-items: center;
+    flex-direction: row;
+	
+	
+	
+	
 }
 
 @media only screen and (min-width: 351px) and (max-width: 501px) { 
