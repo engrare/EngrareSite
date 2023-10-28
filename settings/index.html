@@ -338,13 +338,70 @@
 			<h2 id="warning_for_acc_upload"></h2>
 		</div>
 		<div class="website_design_outer" id="website_design_outer">
-			<div class="editing_selection_part_outer">
-				Websitesi Düzeni
-				<h2>Slaytlar</h2>
-				<h2>Konteynerler</h2>
+			<div class="social_media_inner social_media_edit_button" onclick="submitwebJSON()">
+				<div class="social_media_inner_bg">
+					<i class="fa-duotone fa-cloud-arrow-up"></i>
+				</div>
+				<div class="social_media_edit_button">Submitle</div>
 			</div>
-			<div class="editing_preview_outer">
-				preview
+			<div class="website_design_inner">
+					
+				<div class="editing_selection_part_outer">
+					<div class="website_select_outer" id="slayt_select_outer">
+						<h2>Slaytlar</h2>
+						
+						<div class="website_select_numbers_outer" id="slayt_select_numbers_outer">
+							<div class="num_selection_button" id="slayt_select_num_0">1</div>
+						</div>
+						
+					</div>
+					<div class="website_select_outer" id="container_select_outer">
+						<h2>Konteynerler</h2>
+						<div class="website_select_numbers_outer" id="container_select_numbers_outer">
+							<div class="num_selection_button" id="container_select_num_0">1</div>
+						</div>
+					</div>
+				</div>
+				<div class="editing_preview_outer">
+					<div class="main_container_2_bg_photo_part">
+						<img src="files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo"  id="preview_bg_img" alt="" />
+					</div>
+					<div class="main_container_2_text_part main_container_2_text_part_mini">
+						<h3>Misyonumuz</h3>
+					  	<p>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</p>
+						<a class="go_furniture_detail_a">
+						<div class="go_furniture_detail_cont_2">
+							<p class="go_furniture_detail_txt">Detayını gör</p>
+						</div>
+						</a>
+						<div class="go_furniture_detail_cont_1">
+							<div class="img_slogan_cont">
+								<h1 class="img_slogan_txt">Hazırlıklarımız</h1>
+							</div>
+							<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
+								<div class="go_furniture_detail_cont_2">
+									<p class="go_furniture_detail_txt">Detayını gör</p>
+								</div>
+							</a>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="website_edit_info_part">
+			
+				<div class="edit_account_inner">
+					<i class="fa-solid fa-x" style="cursor: pointer; color: black;" onclick="cancelWebsiteEdit()"></i>
+					<p>Name: </p>
+					<input class="text_area" type="text" id="websiteNameInput">
+					<p>Header: </p>
+					<input class="text_area" type="text" id="websiteHeaderInput">
+					<p>Text: </p>
+					<textarea class="text_area" id="websiteTextInput" rows="4" cols="50"></textarea>
+				</div>	
+				<button onClick="submitOneAcc()">Submit</button>
+			
 			</div>
 		</div>
 	</div>
