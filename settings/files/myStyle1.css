@@ -1030,7 +1030,9 @@ p {
 	display: none;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+        flex-direction: row;
+	    flex-wrap: wrap;
+	width: 100%;
 }
 
 .editing_selection_part_outer {
