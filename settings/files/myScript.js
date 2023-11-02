@@ -5,171 +5,60 @@ var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
-var temp_acc_id;
-var temp_web_id;
-var is_acc_edit = false;
-var encrypted_key = null;
-var JSONdata = null;
-var websiteJSON = null;
-const key_cookie = "repokeycookie";
 
-function encodeString(inputString, shiftString) {
-  let encodedString = '';
-
-  for (let i = 0; i < inputString.length; i++) {
-    const char = inputString.charAt(i);
-    const charCode = char.charCodeAt(0);
-
-    const shiftChar = shiftString.charAt(i % shiftString.length);
-    const shiftValue = shiftChar.charCodeAt(0);
-
-    // Calculate the shifted character and ensure it's within the ASCII range (32-126)
-    let shiftedCharCode = charCode + shiftValue;
-
-    // Ensure the shifted character is within the ASCII range (32-126)
-    while (shiftedCharCode > 126) {
-      shiftedCharCode -= 95;
-    }
-
-    while (shiftedCharCode < 32) {
-      shiftedCharCode += 95;
-    }
-
-    // Check if the shifted character is a double-quote (") and adjust it
-    if (shiftedCharCode === 34) {
-      shiftedCharCode++;
-      // Ensure it's still within the ASCII range (32-126)
-      if (shiftedCharCode > 126) {
-        shiftedCharCode = 32;
-      }
-    }
-
-    // Append the shifted character to the encoded string
-    encodedString += String.fromCharCode(shiftedCharCode);
-  }
-
-  return encodedString;
-}
-
-function decodeString(encodedString, shiftString) {
-  let decodedString = '';
-
-  for (let i = 0; i < encodedString.length; i++) {
-    const char = encodedString.charAt(i);
-    const charCode = char.charCodeAt(0);
-
-    const shiftChar = shiftString.charAt(i % shiftString.length);
-    const shiftValue = shiftChar.charCodeAt(0);
-
-    // Reverse the shifting to get the original character
-    let originalCharCode = charCode - shiftValue;
-
-    // Ensure the original character is within the ASCII range (32-126)
-    while (originalCharCode > 126) {
-      originalCharCode -= 95;
-    }
-
-    while (originalCharCode < 32) {
-      originalCharCode += 95;
-    }
-
-    // Check if the original character is a double-quote (") and adjust it
-    if (originalCharCode === 34) {
-      originalCharCode--;
-      // Ensure it's still within the ASCII range (32-126)
-      if (originalCharCode < 32) {
-        originalCharCode = 126;
-      }
-    }
-
-    // Append the original character to the decoded string
-    decodedString += String.fromCharCode(originalCharCode);
-  }
-
-  return decodedString;
-}
-
-
-
-function repoGetRestrictedData(real_key) {
-    // const apiKey = "ghp_asdafadgsfgadfadsadasd"; // Replace with your actual GitHub API key
-    const apiKey = real_key; // Replace with your actual GitHub API key
-    const repoOwner = "eylulberil";
-    const repoName = "ristrecded-engrare-data";
-    const filePath = "data.json";
-    const branchName = "main";
-
-    const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}?ref=${branchName}`;
-
-    const headers = new Headers();
-    headers.append("Authorization", `Bearer ${apiKey}`);
-
-    fetch(url, { headers })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error(`Request failed with status: ${response.status}`);
-            }
-        })
-        .then(data => {
-            const content = data.content;
-            // Explicitly set character encoding to handle special characters
-            const decodedContent = decodeBase64Content(content);
-            const gottenjsonData = JSON.parse(decodedContent);
-			if(readCookie(key_cookie) == "") {
-				menuState(2);
-				setCookie(key_cookie, real_key, 365);
-			}
-			JSONdata = gottenjsonData;
-        })
-        .catch(error => {
-    		console.log(error);
-    		$( "#login_warning_msg" ).text("Giriş bilgisi hatalı.").show().fadeOut(1500);
-	});
-}
-
-function decodeBase64Content(content) {
-    const decoded = atob(content);
-    // Convert the decoded content to UTF-8
-    const text = new TextDecoder("utf-8").decode(new Uint8Array(decoded.split('').map(c => c.charCodeAt(0))));
-
-    return text;
-}
-
-
-fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
-  .then(response => response.json())
-  .then(myObj => {
-	encrypted_key = myObj[0];
-	console.log(encrypted_key);
-	
-  })
-  .catch(error => {
-    // Handle any errors that occur during the fetch request
-    console.log('Error:', error);
-  });
-
+var website_data_obj;
 
 fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json')
   .then(response => response.json())
   .then(myObj => {
-	websiteJSON = myObj;
-	var objlen = websiteJSON.website.slide.content.length;
+	website_data_obj = myObj;
+	var objlen = website_data_obj.website.corner.length;
+console.log(objlen);
+	$( '#fixed_menu_but_0 p').text(website_data_obj.website.slide.name);
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
-			$( '#slayt_select_num_' + (i - 1)).clone().insertAfter( '#slayt_select_num_' + (i - 1) ).prop('id', 'slayt_select_num_' + i).text(i + 1).attr("onclick","numSelectionChange('#slayt_select_num_" + i + "')");
+			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
 		}
-		//$('#main_container_' + i).children( ".main_container_2_text_part" ).children( "#content_part" ).text(website_data_obj.website.corner[i].text);
+		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected");
+		
+		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").text(website_data_obj.website.corner[i].header);
+		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").text(website_data_obj.website.corner[i].text);
+		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("id", "sliding_photo_" + i);
+		if(website_data_obj.website.corner[i].buttontext == "") {
+			
+			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").css("display", "none");
+			$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").attr("src", "");
+		}
+		else {
+			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").css("display", "block");
+			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a .go_furniture_detail_txt").text(website_data_obj.website.corner[i].buttontext);
+			if(website_data_obj.website.corner[i].formheight != "") {
+				$('#main_container_' + i + " .main_container_2_text_part .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
+				$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
+				$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").attr("src", website_data_obj.website.corner[i].btnlink);
+				$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").css("height", website_data_obj.website.corner[i].formheight + "px");
+				
+			}
+		}
+		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("src", website_data_obj.website.corner[i].bgimglink);
+			
+		
+		$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).children("p").text("İletişim");
+
+		
 	}
+	objlen = website_data_obj.website.slide.content.length;
 	
-	objlen = websiteJSON.website.corner.length;
 	
 	for(var i = 0; i < objlen; i++) {
-		if(i > 0) {
-			$( '#container_select_num_' + (i - 1)).clone().insertAfter( '#container_select_num_' + (i - 1) ).prop('id', 'container_select_num_' + i).text(i + 1).attr("onclick","numSelectionChange('#container_select_num_" + i + "')");
-		}
+			//$( '#main_container_' + (i - 1)).clone().appendTo( ".main_div" ).prop('id', 'main_container_' + i);
+		
+		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
+		
+		$('.swiper-slide:eq(' + i + ') .swiper_slide_img').attr("src", website_data_obj.website.slide.content[i].bgimglink);
+		
 	}
+
 	//websiteJSON.website.slide.content.length
 	
   })
@@ -177,152 +66,60 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
     // Handle any errors that occur during the fetch request
     console.log('Error:', error);
   });
-	
-	
-
-function menuStateButton(state) {
-	if(readCookie("repokeycookie") == "") {
-		menuState(1);
-	} else {
-		menuState(state);
-		repoGetRestrictedData(readCookie("repokeycookie"));
-	}
-}
-
-function menuState(state) {
-	$( "#buttons_outer_div, #main_menu, #login_part, #loading_part, #website_design_outer, #social_media_acc_outer" ).css( "display", "none" );
-	$( ".fixed_menu_button" ).removeClass('fixed_menu_button_selected');
-	
-	if(state == 0) {
-		$( "#loading_part" ).css( "display", "flex" );
-		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
-	} else if(state == 1) {
-		$( "#login_part" ).css( "display", "flex" );
-		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
-	} else if(state == 2) {
-		$( "#main_menu" ).css( "display", "flex" );
-		$( "#fixed_menu_but_2" ).addClass("fixed_menu_button_selected");
-	} else if(state == 3) {
-		$( "#website_design_outer" ).css( "display", "flex" );
-		$( "#fixed_menu_but_3" ).addClass("fixed_menu_button_selected");
-		
-	} else if (state == 4) {
-		$( "#social_media_acc_outer" ).css( "display", "flex" );
-		$( "#fixed_menu_but_4" ).addClass("fixed_menu_button_selected");
-		$( "#tw_nick" ).text(JSONdata.account.twitterX.nickname);
-		$( "#tw_pass" ).text(JSONdata.account.twitterX.password);
-		$( "#map_link" ).text(JSONdata.account.maps.link);
-		$( "#ig_nick" ).text(JSONdata.account.instagram.nickname);
-		$( "#ig_pass" ).text(JSONdata.account.instagram.password);
-		$( "#mail_address" ).text(JSONdata.account.mail.nickname);
-		$( "#mail_pass" ).text(JSONdata.account.mail.password);
-		$( "#dc_nick" ).text(JSONdata.account.discord.nickname);
-		$( "#dc_pass" ).text(JSONdata.account.discord.password);
-		$( "#git_name" ).text(JSONdata.account.github.nickname);
-		$( "#git_pass" ).text(JSONdata.account.github.password);
-		$( "#spoti_name" ).text(JSONdata.account.spotify.nickname);
-		$( "#spoti_pass" ).text(JSONdata.account.spotify.password);
-		
-		
-	} else if(state == 5) {
-		$( "#buttons_outer_div" ).css( "display", "flex" );
-		$( "#fixed_menu_but_5" ).addClass("fixed_menu_button_selected");
-	}
-	
-}
 
 
-function numSelectionChange(elementid) {
-	temp_web_id = elementid;
-	$(".num_selection_button").removeClass("num_btn_selected");
-	$(elementid).addClass( "num_btn_selected" );
-	$(".website_edit_info_part").css("display", "flex");
-	
-	
-	var strlength = elementid.length;
-	element_index = elementid.substr(strlength - 1, strlength);
-	
-	if(strlength == 19) {
-		$("#websiteNameInput").val(websiteJSON.website.slide.name);
-		$("#websiteHeaderInput").val(websiteJSON.website.slide.content[element_index].header);
-		$("#websiteTextInput").val("");
-		$("#websitebtntextInput").val(websiteJSON.website.slide.content[element_index].buttontext);
-		$("#websitewheretogoInput").val(websiteJSON.website.slide.content[element_index].gocorner);
-		$("#websitebgLinkInput").val(websiteJSON.website.slide.content[element_index].bgimglink);
-	} else {
-		$("#websiteNameInput").val(websiteJSON.website.corner[element_index].name);
-		$("#websiteHeaderInput").val(websiteJSON.website.corner[element_index].header);
-		$("#websiteTextInput").val(websiteJSON.website.corner[element_index].text);
-		$("#websitebtntextInput").val(websiteJSON.website.corner[element_index].buttontext);
-		$("#websitewheretogoInput").val(websiteJSON.website.corner[element_index].btnlink);
-		$("#websitebgLinkInput").val(websiteJSON.website.corner[element_index].bgimglink);
-	}
-	
-	createPreview(elementid);
-	//$("#websiteNameInput").text(websiteJSON.website.corner[].name);
-	
-	//
-	//$(".website_edit_info_part").css("display", "flex");
-}
 
-function createPreview(elementid) {
-	var strlength = elementid.length;
-	element_index = elementid.substr(strlength - 1, strlength);
-	
-	if(strlength == 19) {
-		$(".go_furniture_detail_cont_1").css("display", "");
-		$("#cont_header").css("display", "none");
-		$("#cont_text").css("display", "none");
-		$("#go_detail_button_preview").css("display", "none");
-		$("#main_container_2_text_part_mini").css("justify-content", "");
-		$(".img_slogan_txt").text(websiteJSON.website.slide.content[element_index].header);
-		$("#slide_textbox").text(websiteJSON.website.slide.content[element_index].buttontext);
-		$('#preview_bg_img').attr('src', websiteJSON.website.slide.content[element_index].bgimglink);
-	} else {
-		$(".go_furniture_detail_cont_1").css("display", "none");
-		$("#cont_header").css("display", "");
-		$("#cont_text").css("display", "");
-		$("#go_detail_button_preview").css("display", "");
-		$("#main_container_2_text_part_mini").css("justify-content", "center");
-		$("#cont_header").text(websiteJSON.website.corner[element_index].header);
-		$("#cont_text").text(websiteJSON.website.corner[element_index].text);
-		$("#slide_textbox").text(websiteJSON.website.corner[element_index].buttontext);
-		$('#preview_bg_img').attr('src', websiteJSON.website.corner[element_index].bgimglink);
-	}
-}
-
-function submitOneWebPart() {
-	
-	var strlength = temp_web_id.length;
-	element_index = temp_web_id.substr(strlength - 1, strlength);
-	
-	if(strlength == 19) {
-		websiteJSON.website.slide.name = $("#websiteNameInput").val();
-		websiteJSON.website.slide.content[element_index].header = $("#websiteHeaderInput").val();
-		websiteJSON.website.slide.content[element_index].buttontext = $("#websitebtntextInput").val();
-		websiteJSON.website.slide.content[element_index].gocorner = $("#websitewheretogoInput").val();
-		var link_temp = $("#websitebgLinkInput").val();
-		websiteJSON.website.slide.content[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
-		console.log(websiteJSON.website.slide.content[element_index].bgimglink);
-	} else {
-		websiteJSON.website.corner[element_index].name = $("#websiteNameInput").val();
-		websiteJSON.website.corner[element_index].header = $("#websiteHeaderInput").val();
-		websiteJSON.website.corner[element_index].text = $("#websiteTextInput").val();
-		websiteJSON.website.corner[element_index].buttontext = $("#websitebtntextInput").val();
-		websiteJSON.website.corner[element_index].btnlink = $("#websitewheretogoInput").val();
-		var link_temp = $("#websitebgLinkInput").val();
-		websiteJSON.website.corner[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
-		console.log(websiteJSON.website.corner[element_index].bgimglink);
-	}
-	
-	
-	createPreview(temp_web_id);
-}
-
-
+//for(let i = 0; i < website_data_obj.corner.length())
 
 
 $( document ).ready(function() {
+	var mySwiper = new Swiper('.swiper-container', {
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev'
+		},
+		autoplay: {
+			delay: 3000, // change delay as needed
+		},
+		/*on: {
+			slideNextTransitionEnd: (swiper) => {
+				//console.log('SWIPED RIGHT');
+				if(!trans_click_pressed) {
+					if(current_active_index == mySwiper.slides.length - 1)
+						current_active_index = 0;
+					else
+						current_active_index++;
+				}
+				trans_click_pressed = false;
+				//new_active_index = current_active_index;//mySwiper.activeIndex;
+				changeTransClick(old_active_index, current_active_index);
+				old_active_index = current_active_index;
+			},
+			slidePrevTransitionEnd: (swiper) => {
+				//console.log('SWIPED LEFT');
+				if(!trans_click_pressed) {
+					if(current_active_index == 0)
+						current_active_index = mySwiper.slides.length - 1;
+					else
+						current_active_index--;
+				}
+				trans_click_pressed = false;
+				//new_active_index = current_active_index;//mySwiper.activeIndex;
+				changeTransClick(old_active_index, current_active_index);
+				old_active_index = current_active_index;
+			}
+		},*/
+		loop: true,
+	});
+	
+	/*$( ".left_right_buttons_swipper" ).hover(function() {
+		$(this).css({"-webkit-transform": "translateY(-5px)"});
+		$(this).addClass("swiper_button_hover");
+	}, function() {
+		$(this).css({"-webkit-transform": "translateY(0px)"});
+		$(this).removeClass("swiper_button_hover");
+	});
+	*/
 	$( ".fixed_menu_right_cont" ).hover(
   function() {
     $( ".settings_button_top" ).addClass( "fa-spin" );
@@ -330,18 +127,15 @@ $( document ).ready(function() {
     $( ".settings_button_top" ).removeClass( "fa-spin" );
   }
 );
-
-	console.log(readCookie("repokeycookie"));
 	
-	menuStateButton(2);
+	
 
 
 	
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
-		menuStateButton(button_index);
-		//ScrollPart(button_index);
+		ScrollPart(button_index);
 		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
 		
 		if(ismenuopen)
@@ -349,52 +143,147 @@ $( document ).ready(function() {
 		//console.log($(this).eq(1));
 	});
 	
+
 	
+	function changeTransClick(old_index, new_index) {
+		var elementID = "transClick_";
+		document.getElementById(elementID + old_index).className = "trans_click";
+		document.getElementById(elementID + new_index).className = "trans_click trans_active";
+	}
 	
-	$(".copy_button").on('click', function(){
-		if(!is_acc_edit) {
-			copyToClipboard("#" + $(this).attr('id'));
-		} else {
-			$("#editing_div").css("display", "flex");
-			temp_acc_id = "#" + $(this).parent().attr("id");
-			$("#account_adding_info").text("Editing: " + $(temp_acc_id).children(".social_header").text());
-			$("#AccountNameInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(0)").text());
-			$("#AccountPassInput").attr("placeholder", $(temp_acc_id).children(".copy_button:eq(1)").text());
-		}
+	$(".left_right_buttons_swipper").on('click', function(){
+		setTimeout(function() { mySwiper.autoplay.start();}, 6000);
 	});
 	
-	
+	$(".trans_click").on('click', function(){
+		var index = $(this).attr('id').slice(11, 12);
+		if(index == mySwiper.realIndex)
+			return;
+		mySwiper.slideToLoop(index);
+	});
 	
 	beReadyPage();
 	
 	
+	/*
+	// Define the function to go to the last slide from the first slide
+	function goToLastSlide() {
+		mySwiper.slideTo(mySwiper.slides.length - 1);
+	}
+
+	// Define the function to go to the first slide from the last slide
+	function goToFirstSlide() {
+		mySwiper.slideTo(0);
+	}
+
+// Add a click event listener to the first slide to go to the last slide
+	var firstSlide = document.querySelector('.swiper-slide:first-of-type');
+	firstSlide.addEventListener('click', function() {
+		if (mySwiper.activeIndex == 0) {
+			for(var i = 0; i < mySwiper.slides.length - 1; i++)
+				mySwiper.slideNext(i*30);
+			current_active_index = 3;
+			alert(mySwiper.activeIndex);
+		}
+	});
+
+	// Add a click event listener to the last slide to go to the first slide
+	var lastSlide = document.querySelector('.swiper-slide:last-of-type');
+	lastSlide.addEventListener('click', function() {
+		if (mySwiper.activeIndex == mySwiper.slides.length - 1) {
+			goToFirstSlide();
+			current_active_index = 0;
+		}
+	});*/
 	
 	$(window).scroll(function(event){
 		if($(this).scrollTop() > window_height) {
+			mySwiper.autoplay.stop();
 		}
 		else {
+			mySwiper.autoplay.start();
 		}
 	});
 	
+	var mySwiper = $(".swiper-container")[0].swiper;
+	//mySwiper.autoplay.stop();
+	mySwiper.autoplay.start();
+	$('.go_furniture_detail_a').mouseenter(function() {
+		mySwiper.autoplay.stop();
+	}).mouseleave(function() {
+		mySwiper.autoplay.start();
+	})
+	
+	mySwiper.on('slideChange', function () {
+		if (mySwiper.autoplay.running) {
+			//console.log('Slide changed automatically');
+		} else {
+			mySwiper.autoplay.stop();
+			setTimeout(function() { mySwiper.autoplay.start();}, 6000);
+			//console.log('Slide changed by user');
+		}
+		
+		mySwiper.slideToLoop(mySwiper.realIndex);
+		changeTransClick(old_active_index, mySwiper.realIndex);
+		old_active_index = mySwiper.realIndex;
+			
+	});
 });
 
-function loginPressed() {
-	if(encrypted_key != null) {
-		let key = $( "#password" ).first().val();
-		if(key.length) {
-			console.log(key);
-			var final_repo_key = decodeString(encrypted_key, key);
-			console.log(final_repo_key);
-			repoGetRestrictedData(final_repo_key);
-		}
+
+	function ScrollPart(index) {
+		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
 	}
-	else
-		setTimeout(function() { loginPressed(); }, 500);
+
+
+
+	function OpenCloseForm(num) {
+		console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
+		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
+
+			$('#main_container_' + num).css("height", "");
+			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
+			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
+
+		} else {
+			$('#main_container_' + num).css("height", "auto");
+			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
+			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
+			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').css("display", "flex");
+		}
+}
+
+
+function GoToSettingsPage() {
+	//window.location.href = window.location.href + "../settings/set.html";
+	
 }
 
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
+		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
+		st - $("#sliding_photo_1").offset().top
+		$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st/1*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_2").css('transform', 'translate3d(0px, ' + (st/2*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_3").css('transform', 'translate3d(0px, ' + (st/3*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_4").css('transform', 'translate3d(0px, ' + (st/4*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
+		
+		var lastbtnindex = 0, newbtnindex = 0;
+		console.log($(".main_container_2").length);
+		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
+			newbtnindex++;
+			if($(".main_container_2").length == newbtnindex)
+				break;
+		}
+		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
+		
+		if(lastbtnindex != newbtnindex) {
+			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
+			lastbtnindex = newbtnindex;
+		}
 		
 		
 	});
@@ -407,59 +296,6 @@ function loginPressed() {
 	$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
 });*/
 
-$(document).keydown(function(e) {
-	var key = e.keyCode;
-	
-		switch(key) {
-			case 13:
-				loginPressed();
-				break;
-			case 87:
-
-			case 38:
-				PressGoButtons(1);
-				break;
-			case 65:
-			case 37:
-				PressGoButtons(2);
-				break;
-			case 68:
-			case 39:
-				PressGoButtons(4);
-				break;
-			case 83:
-			case 40:
-				PressGoButtons(5);
-				break;
-			case 32:
-				PressGoButtons(3);
-				break;
-		}
-	console.log(key);
-});
-
-function PressGoButtons(index) {
-	$("#forward_button, #stop_button, #left_button, #right_button, #backward_button").css("color", "");
-	var id;
-	switch(index) {
-		case 1:
-			id = "#forward_button";
-			break;
-		case 2:
-			id = "#left_button";
-			break;
-		case 3:
-			id = "#stop_button";
-			break;
-		case 4:
-			id = "#right_button";
-			break;
-		case 5:
-			id = "#backward_button";
-			break;
-	}
-	$(id).css("color", "red");
-}
 
 
 $( window ).resize(function() {
@@ -474,6 +310,28 @@ function beReadyPage() {
 	window_width = parseInt($( window ).width());
 	if(ismenuopen) 
 		$(".menu_closer").css("display", window_width > 1086 ? "none" : "block");
+	$(".swiper-container-wrapper").css("height", window_height - parseInt($( ".fixed_menu_top" ).height()));
+	//$(".main_container_2").css("height", window_height);
+	$(".main_container_2_bg_photo").css("height", window_height + 150);
+	//$(".main_container_2_bg_photo").css("height", window_width);
+	
+	st = $(window).scrollTop();
+	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
+	
+	if(window_width < 620) { 
+		//$(".mapouter").css("width", window_width - 20);
+		//$(".gmap_iframe").css("width", window_width - 20);
+		//$(".gmap_canvas").css("width", window_width - 20);
+		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
+		$("#map1").css("width", window_width - 20);
+		
+	} else {
+		//$(".mapouter").css("width", 600);
+		//$(".gmap_iframe").css("width", 600);
+		//$(".gmap_canvas").css("width", 600);
+		$("#map1").css("width", window_width - 300);
+	}
 }
 
 function openLeftMenu() {
@@ -492,8 +350,8 @@ function openLeftMenu() {
 		
 		$("html body").css("overflow-y", "auto");
 		if(!is_mobile_phone) {
-			//$(".main_div").css("width", "100%");
-			//$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
+			$(".main_div").css("width", "100%");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
 		}
 		console.log(is_mobile_phone);
 	}
@@ -508,8 +366,8 @@ function openLeftMenu() {
 		
 		$("html body").css("overflow-y", "hidden");
 		if(!is_mobile_phone) {
-			//$(".main_div").css("width", "calc(100% - 14px)");
-			//$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
+			$(".main_div").css("width", "calc(100% - 14px)");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
 		}
 	}
 	//fa-regular fa-solid fa-xmark
@@ -530,174 +388,3 @@ function changeImgg() {
 
 setTimeout(function() { beReadyPage();}, 200);
 setTimeout(function() { beReadyPage();}, 500);
-
-
-function deleteCookie(cookieName) {
-    document.cookie = cookieName + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-function readCookie(cookieName) {
-    var name = cookieName + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function Logout() {
-	deleteCookie(key_cookie);
-	menuState(1);
-}
-
-
-function copyToClipboard(element) {
-	var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(element).text()).select();
-    document.execCommand("copy");
-    $temp.remove();
-  
-}
-
-function accEditMode() {
-	if(!is_acc_edit) {
-		$("#social_media_edit_button").text("Stop Editing");
-		
-	} else {
-		$("#social_media_edit_button").text("Editle");
-		$("#editing_div").css("display", "none");
-	}
-		
-	
-	
-	is_acc_edit = !is_acc_edit;
-}
-
-
-function submitACC_JSON() {
-	
-	JSONdata.account.twitterX.nickname = $( "#tw_nick" ).text();
-	JSONdata.account.twitterX.password = $( "#tw_pass" ).text();
-	JSONdata.account.maps.link = $( "#map_link" ).text();
-	JSONdata.account.instagram.nickname = $( "#ig_nick" ).text();
-	JSONdata.account.instagram.password = $( "#ig_pass" ).text();
-	JSONdata.account.mail.nickname = $( "#mail_address" ).text();
-	JSONdata.account.mail.password = $( "#mail_pass" ).text();
-	JSONdata.account.discord.nickname = $( "#dc_nick" ).text();
-	JSONdata.account.discord.password = $( "#dc_pass" ).text();
-	JSONdata.account.github.nickname = $( "#git_name" ).text();
-	JSONdata.account.github.password = $( "#git_pass" ).text();
-	JSONdata.account.spotify.nickname = $( "#spoti_name" ).text();
-	JSONdata.account.spotify.password = $( "#spoti_pass" ).text();
-	uploadJSON(JSONdata, readCookie(key_cookie));
-}
-
-
-function submitOneAcc() {
-	if($('#AccountNameInput').val() != "")
-		$(temp_acc_id).children(".copy_button:eq(0)").text($('#AccountNameInput').val());
-	if($('#AccountPassInput').val() != "")
-		$(temp_acc_id).children(".copy_button:eq(1)").text($('#AccountPassInput').val());
-	$("#editing_div").css("display", "none");
-}
-
-function cancelWebsiteEdit() {
-	$(".website_edit_info_part").css("display", "none");
-	$(".num_selection_button").removeClass( "num_btn_selected" );
-}
-
-function SubmitWebContentJSON() {
-	uploadJSON(websiteJSON, readCookie(key_cookie), 1);
-}
-
-
-function uploadJSON(json_object, key, isWebUpload) {
-  // Update the data as desired
-  /*const updatedData = {
-    someKey: 'çok seviyorum'
-  };*/
-
-  //const token = 'ghp_ıaıjdfıoahjıthfq3hıahgıahegıfhıaehgodebngo';
-  var token = key;
-  const repoOwner = 'eylulberil';
-  var repoName = 'ristrecded-engrare-data';
-  var filePath = './data.json';
-	if(arguments.length == 3) {
-	  var repoName = 'engrare-data';
-	  var filePath = './data.json';
-	}
-
-  // Convert the updated data to JSON
-  const updatedJsonData = JSON.stringify(json_object, null, 2);
-
-  // Fetch the current file details, including SHA
-  fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    }
-  })
-    .then((response) => {
-      if (response.ok) {
-		  return response.json();
-      } else {
-		throw new Error('Failed to fetch file details');
-      }
-    })
-    .then((fileData) => {
-      const currentSHA = fileData.sha;
-
-      // Remove backslashes before quotes
-      const contentWithoutBackslashes = updatedJsonData.replace(/\\/g, '').replace(/^"(.*)"$/, '$1');
-
-      // Encode the JSON data to base64
-      const encoder = new TextEncoder();
-      const data = encoder.encode(contentWithoutBackslashes);
-      const contentBase64 = btoa(String.fromCharCode.apply(null, new Uint8Array(data)));
-
-      // Make an HTTP request to update the file
-      return fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: 'Update JSON file',
-          content: contentBase64,
-          sha: currentSHA
-        })
-      });
-    })
-    .then((response) => {
-      if (response.ok) {
-        console.log('JSON file updated successfully');
-		  $("#warning_for_acc_upload").text("Başarıyla güncelleme yapıldı.").show().fadeOut(1500);
-		  return 0;
-      } else {
-		  $("#warning_for_acc_upload").text("Güncelleme başarısız oldu.").show().fadeOut(1500);
-        throw new Error('Failed to update JSON file');
-		  return 1;
-      }
-    })
-    .catch((error) => {
-	  ("#warning_for_acc_upload").text("Güncelleme başarısız oldu.").show().fadeOut(1500);
-      console.error('Error updating JSON file:', error.message);
-    });
-}
