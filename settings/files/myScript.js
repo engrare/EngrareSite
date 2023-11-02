@@ -301,14 +301,18 @@ function submitOneWebPart() {
 		websiteJSON.website.slide.content[element_index].header = $("#websiteHeaderInput").val();
 		websiteJSON.website.slide.content[element_index].buttontext = $("#websitebtntextInput").val();
 		websiteJSON.website.slide.content[element_index].gocorner = $("#websitewheretogoInput").val();
-		websiteJSON.website.slide.content[element_index].bgimglink = $("#websitebgLinkInput").val();
+		var link_temp = $("#websitebgLinkInput").val();
+		websiteJSON.website.slide.content[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
+		console.log(websiteJSON.website.slide.content[element_index].bgimglink);
 	} else {
 		websiteJSON.website.corner[element_index].name = $("#websiteNameInput").val();
 		websiteJSON.website.corner[element_index].header = $("#websiteHeaderInput").val();
 		websiteJSON.website.corner[element_index].text = $("#websiteTextInput").val();
 		websiteJSON.website.corner[element_index].buttontext = $("#websitebtntextInput").val();
 		websiteJSON.website.corner[element_index].btnlink = $("#websitewheretogoInput").val();
-		websiteJSON.website.corner[element_index].bgimglink = $("#websitebgLinkInput").val();
+		var link_temp = $("#websitebgLinkInput").val();
+		websiteJSON.website.corner[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
+		console.log(websiteJSON.website.corner[element_index].bgimglink);
 	}
 	
 	
