@@ -18,7 +18,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 		if(i > 0) {
 			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
 		}
-		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected");
+		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected").attr("onclick", "topMenuGo(" + (i + 1) + ")");
 		
 		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").text(website_data_obj.website.corner[i].header);
 		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").text(website_data_obj.website.corner[i].text);
@@ -42,7 +42,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("src", website_data_obj.website.corner[i].bgimglink);
 			
 		
-		$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).children("p").text("İletişim");
+		$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).attr("onclick", "topMenuGo(" + (objlen + 1) + ")").children("p").text("İletişim");
 
 		
 	}
@@ -72,6 +72,15 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 
 
 //for(let i = 0; i < website_data_obj.corner.length())
+
+
+function topMenuGo(num) {
+	$('html, body').stop();
+	ScrollPart(num);
+
+	if(ismenuopen)
+		openLeftMenu();
+}
 
 
 $( document ).ready(function() {
@@ -134,6 +143,7 @@ $( document ).ready(function() {
 
 
 	
+	/*
 	$(".fixed_menu_button").on('click', function(){
 		$('html, body').stop();
 		var button_index = $(this).attr('id').slice(15, 16);
@@ -143,7 +153,7 @@ $( document ).ready(function() {
 		if(ismenuopen)
 			openLeftMenu();
 		//console.log($(this).eq(1));
-	});
+	});*/
 	
 
 	
@@ -156,6 +166,9 @@ $( document ).ready(function() {
 	$(".left_right_buttons_swipper").on('click', function(){
 		setTimeout(function() { mySwiper.autoplay.start();}, 6000);
 	});
+	
+	
+	
 	
 	$(".trans_click").on('click', function(){
 		var index = $(this).attr('id').slice(11, 12);
