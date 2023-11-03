@@ -1,6 +1,5 @@
 //Copyright 2023 Kaya Sertel. All Rights Reserved.
 var ismenuopen = false;
-var is_member_open = false, is_sponsor_open = false;
 var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
@@ -13,7 +12,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
   .then(myObj => {
 	website_data_obj = myObj;
 	var objlen = website_data_obj.website.corner.length;
-console.log(objlen);
+//console.log(objlen);
 	$( '#fixed_menu_but_0 p').text(website_data_obj.website.slide.name);
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
@@ -56,6 +55,9 @@ console.log(objlen);
 		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
 		
 		$('.swiper-slide:eq(' + i + ') .swiper_slide_img').attr("src", website_data_obj.website.slide.content[i].bgimglink);
+		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .img_slogan_cont .img_slogan_txt').text(website_data_obj.website.slide.content[i].header);
+		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a .go_furniture_detail_cont_2 .go_furniture_detail_txt').text(website_data_obj.website.slide.content[i].buttontext);
+		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a').attr("onclick", "ScrollPart(" + website_data_obj.website.slide.content[i].gocorner + ")");
 		
 	}
 
@@ -238,7 +240,7 @@ $( document ).ready(function() {
 
 
 	function OpenCloseForm(num) {
-		console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
+		//console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
 		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
 
 			$('#main_container_' + num).css("height", "");
@@ -271,7 +273,7 @@ function GoToSettingsPage() {
 		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
 		
 		var lastbtnindex = 0, newbtnindex = 0;
-		console.log($(".main_container_2").length);
+		//console.log($(".main_container_2").length);
 		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
 			newbtnindex++;
 			if($(".main_container_2").length == newbtnindex)
@@ -353,7 +355,7 @@ function openLeftMenu() {
 			$(".main_div").css("width", "100%");
 			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
 		}
-		console.log(is_mobile_phone);
+		//console.log(is_mobile_phone);
 	}
 	else {
 		$(".menu_closer").fadeIn(200);
