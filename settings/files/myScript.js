@@ -1,6 +1,5 @@
 //Copyright 2023 Kaya Sertel. All Rights Reserved.
 var ismenuopen = false;
-var is_member_open = false, is_sponsor_open = false;
 var st;
 var window_height, window_width, old_active_index = 0;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
@@ -277,6 +276,7 @@ function createPreview(elementid) {
 		$("#main_container_2_text_part_mini").css("justify-content", "");
 		$(".img_slogan_txt").text(websiteJSON.website.slide.content[element_index].header);
 		$("#slide_textbox").text(websiteJSON.website.slide.content[element_index].buttontext);
+		$('#preview_bg_img').attr('src', "");
 		$('#preview_bg_img').attr('src', websiteJSON.website.slide.content[element_index].bgimglink);
 	} else {
 		$(".go_furniture_detail_cont_1").css("display", "none");
@@ -287,6 +287,7 @@ function createPreview(elementid) {
 		$("#cont_header").text(websiteJSON.website.corner[element_index].header);
 		$("#cont_text").text(websiteJSON.website.corner[element_index].text);
 		$("#slide_textbox").text(websiteJSON.website.corner[element_index].buttontext);
+		$('#preview_bg_img').attr('src', "");
 		$('#preview_bg_img').attr('src', websiteJSON.website.corner[element_index].bgimglink);
 	}
 }
@@ -302,8 +303,12 @@ function submitOneWebPart() {
 		websiteJSON.website.slide.content[element_index].buttontext = $("#websitebtntextInput").val();
 		websiteJSON.website.slide.content[element_index].gocorner = $("#websitewheretogoInput").val();
 		var link_temp = $("#websitebgLinkInput").val();
-		websiteJSON.website.slide.content[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
-		console.log(websiteJSON.website.slide.content[element_index].bgimglink);
+		if(!link_temp.includes("https://drive.google.com/uc?export=view&id=")) {
+			websiteJSON.website.slide.content[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
+			//console.log(websiteJSON.website.slide.content[element_index].bgimglink);
+		} else {
+			websiteJSON.website.slide.content[element_index].bgimglink = link_temp;
+		}
 	} else {
 		websiteJSON.website.corner[element_index].name = $("#websiteNameInput").val();
 		websiteJSON.website.corner[element_index].header = $("#websiteHeaderInput").val();
@@ -311,8 +316,12 @@ function submitOneWebPart() {
 		websiteJSON.website.corner[element_index].buttontext = $("#websitebtntextInput").val();
 		websiteJSON.website.corner[element_index].btnlink = $("#websitewheretogoInput").val();
 		var link_temp = $("#websitebgLinkInput").val();
-		websiteJSON.website.corner[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
-		console.log(websiteJSON.website.corner[element_index].bgimglink);
+		if(!link_temp.includes("https://drive.google.com/uc?export=view&id=")) {
+			websiteJSON.website.corner[element_index].bgimglink = "https://drive.google.com/uc?export=view&id=" + link_temp.slice(link_temp.indexOf("/d/") + 3, link_temp.lastIndexOf("/"));
+			console.log(websiteJSON.website.corner[element_index].bgimglink);
+		} else {
+			websiteJSON.website.corner[element_index].bgimglink = link_temp;
+		}
 	}
 	
 	
