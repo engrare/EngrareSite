@@ -14,10 +14,13 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 	website_data_obj = myObj;
 	var objlen = website_data_obj.website.corner.length;
 console.log(objlen);
+	$( '#fixed_menu_but_0 p').text(website_data_obj.website.slide.name);
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
 			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
 		}
+		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected");
+		
 		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").text(website_data_obj.website.corner[i].header);
 		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").text(website_data_obj.website.corner[i].text);
 		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("id", "sliding_photo_" + i);
@@ -37,24 +40,25 @@ console.log(objlen);
 				
 			}
 		}
-		//$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("src", website_data_obj.website.corner[i].bgimglink);
+		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("src", website_data_obj.website.corner[i].bgimglink);
 			
+		
+		$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).children("p").text("İletişim");
 
 		
 	}
-var objlen = website_data_obj.website.corner.length;
+	objlen = website_data_obj.website.slide.content.length;
 	
-	$( '#fixed_menu_but_0 p').text(website_data_obj.website.slide.name);
+	
 	for(var i = 0; i < objlen; i++) {
 			//$( '#main_container_' + (i - 1)).clone().appendTo( ".main_div" ).prop('id', 'main_container_' + i);
-			$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected");
 		
 		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
 		
-
+		$('.swiper-slide:eq(' + i + ') .swiper_slide_img').attr("src", website_data_obj.website.slide.content[i].bgimglink);
 		
 	}
-	$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).children("p").text("İletişim");
+
 	//websiteJSON.website.slide.content.length
 	
   })
