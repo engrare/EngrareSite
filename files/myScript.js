@@ -155,6 +155,10 @@ $( document ).ready(function() {
 		//console.log($(this).eq(1));
 	});*/
 	
+	$("#fixed_menu_but_0").on('click', function(){
+		mySwiper.slideToLoop(0);
+	});
+	
 
 	
 	function changeTransClick(old_index, new_index) {
