@@ -13,15 +13,15 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 	website_data_obj = myObj;
 	var objlen = website_data_obj.website.corner.length;
 //console.log(objlen);
-	$( '#fixed_menu_but_0 p').text(website_data_obj.website.slide.name);
+	$( '#fixed_menu_but_0 p').multiline(website_data_obj.website.slide.name);
 	for(var i = 0; i < objlen; i++) {
 		if(i > 0) {
 			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
 		}
-		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").text(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected").attr("onclick", "topMenuGo(" + (i + 1) + ")");
+		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").multiline(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected").attr("onclick", "topMenuGo(" + (i + 1) + ")");
 		
-		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").text(website_data_obj.website.corner[i].header);
-		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").text(website_data_obj.website.corner[i].text);
+		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").multiline(website_data_obj.website.corner[i].header);
+		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").multiline(website_data_obj.website.corner[i].text);
 		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("id", "sliding_photo_" + i);
 		if(website_data_obj.website.corner[i].buttontext == "") {
 			
@@ -30,7 +30,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 		}
 		else {
 			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").css("display", "block");
-			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a .go_furniture_detail_txt").text(website_data_obj.website.corner[i].buttontext);
+			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a .go_furniture_detail_txt").multiline(website_data_obj.website.corner[i].buttontext);
 			if(website_data_obj.website.corner[i].formheight != "") {
 				$('#main_container_' + i + " .main_container_2_text_part .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
 				$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
@@ -55,8 +55,8 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
 		
 		$('.swiper-slide:eq(' + i + ') .swiper_slide_img').attr("src", website_data_obj.website.slide.content[i].bgimglink);
-		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .img_slogan_cont .img_slogan_txt').text(website_data_obj.website.slide.content[i].header);
-		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a .go_furniture_detail_cont_2 .go_furniture_detail_txt').text(website_data_obj.website.slide.content[i].buttontext);
+		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .img_slogan_cont .img_slogan_txt').multiline(website_data_obj.website.slide.content[i].header);
+		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a .go_furniture_detail_cont_2 .go_furniture_detail_txt').multiline(website_data_obj.website.slide.content[i].buttontext);
 		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a').attr("onclick", "ScrollPart(" + website_data_obj.website.slide.content[i].gocorner + ")");
 		
 	}
@@ -80,6 +80,13 @@ function topMenuGo(num) {
 
 	if(ismenuopen)
 		openLeftMenu();
+}
+
+
+$.fn.multiline = function(text){
+    this.text(text);
+    this.html(this.html().replace(/\n/g,'<br/>'));
+    return this;
 }
 
 
