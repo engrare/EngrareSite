@@ -274,22 +274,31 @@ function createPreview(elementid) {
 		$("#cont_text").css("display", "none");
 		$("#go_detail_button_preview").css("display", "none");
 		$("#main_container_2_text_part_mini").css("justify-content", "");
-		$(".img_slogan_txt").text(websiteJSON.website.slide.content[element_index].header);
-		$("#slide_textbox").text(websiteJSON.website.slide.content[element_index].buttontext);
+		$(".img_slogan_txt").multiline(websiteJSON.website.slide.content[element_index].header);
+		$("#slide_textbox").multiline(websiteJSON.website.slide.content[element_index].buttontext);
 		$('#preview_bg_img').attr('src', "");
 		$('#preview_bg_img').attr('src', websiteJSON.website.slide.content[element_index].bgimglink);
 	} else {
 		$(".go_furniture_detail_cont_1").css("display", "none");
 		$("#cont_header").css("display", "");
 		$("#cont_text").css("display", "");
-		$("#go_detail_button_preview").css("display", "");
+		if(websiteJSON.website.corner[element_index].buttontext != "")
+			$("#go_detail_button_preview").css("display", "");
+		else 
+			$("#go_detail_button_preview").css("display", "none");
 		$("#main_container_2_text_part_mini").css("justify-content", "center");
-		$("#cont_header").text(websiteJSON.website.corner[element_index].header);
-		$("#cont_text").text(websiteJSON.website.corner[element_index].text);
-		$("#slide_textbox").text(websiteJSON.website.corner[element_index].buttontext);
+		$("#cont_header").multiline(websiteJSON.website.corner[element_index].header);
+		$("#cont_text").multiline(websiteJSON.website.corner[element_index].text);
+		$("#cont_textbox").multiline(websiteJSON.website.corner[element_index].buttontext);
 		$('#preview_bg_img').attr('src', "");
 		$('#preview_bg_img').attr('src', websiteJSON.website.corner[element_index].bgimglink);
 	}
+}
+
+$.fn.multiline = function(text){
+    this.text(text);
+    this.html(this.html().replace(/\n/g,'<br/>'));
+    return this;
 }
 
 function submitOneWebPart() {
@@ -673,7 +682,9 @@ function uploadJSON(json_object, key, isWebUpload) {
       const currentSHA = fileData.sha;
 
       // Remove backslashes before quotes
-      const contentWithoutBackslashes = updatedJsonData.replace(/\\/g, '').replace(/^"(.*)"$/, '$1');
+      //const contentWithoutBackslashes = updatedJsonData.replace(/\\/g, '').replace(/^"(.*)"$/, '$1');
+      //const contentWithoutBackslashes = updatedJsonData.replace(/^"(.*)"$/, '$1');
+      const contentWithoutBackslashes = updatedJsonData;
 
       // Encode the JSON data to base64
       const encoder = new TextEncoder();
