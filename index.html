@@ -11,7 +11,7 @@
 <meta property="og:image:height" content="100" />
 <meta property="twitter:image" content="https://raw.githubusercontent.com/engrare/website/main/files/photos/title_icon.png"  />
 <meta property="og:title" content="Team Engrare WebSitesi">
-<meta property="og:url" content="https://engrare.github.io/website/">
+<meta property="og:url" content="https://engrare.com">
 <meta property="og:description" content="engrare takımının websitesine hoş geldiniz.">
 <meta content="engrare takımının websitesine hoş geldiniz." name="description">
 <noscript>
@@ -79,13 +79,13 @@
 <link href='https://fonts.googleapis.com/css?family=Atkinson Hyperlegible|Bebas Neue|Montserrat' rel='stylesheet'>
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 <!-- Add the Swiper library -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 <!-- Add the Swiper styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css">
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-solid.css">
+	<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/sharp-light.css">
 
 <script src="files/myScript.js"></script>
 <link rel="stylesheet" href="files/myStyle1.css">
@@ -105,10 +105,30 @@
 				<i class="fa fa-bars menu_opener"></i>
 			</div>
 			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_0" onClick="topMenuGo(0)">
-					<p>Engrare</p>
+				<div class="fixed_menu_button fixed_menu_buttons_left"  onclick="window.open('../index.html', '_blank');">
+					<p>Ana Sayfaya Dön</p>
 				</div>
-
+				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_2">
+					<p>API Sayfası</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_3">
+					<p>Websitesi Düzeni</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_4">
+					<p>Sosyal Medya</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_5">
+					<p>RoboControl</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="window.open('https://drive.google.com/drive/u/0/folders/16ee6Rb3zz8YwNnyqdFjbcKcLY_SwcHQC', '_blank');">
+					<p>Drive</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="window.open('https://drive.google.com/file/d/1YfEugs-8TowZ0vRTspxL71VGcNfp0lRu/view?usp=drive_link', '_blank');">
+					<p>Android App</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="Logout()">
+					<p>Çıkış Yap</p>
+				</div>
 			</div>
 			
 		</div>
@@ -120,7 +140,7 @@
 				<p class="fixed_menu_logo_text">Teknofest Team</p>
 			</div>
 		</div>
-		<div class="fixed_menu_right_cont" onClick="GoToSettingsPage()">
+		<div class="fixed_menu_right_cont" onClick="menuState(2)">
 			<div class="fixed_menu_button fixed_menu_button_3">
 			<!--<div class="notification_num">3</div>
 				<i class="fa fa-bell notification_bell"></i>-->
@@ -131,250 +151,287 @@
 			
 	</div>
 </div>
-<!--<div class="fixed_menu_top noselect"  id="navbar">
-	<div class="fixed_menu_top_backgorund">
-	</div>
-	<div class="fixed_menu_container">
-		<div class="category">
-
-			<a href="#ikinci" style="position: relative;" class="microphone_button_top_a">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-microphone mini_logo_top" style="position: relative; top: 2px;" ></i>
-				</div>
-			</a>
-		</div>
-
-		<div class="top_part_logo">
-			<p style="margin-block-start: 0px; margin-block-end: 0px;position: relative;">ÖRNEK ŞİRKET İSMİ / LOGO</p>
-		</div>
-		<div class="contect">
-
-		<a class="notification_bell"><div class="icon_top_div"><i class="fa-regular fa-bell"></i><div class="notification_number">5</div></div></a>
-			<a class="top_button_2">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-cart-shopping top_button_2"></i>
-				</div>
-			</a>
-			<a class="search_part_a">
-				<div class="icon_top_div">
-					<i class="fa-regular fa-magnifying-glass mini_logo_top"></i>
-				</div>
-			</a>
-<a class="user_photo_click" href="./login/login.html" style=" padding-bottom: 4px;"><img src="./Files/pp.jpg" class="user_photo"><i class="fa fa-sign-in sign_in"><p style="display: inline; margin: 0px; font-family: Bebas Neue;"> User</p></i>
-</a>
-		</div>
-	</div>
-</div>-->
+	
+	
+<div class="editing_div" id="editing_div">
+	<div class="edit_account_inner">
+		<div class="editing_div_header"><h3 class="account_adding_info" id="account_adding_info">Old info: </h3><i class="fa-solid fa-x" style="margin: 5px; cursor: pointer;" onClick="accEditMode()"></i></div>
+		<p>Nickname: </p>
+	 	<input type="text" id="AccountNameInput">
+		<p>Password: </p>
+	 	<input type="text" id="AccountPassInput">
+	</div>	
+	<button onClick="submitOneAcc()">Submit</button>
+	
+	
+</div>
 
 <div class="main_div">
 
-<div class="fixed_menu_space"></div>
-
-<div class="main_container_2" style="height: calc(100% - 50px)">
-<div class="swiper-container-wrapper">
-	<div class="swiper-container swiper_cont">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrare Takımı</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(1)" target="_blank"> <!--ScrollPart(1)-->
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Detayını Gör</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img class="swiper_slide_img" alt=""/>
-				
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrare'a Destek ol!</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(5)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Sponsorluk Başvurusu Yap</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img class="swiper_slide_img" alt=""/>
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Hazırlıklarımız</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Detayını gör</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img class="swiper_slide_img" alt=""/>
-			</div>
-			<div class="swiper-slide">
-				<div class="go_furniture_detail_outer"></div>
-				<div class="go_furniture_detail noselect">
-					<div class="go_furniture_detail_cont_1">
-						<div class="img_slogan_cont">
-							<h1 class="img_slogan_txt">Engrarelı Ol!</h1>
-						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(4)">
-							<div class="go_furniture_detail_cont_2">
-								<p class="go_furniture_detail_txt">Başvuru için Tıkla</p>
-							</div>
-						</a>
-					</div>
-				</div>
-				<img class="swiper_slide_img" alt=""/>
-			</div>
-		</div>
-	</div>
-
-	<!-- Add the navigation buttons -->
-	<div class="swiper-button-prev left_right_buttons_swipper"></div>
-	<div class="swiper-button-next left_right_buttons_swipper"></div>
-	<div class="transition_sign">
-		<div class="transition_sign_cont">
-
-			<div class="trans_click trans_active" id="transClick_0"></div>
-			<div class="trans_click" id="transClick_1"></div>
-			<div class="trans_click" id="transClick_2"></div>
-			<div class="trans_click" id="transClick_3"></div>
+		<div class="fixed_menu_space"></div>
 
 
-		</div>
-	</div>
-  
-</div>
-</div>
-
-
+<div class="main_container_2">
 	
-<div class="main_container_2" id="main_container_0">
-	<div class="main_container_2_bg_photo_part">
-		<img class="main_container_2_bg_photo" id="sliding_photo_0"/>
-	</div>
 	<div class="main_container_2_text_part">
-		<div class="sponsorship_form_iframe_outer">
-		<a class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Sponsorluk Formunu Kapat</p>
-			</div>
-		</a>
-		<iframe width="100%" height="1700" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"  class="sponsorship_form_iframe">Yükleniyor…</iframe>
+		<div class="loading_part" id="loading_part">
+			loading...
 		</div>
-		<div class="text_part_inner_cont" id="sponsorship_cont">
-		<h1 class="header_part_txt">Sponsorluk İsteği</h1>
-	  	<h3 class="content_part_txt">örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Bizi desteklemek için tıklayınız.</p>
+		<div class="login_part_inner" id="login_part">
+			<h1>Giriş Sayfası</h1>
+			<div class="text_boxs">
+				<div class="password_div">
+					<label for="password">Şifre:</label>
+					<input type="password" id="password" name="password" placeholder="Şifre Giriş Kutusu" required>
+				</div>
 			</div>
-		</a>
-		
+			<button onclick="loginPressed()">Giriş Yap</button>
+			<span class="login_warning_msg" id="login_warning_msg"></span>
+			
 		</div>
-	</div>
-</div>
-
-
-<div class="contect_part main_container_2">
-	<div class="contect_part_cont">
-		<div class="contect_part_cont_2">
-
-			<div class="social_media">
-				<div class="social_and_text_part">
-					<h1 class="contect_social_header">İletişim ve Destekçilerimiz</h1>
-						<div class="wrapper social_media_part" style="margin: 0px;">
-							<div class="social_grup_cont">
-								<a href="https://wa.me/905412989803" target="_blank"><div class="icon whatsapp">
-									<div class="tooltip">WhatsApp</div>
-										<span><i class="fa-brands fa-whatsapp"></i></span>
-									</div>
-								</a>
-								<div class="icon linkedin">
-									<div class="tooltip">LinkedIn</div>
-									<span><i class="fa-brands fa-linkedin"></i></span>
-								</div>
-							</div>
-							<div class="social_grup_cont">
-  <div class="icon xtwitter">
-    <div class="tooltip">X</div>
-    <span><i class="fa-brands fa-x-twitter"></i></span>
-  </div>
-  <a href="https://www.instagram.com/engrare.co/" target="_blank"><div class="icon instagram">
-    <div class="tooltip">Instagram</div>
-    <span><i class="fa-brands fa-instagram"></i></span>
-  </div>
-	  </a>
- <!-- <div class="icon telegram">
-    <div class="tooltip">Telegram</div>
-    <span><i class="fa-brands fa-telegram"></i></span>
-  </div>
-  <div class="icon youtube">
-    <div class="tooltip">YouTube</div>
-    <span><i class="fa-brands fa-youtube"></i></span>
-  </div>
-  <div class="icon map UK">
-    <div class="tooltip">UK</div>
-    <span><i class="fa fa-map"></i></span>
-  </div>-->
-  </div>
-<div class="social_grup_cont">
-  <a href="https://maps.app.goo.gl/B9vYVUaMijcD9bns8" target="_blank"><div class="icon map TURKEY">
-    <div class="tooltip">Adresi gör</div>
-    <span><i class="fa fa-map"></i></span>
-  </div></a>
-      <form action="mailto:info@engrare.com" method="GET" enctype="text/plain">
-		  <button class="mail_button">
-         <div class="icon mail" type="submit">
-    <div class="tooltip">Mail</div>
-    <span><i class="fa-regular fa-envelope"></i></span>
-  </div></button>
-      </form>
-	</div>
-
-</div>
+		<div class="main_menu" id="main_menu">
+			<div class="main_menu_content_outer" onclick="menuState(3)">
+				<div class="main_container_inner_bg">
+					<i class="fa-duotone fa-browser"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Websitesini Düzenle</h2>
+				</div>
+				
+			
+			
+			</div>
+			<div class="main_menu_content_outer" onclick="menuState(4)">
+				<div class="main_container_inner_bg">
+					<i class="fa-duotone fa-photo-film"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Sosyal Medya Ayarları</h2>
+				</div>
+				
+			
+			
+			</div>
+			<div class="main_menu_content_outer" onclick="menuState(5)">
+				<div class="main_container_inner_bg">
+					<i class="fa-light fa-gamepad-modern"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Web Robot Control App</h2>
+				</div>
+				
+			
+			
+			</div>
+			<div class="main_menu_content_outer" onclick="window.open('https://drive.google.com/file/d/1YfEugs-8TowZ0vRTspxL71VGcNfp0lRu/view?usp=drive_link', '_blank');">
+				<div class="main_container_inner_bg">
+					<i class="fa-regular fa-mobile-signal-out"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Android Robo Control App</h2>
+				</div>
+				
+			
+			
+			</div>
+			<div class="main_menu_content_outer" onclick="window.open('https://drive.google.com/drive/u/0/folders/1x9uElz-Rip2d2WYt6gTvHXdgqOup1xJO', '_blank');">
+				<div class="main_container_inner_bg">
+					<i class="fa-brands fa-google-drive"></i>
+				</div>
+				<div class="main_container_inner_text">
+	 				 <h2>Drive Klasörüne git</h2>
+				</div>
+				
+			
+			
+			</div>
+		</div>
+		<div class="buttons_outer_div" id="buttons_outer_div">
+			<button class="direction_buttons" id="forward_button" onclick="PressGoButtons(1)"><i class="fa-sharp fa-solid fa-arrow-up"></i></button>
+				<div>
+			<button class="direction_buttons" id="left_button" onclick="PressGoButtons(2)"><i class="fa-sharp fa-solid fa-arrow-left"></i></button>
+			<button class="direction_buttons" id="stop_button" onclick="PressGoButtons(3)"><i class="fa-regular fa-stop"></i></button>
+			<button class="direction_buttons" id="right_button" onclick="PressGoButtons(4)"><i class="fa-sharp fa-solid fa-arrow-right"></i></button>
+				</div>
+			<button class="direction_buttons" id="backward_button" onclick="PressGoButtons(5)"><i class="fa-sharp fa-solid fa-arrow-down"></i></button>
+		</div>
+		<div class="social_media_acc_outer" id="social_media_acc_outer">
+			<div style="display: flex;">
+				<div class="social_media_inner social_media_edit_button" onclick="accEditMode()">
+					<div class="social_media_inner_bg">
+						<i class="fa-solid fa-pen-to-square"></i>
+					</div>
+					<div class="social_media_edit_button" id="social_media_edit_button">Editle</div>
+				</div>
+				<div class="social_media_inner social_media_edit_button" onclick="submitACC_JSON()">
+					<div class="social_media_inner_bg">
+						<i class="fa-duotone fa-cloud-arrow-up"></i>
+					</div>
+					<div class="social_media_edit_button">Submitle</div>
+				</div>
+			</div>
+			<div class="social_media_inner_outer">
+			
+				<div class="social_media_inner" id="social_media_inner_0">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-whatsapp"></i>
+					</div>
+					<p class="social_header">WhatsApp</p>
+					<div class="copy_button" id="wp_number">+905412989803</div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_1">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-x-twitter"></i>
+					</div>
+					<p class="social_header">Twitter</p>
+					<div class="copy_button" id="tw_nick"></div>
+					<div class="copy_button" id="tw_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_2">
+					<div class="social_media_inner_bg">
+						<i class="fa-regular fa-location-dot"></i>
+					</div>
+					<p class="social_header">Maps</p>
+					<div class="copy_button" id="map_link"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_3">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-instagram"></i>
+					</div>
+					<p class="social_header">Instagram</p>
+					<div class="copy_button" id="ig_nick"></div>
+					<div class="copy_button" id="ig_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_4">
+					<div class="social_media_inner_bg">
+						<i class="fa-regular fa-envelope"></i>
+					</div>
+					<p class="social_header">Mail</p>
+					<div class="copy_button" id="mail_address"></div>
+					<div class="copy_button" id="mail_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_5">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-discord"></i>
+					</div>
+					<p class="social_header">Discord</p>
+					<div class="copy_button" id="dc_nick"></div>
+					<div class="copy_button" id="dc_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_6">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-github"></i>
+					</div>
+					<p class="social_header">GitHub</p>
+					<div class="copy_button" id="git_name"></div>
+					<div class="copy_button" id="git_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_7">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-spotify"></i>
+					</div>
+					<p class="social_header">Spotify</p>
+					<div class="copy_button" id="spoti_name"></div>
+					<div class="copy_button" id="spoti_pass"></div>
+				</div>
+				<div class="social_media_inner" id="social_media_inner_8">
+					<div class="social_media_inner_bg">
+						<i class="fa-brands fa-linkedin-in"></i>
+					</div>
+					<p class="social_header">Linkedin</p>
+					<div class="copy_button" id="linke_name"></div>
+					<div class="copy_button" id="linke_pass"></div>
+				</div>
+			</div>
+			<h2 id="warning_for_acc_upload"></h2>
+		</div>
+		<div class="website_design_outer" id="website_design_outer">
+			<div class="social_media_inner social_media_edit_button" onClick="SubmitWebContentJSON()">
+				<div class="social_media_inner_bg">
+					<i class="fa-duotone fa-cloud-arrow-up"></i>
+				</div>
+				<div class="social_media_edit_button">Submitle</div>
+			</div>
+			<div class="website_design_inner">
 					
-</div>
-<div class="maps">
-	<div class="maps_cont">
-		<div class="mapouter"><div class="gmap_canvas"><iframe id="map1" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1506.5817246596514!2d29.131488877676745!3d40.9559980557768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac77debfec47d%3A0x7a7592ba572b48b9!2sM5%20(Makine%20ve%20End%C3%BCstri%20M%C3%BChendisli%C4%9Fi)!5e0!3m2!1str!2str!4v1696669891312!5m2!1str!2str"></iframe>
-			
-			
+				<div class="editing_selection_part_outer">
+					<div class="website_select_outer" id="slayt_select_outer">
+						<h2>Slaytlar</h2>
+						
+						<div class="website_select_numbers_outer" id="slayt_select_numbers_outer">
+							<div class="num_selection_button" id="slayt_select_num_0" onClick="numSelectionChange('#slayt_select_num_0')">1</div>
+						</div>
+						
+					</div>
+					<div class="website_select_outer" id="container_select_outer">
+						<h2>Konteynerler</h2>
+						<div class="website_select_numbers_outer" id="container_select_numbers_outer">
+							<div class="num_selection_button" id="container_select_num_0" onClick="numSelectionChange('#container_select_num_0')">1</div>
+						</div>
+					</div>
+				</div>
+				<div class="editing_preview_outer">
+					<div class="main_container_2_bg_photo_part">
+						<img class="main_container_2_bg_photo"  id="preview_bg_img" alt="" />
+					</div>
+					<div class="main_container_2_text_part main_container_2_text_part_mini" id="main_container_2_text_part_mini">
+						<h3 id="cont_header">Misyonumuz</h3>
+					  	<p id="cont_text">örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</p>
+						<a class="go_furniture_detail_a" id="go_detail_button_preview">
+						<div class="go_furniture_detail_cont_2">
+							<p class="go_furniture_detail_txt" id="cont_textbox">Detayını gör</p>
+						</div>
+						</a>
+						<div class="go_furniture_detail_cont_1">
+							<div class="img_slogan_cont">
+								<h1 class="img_slogan_txt">Hazırlıklarımız</h1>
+							</div>
+							<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
+								<div class="go_furniture_detail_cont_2">
+									<p class="go_furniture_detail_txt" id="slide_textbox">Detayını gör</p>
+								</div>
+							</a>
+						</div>
+					</div>
 
+
+				</div>
+			</div>
+			<div class="website_edit_info_part">
 			
+				<div class="edit_account_inner">
+					<i class="fa-solid fa-x" style="cursor: pointer; color: black;" onclick="cancelWebsiteEdit()"></i>
+					<div class="content_parts content_part_0"><p>Name: </p>
+					<input class="text_area" type="text" id="websiteNameInput"></div>
+					<div class="content_parts content_part_1"><p>Header: </p>
+					<input class="text_area" type="text" id="websiteHeaderInput"></div>
+					<div class="content_parts content_part_2"><p>Text: </p>
+					<textarea class="text_area" id="websiteTextInput" rows="4" cols="50"></textarea></div>
+					<div class="content_parts content_part_4"><p>Button Text: </p><input class="text_area" type="text" id="websitebtntextInput">
+ 					 </div>
+					<div class="content_parts content_part_5"><p>Where button go: </p><input class="text_area" type="text" id="websitewheretogoInput">
+ 					 </div>
+					<div class="content_parts content_part_6"><p>Background Img Link: </p>
+					<input class="text_area" type="text" id="websitebgLinkInput"></div>
+
+				</div>	
+				<button onClick="submitOneWebPart()">Submit</button>
 			
-			
-			</div><style></style></div>
-		<!--<div class="mapouter"><div class="gmap_canvas"><iframe id="map2" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=pinaldi&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div><style></style></div>-->
+			</div>
+		</div>
 	</div>
-</div>
-<!--<iframe title="" class="YouTube_video noselect" width="480" height="270" src="https://www.youtube.com/embed/oo3SvcydIJ0?start=1000controls=1"frameborder="0" 
-allowfullscreen>
-</iframe>
-advertisement 
-consaltincy
-website
--->
-</div>
-</div>
-</div>
-<div class="copywrite_part">
+	<div class="copywrite_part">
 <p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare©®™</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
 </div>
 </div>
+	
+	
+
+
+	
+
+
+
 </div>
 
 
