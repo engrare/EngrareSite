@@ -368,7 +368,15 @@ p {
 	display: flex;
 	align-items: center;
 	position: relative;
-	padding: 0px 20px;
+	padding: 0px 20px 0px 10px;
+	cursor: pointer;
+	border-radius: 15px;
+}
+
+.fixed_menu_logo_part:hover {
+	animation: button_background_hover_ani 0.2s ease-in-out;
+	background: white;
+	color: black;
 }
 
 .fixed_menu_logo_text_part {
@@ -377,6 +385,8 @@ p {
     flex-direction: column;
 	margin-left: 5px;
 }
+		
+
 
 .fixed_menu_logo_text {
 	margin-block-start: 0em;
@@ -907,8 +917,8 @@ p {
 			</div>
 			
 		</div>
-		<div class="fixed_menu_logo_part">
-			<img src="./files/photos/engrare_logo.png" height="80%" alt="">
+		<div class="fixed_menu_logo_part"  onclick="goMainPage()">
+			<img src="https://www.engrare.com/files/photos/engrare_logo.png" height="80%" alt="">
 			<div class="fixed_menu_logo_text_part">
 				<p class="fixed_menu_logo_text">Engrare</p>
 				<hr class="fixed_menu_logo_hr" />
