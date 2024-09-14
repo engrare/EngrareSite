@@ -288,13 +288,17 @@ function GoToSettingsPage() {
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
+		var objlen = website_data_obj.website.corner.length;
 		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-		st - $("#sliding_photo_1").offset().top
-		$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st/1*(150.0/(window_height*2))-150) + 'px, 0px)');
+		//st - $("#sliding_photo_1").offset().top
+		for(let i = 0; i < objlen; i++) {
+			$("#sliding_photo_" + i).css('transform', 'translate3d(0px, ' + (-75*(st/(window_height-$(".fixed_menu_top").height())-i)) + 'px, 0px)');
+		}
+		/*$("#sliding_photo_1").css('transform', 'translate3d(0px, ' + (st/1*(150.0/(window_height*2))-150) + 'px, 0px)');
 		$("#sliding_photo_2").css('transform', 'translate3d(0px, ' + (st/2*(150.0/(window_height*2))-150) + 'px, 0px)');
 		$("#sliding_photo_3").css('transform', 'translate3d(0px, ' + (st/3*(150.0/(window_height*2))-150) + 'px, 0px)');
 		$("#sliding_photo_4").css('transform', 'translate3d(0px, ' + (st/4*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');
+		$("#sliding_photo_5").css('transform', 'translate3d(0px, ' + (st/5*(150.0/(window_height*2))-150) + 'px, 0px)');*/
 		
 		var lastbtnindex = 0, newbtnindex = 0;
 		//console.log($(".main_container_2").length);
@@ -358,6 +362,7 @@ function beReadyPage() {
 		//$(".gmap_canvas").css("width", 600);
 		$("#map1").css("width", window_width - 300);
 	}
+	$(window).scroll();
 }
 
 function openLeftMenu() {
