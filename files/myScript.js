@@ -1,4 +1,4 @@
-//Copyright 2023 Kaya Sertel. All Rights Reserved.
+//Copyright 2025 ENGRARE. All Rights Reserved.
 var ismenuopen = false;
 var st;
 var window_height, window_width, old_active_index = 0;
