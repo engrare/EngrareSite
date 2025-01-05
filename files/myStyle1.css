@@ -846,12 +846,12 @@ p {
 
 .main_container_2_text_part {
 	font-family: Montserrat, sans-serif;
-	text-align: center;
+	/*text-align: center;*/
 	position: relative;
 	color: white;
 	display: flex;
 	justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 	flex-direction: column;
 	z-index: 5;
 	background-color: rgba(0, 0, 0, 0.6);
@@ -862,7 +862,8 @@ p {
 .text_part_inner_cont {
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+    	align-items: flex-start;
+	margin-left: 50px;
 }
 
 .content_part_txt {
