@@ -44,6 +44,7 @@ body {
 p {
 	text-align: center;
 	font-family: Atkinson Hyperlegible, sans-serif;
+	
 }
 
 .main_div {
@@ -56,46 +57,153 @@ p {
 
 .fixed_menu_space {
 	width: 100%;
-	height: 60px;
+	height: 40px;
+}
+
+.menu_closer {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	z-index: 9;
+	display: none;
+	background:rgba(0, 0, 0, 0.4);
 }
 
 .fixed_menu_top {
-	top: 0px;
-	width: 100%;
-	height: 60px;
-	display: block;
 	position: fixed;
-	
-	left: 0px;
-	z-index: 10;
-	
-	white-space: nowrap;
-	box-shadow: 10px 6px 5px 0 rgba(80, 88, 97, 0.6);
-	background-color: rgba(0, 30, 33, 0.9);
-	/*
-	background-color: rgba(250, 220, 230, 1);
-	box-shadow: 10px 6px 5px 0 rgba(80, 88, 97, 0.6);
-	*/
-}
-
-.fixed_menu_top_backgorund {
-	position: absolute;
-	height: 100%;
+	left: 0;
+	top: 0;
 	width: 100%;
-	
-	background-image: url("../../files/photos/wood_background_photo.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.4;
-
+	height: 40px;
+	background: #000000;
+    box-shadow: 0px 4px 0px 0px rgb(13 57 82 / 46%);
+	z-index: 10;
 }
 
-.fixed_menu_container {
-	margin-top: 0px;
+
+.fixed_menu_cont {
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
-	align-items: baseline;
+}
+
+.fixed_menu_button {
+	display: flex;
+	align-items: center;
+	padding: 0px 14px;
+	cursor: pointer;
+	height: 100%;
+}
+
+.fixed_menu_button_selected {
+	text-decoration: underline 3px;
+}
+
+.fixed_menu_left_cont {
+	display: flex;
+	border-radius: 0px 10px 10px 0px;
+	overflow: hidden;
+}
+
+.fixed_menu_right_cont {
+	border-radius: 10px 0px 0px 10px;
+	overflow: hidden;
+	display: none;
+}
+
+.notification_num {
+	position: relative;
+    top: 8px;
+    right: -4px;
+	border-radius: 20px;
+	height: 13px;
+	width: 13px;
+	font-size: 13px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+
+/*.fixed_menu_button:hover {
+	background: white;
+	color: black;
+}*/
+
+.fixed_menu_button:hover {
+	animation: button_background_hover_ani 0.2s ease-in-out;
+	background: white;
+	color: black;
+}
+
+@keyframes button_background_hover_ani {
+	from {	
+		background: black;
+		color: white;
+	}
+	to {
+		background: white;
+		color: black;
+	}
+}
+
+.bar_button {
+	display: none;
+	width: 24.5px;
+	justify-content: center;
+}
+
+.fixed_menu_all_buttons_cont  {
+	display: flex;
+	overflow: hidden;
+}
+
+@media only screen and (max-width: 1100px) {
+	.bar_button {
+		display: flex;
+	}
+	
+	.fixed_menu_all_buttons_cont {
+		left: -200px;
+		top: 90px;
+		position: absolute;
+		background: black;
+		flex-direction: column;
+		border-radius: 0px 20px 20px 0px;
+	}
+	
+	.fixed_menu_right_cont  {
+		display: block;
+	}
+}
+
+.fixed_menu_logo_part {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: 0px 20px;
+}
+
+.fixed_menu_logo_text_part {
+	display: flex;
+	align-items: center;
+    flex-direction: column;
+	margin-left: 5px;
+}
+
+.fixed_menu_logo_text {
+	margin-block-start: 0em;
+	margin-block-end: 0em;
+}
+
+.fixed_menu_logo_hr {
+	width: 100%;
+	margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+}
+
+.menu_opener {
+	font-size: 28px;
 }
 
 .search_logo {
@@ -221,6 +329,10 @@ p {
 		height: 50px;
 	}
 	
+	.main_container_2 {
+		height: calc(100vh - 50px);
+	}
+	
 	.fixed_menu_space {
 		height: 50px;
 	}
@@ -286,6 +398,12 @@ p {
 	}
 	.fixed_menu_top {
 		height: 45px;
+	}
+	
+	
+	
+	.main_container_2 {
+		height: calc(100vh - 45px);
 	}
 	
 	.fixed_menu_space {
@@ -357,6 +475,10 @@ p {
 	
 	.fixed_menu_top {
 		height: 55px;
+	}
+	
+	.main_container_2 {
+		height: calc(100vh - 55px);
 	}
 	
 	.fixed_menu_space {
@@ -448,11 +570,15 @@ p {
 	}
 	
 	.fixed_menu_top {
-		height: 87px;
+		height: 60px;
+	}
+	
+	.main_container_2 {
+		height: calc(100vh - 60px);
 	}
 	
 	.fixed_menu_space {
-		height: 87px;
+		height: 60px;
 	}
 	
 	.top_part_logo {
@@ -514,6 +640,39 @@ p {
 }
 
 .icon_top_div {
+	position: relative;
+}
+
+
+
+
+.submit_button {
+	padding: 15px;
+	margin-top: 0px;
+	margin-right: 20px;
+	border-radius: 100px;
+}
+
+.microphone_button_top_a {
+	border-radius: 50px;
+}
+
+.microphone_button_top {
+	padding: 20px;
+}
+
+.fixed_menu_top a:hover {
+	animation: button_background_hover_ani 0.13s ease-in-out;
+	background: rgba(255, 255, 255, 0.2);
+}
+.transition_sign_cont {
+	width: fit-content;
+}
+
+
+.category {
+	float: left;
+    display: block;
 	position: relative;
 }
 
