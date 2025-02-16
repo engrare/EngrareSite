@@ -1,7 +1,7 @@
 //Copyright 2025 ENGRARE. All Rights Reserved.
 var ismenuopen = false;
 var st;
-var window_height, window_width, old_active_index = 0;
+var window_height, window_width, old_active_index = 0, formnum;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
 
@@ -75,6 +75,10 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 
 
 function topMenuGo(num) {
+	
+	if($('body').css("overflow-y") != "visible")
+		if (!OpenCloseForm(formnum))
+			return;
 	$('html, body').stop();
 	ScrollPart(num);
 
@@ -266,15 +270,23 @@ $( document ).ready(function() {
 	function OpenCloseForm(num) {
 		//console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
 		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
-
-			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "100%");
-			$('#main_container_' + num ).css("overflow-y", "");
-			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
-			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
-
+			if(confirm('Şu anda doldurmakta olduğunuz formu kapatmak istediğinize emin misiniz? Not: Cevaplara kaldığınız yerden devam edebilirsiniz.')){
+				$('#main_container_' + num + ' .main_container_2_text_part').css("height", "100%");
+				$('#main_container_' + num ).css("overflow-y", "");
+				$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
+				$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
+				$('body').css("overflow-y", "");
+				return 1;
+			} else {
+				return 0;
+			}
 		} else {
+			formnum = num;
 			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
 			$('#main_container_' + num ).css("overflow-y", "scroll");
+			topMenuGo(num+1);
+			$('body').css("overflow-y", "hidden");
+			
 
 			
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
