@@ -267,12 +267,15 @@ $( document ).ready(function() {
 		//console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
 		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
 
-			$('#main_container_' + num).css("height", "");
+			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "100%");
+			$('#main_container_' + num ).css("overflow-y", "");
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
 
 		} else {
-			$('#main_container_' + num).css("height", "auto");
+			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
+			$('#main_container_' + num ).css("overflow-y", "scroll");
+			
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').css("display", "flex");
