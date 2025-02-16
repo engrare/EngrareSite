@@ -275,6 +275,7 @@ $( document ).ready(function() {
 		} else {
 			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
 			$('#main_container_' + num ).css("overflow-y", "scroll");
+
 			
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
