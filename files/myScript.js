@@ -1,8 +1,9 @@
 //Copyright 2025 ENGRARE. All Rights Reserved.
 var ismenuopen = false;
 var st;
-var window_height, window_width, old_active_index = 0, formnum;
+var window_height, window_width, old_active_index = 0, formnum = -1;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
+
 
 var website_data_obj;
 
@@ -75,7 +76,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
 
 function topMenuGo(num) {
 	
-	if($('body').css("overflow-y") != "visible")
+	if(formnum != -1)
 		if (!OpenCloseForm(formnum))
 			return;
 	$('html, body').stop();
@@ -271,20 +272,29 @@ $( document ).ready(function() {
 		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
 			if(confirm('Şu anda doldurmakta olduğunuz formu kapatmak istediğinize emin misiniz? Not: Cevaplara kaldığınız yerden devam edebilirsiniz.')){
 				$('#main_container_' + num + ' .main_container_2_text_part').css("height", "100%");
+				$('#main_container_' + num + ' .main_container_2_bg_photo_part').css("height", "100%");
+				$('#sliding_photo_' + num).css("height", window_height + 150);
 				$('#main_container_' + num ).css("overflow-y", "");
 				$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
 				$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
 				$('body').css("overflow-y", "");
+				formnum = -1;
 				return 1;
 			} else {
 				return 0;
 			}
+			
 		} else {
+			topMenuGo(num+1);
 			formnum = num;
 			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
+			$('#main_container_' + num + ' .main_container_2_bg_photo_part').css("height", "1200px");
+			$('#sliding_photo_' + num).css("height", "1400px");
+			
 			$('#main_container_' + num ).css("overflow-y", "scroll");
-			topMenuGo(num+1);
-			$('body').css("overflow-y", "hidden");			
+			$('body').css("overflow-y", "hidden");
+
+			
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').css("display", "flex");
@@ -386,7 +396,8 @@ function openLeftMenu() {
 		$(".menu_opener").removeClass('fa-solid');
 		$(".menu_opener").removeClass('fa-xmark');
 		
-		$("html body").css("overflow-y", "auto");
+		if(formnum == -1)
+			$("html body").css("overflow-y", "auto");
 		if(!is_mobile_phone) {
 			$(".main_div").css("width", "100%");
 			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
@@ -401,7 +412,6 @@ function openLeftMenu() {
 		$(".menu_opener").addClass('fa-regular');
 		$(".menu_opener").addClass('fa-solid');
 		$(".menu_opener").addClass('fa-xmark');
-		
 		$("html body").css("overflow-y", "hidden");
 		if(!is_mobile_phone) {
 			$(".main_div").css("width", "calc(100% - 14px)");
