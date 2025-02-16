@@ -285,10 +285,7 @@ $( document ).ready(function() {
 			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
 			$('#main_container_' + num ).css("overflow-y", "scroll");
 			topMenuGo(num+1);
-			$('body').css("overflow-y", "hidden");
-			
-
-			
+			$('body').css("overflow-y", "hidden");			
 			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
 			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').css("display", "flex");
