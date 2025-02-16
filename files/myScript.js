@@ -4,7 +4,6 @@ var st;
 var window_height, window_width, old_active_index = 0, formnum;
 var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
-
 var website_data_obj;
 
 fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json')
