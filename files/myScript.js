@@ -258,6 +258,14 @@ $( document ).ready(function() {
 		old_active_index = mySwiper.realIndex;
 			
 	});
+
+	    var url = window.location.href;
+    var params = url.split('?')[1]; // ? den sonrasını alır
+    if (params) {
+        if (params === "uyebasvuru") {
+            OpenCloseForm(3); // Kaya yazıyorsa fonksiyonu çağırır
+        }
+    }
 });
 
 
