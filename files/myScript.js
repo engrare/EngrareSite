@@ -263,7 +263,7 @@ $( document ).ready(function() {
     var params = url.split('?')[1]; // ? den sonrasını alır
     if (params) {
         if (params === "uyebasvuru") {
-            OpenCloseForm(3); // Kaya yazıyorsa fonksiyonu çağırır
+		setTimeout(function() { OpenCloseForm(3);}, 800);
         }
     }
 });
