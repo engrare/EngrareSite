@@ -1,396 +1,561 @@
-//Copyright 2025 ENGRARE. All Rights Reserved.
-var ismenuopen = false;
-var st;
-var window_height, window_width, old_active_index = 0, formnum = -1;
-var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
+//Copyright 2025 Kaya Sertel & ENGRARE®. All Rights Reserved.
+var spd_opts = { //https://bernii.github.io/gauge.js/
+	  angle: -0.17, // The span of the gauge arc
+	  lineWidth: 0.19, // The line thickness
+	  radiusScale: 0.97, // Relative radius
+	  staticLabels: {
+		  font: "13px sans-serif",  // Specifies font
+		  labels: [0, 5, 10, 15, 20, 25, 30],  // Print labels at these values
+		  color: "#000000",  // Optional: Label text color
+		  fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+	  },
+	  pointer: {
+		length: 0.56, // // Relative to gauge radius
+		strokeWidth: 0.068, // The thickness
+		color: '#000000' // Fill color
+	  },
+	  limitMax: false,     // If false, max value increases automatically if value > maxValue
+	  limitMin: false,     // If true, the min value of the gauge will be fixed
+	  colorStart: '#6FADCF',   // Colors
+	  colorStop: '#8FC0DA',    // just experiment with them
+	  strokeColor: '#E0E0E0',  // to see which ones work best for you
+	  generateGradient: true,
+	  highDpiSupport: true,     // High resolution support
+	  // renderTicks is Optional
+	  renderTicks: {
+		divisions: 6,
+		divWidth: 2.4,
+		divLength: 0.67,
+		divColor: '#333333',
+		subDivisions: 5,
+		subLength: 0.62,
+		subWidth: 1,
+		subColor: '#666666'
+	  }
+	  
+	};
+	
+	var power_opts = {
+  angle: -0.2, // The span of the gauge arc
+  lineWidth: 0.2, // The line thickness
+  radiusScale: 0.97, // Relative radius
+  pointer: {
+    length: 0.56, // // Relative to gauge radius
+    strokeWidth: 0.075, // The thickness
+    color: '#aaedf6' // Fill color
+  },
+  staticLabels: {
+	  font: "13px sans-serif",  // Specifies font
+	  labels: [0, 20, 40, 60, 80, 100],  // Print labels at these values
+	  color: "#000000",  // Optional: Label text color
+	  fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+  },
+  limitMax: false,     // If false, max value increases automatically if value > maxValue
+  limitMin: false,     // If true, the min value of the gauge will be fixed
+  colorStart: '#6F6EA0',   // Colors
+  colorStop: '#C0C0DB',    // just experiment with them
+  strokeColor: '#ffffff00',  // to see which ones work best for you
+  staticZones: [
+   {strokeStyle: "#dd3232", min: 0, max: 20}, // Red from 100 to 130
+   {strokeStyle: "#FFDD00", min: 20, max: 40}, // Yellow
+   {strokeStyle: "#30B32D", min: 40, max: 60}, // Green
+   {strokeStyle: "#30B32D", min: 60, max: 80}, // Yellow
+   {strokeStyle: "#30B32D", min: 80, max: 100}  // Red
+],
+  generateGradient: true,
+  highDpiSupport: true,     // High resolution support
+  // renderTicks is Optional
+  renderTicks: {
+    divisions: 5,
+    divWidth: 2.4,
+    divLength: 0.67,
+    divColor: '#333333',
+    subDivisions: 0,
+    subLength: 0.62,
+    subWidth: 1,
+    subColor: '#666666'
+  }
+  
+};
 
+var is_login_ok = false;
+var is_cookie_red = false;
+var key_pressed = [false, false, false, false, false, false];
+var key_pressed_lift = [false, false];
+var mission_sec = 224;
+var target_spd;
+var gauge_spd;
+var target_pwr;
+var gauge_pwr;
+var selected_msn = [1, 1];
+var is_html_loaded = false;
 
-var website_data_obj;
+var set_spd = 80;
+var logincookiename = "logincookie";
 
-fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json')
+function fetchWebsiteData(apiKey) {
+fetch('https://raw.githubusercontent.com/eylulberil/encoded_key/main/keys.json')
   .then(response => response.json())
   .then(myObj => {
-	website_data_obj = myObj;
-	var objlen = website_data_obj.website.corner.length;
-//console.log(objlen);
-	$( '#fixed_menu_but_0 p').multiline(website_data_obj.website.slide.name);
-	for(var i = 0; i < objlen; i++) {
-		if(i > 0) {
-			$( '#main_container_' + (i - 1)).clone().insertAfter( '#main_container_' + (i - 1) ).prop('id', 'main_container_' + i);
-		}
-		$( '#fixed_menu_but_' + (i)).clone().insertAfter('#fixed_menu_but_' + i ).prop('id', 'fixed_menu_but_' + (i + 1)).children("p").multiline(website_data_obj.website.corner[i].name).parent().removeClass("fixed_menu_button_selected").attr("onclick", "topMenuGo(" + (i + 1) + ")");
-		
-		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .header_part_txt").multiline(website_data_obj.website.corner[i].header);
-		$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .content_part_txt").multiline(website_data_obj.website.corner[i].text);
-		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("id", "sliding_photo_" + i);
-		if(website_data_obj.website.corner[i].buttontext == "") {
-			
-			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").css("display", "none");
-			$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").attr("src", "");
-		}
-		else {
-			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").css("display", "block");
-			$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a .go_furniture_detail_txt").multiline(website_data_obj.website.corner[i].buttontext);
-			if(website_data_obj.website.corner[i].formheight != "") {
-				$('#main_container_' + i + " .main_container_2_text_part .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
-				$('#main_container_' + i + " .main_container_2_text_part .text_part_inner_cont .go_furniture_detail_a").attr("onclick", "OpenCloseForm(" + i + ")");
-				$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").attr("src", website_data_obj.website.corner[i].btnlink);
-				$('#main_container_' + i + " .main_container_2_text_part .sponsorship_form_iframe").css("height", website_data_obj.website.corner[i].formheight + "px");
-				
-			}
-		}
-		$('#main_container_' + i + " .main_container_2_bg_photo_part .main_container_2_bg_photo").attr("src", website_data_obj.website.corner[i].bgimglink);
-			
-		
-		$( '#fixed_menu_but_' + (objlen)).clone().insertAfter('#fixed_menu_but_' + (objlen) ).prop('id', 'fixed_menu_but_' + (objlen+1)).attr("onclick", "topMenuGo(" + (objlen + 1) + ")").children("p").text("İletişim");
-
-		
-	}
-	objlen = website_data_obj.website.slide.content.length;
-	
-	
-	for(var i = 0; i < objlen; i++) {
-			//$( '#main_container_' + (i - 1)).clone().appendTo( ".main_div" ).prop('id', 'main_container_' + i);
-		
-		//$('#main_container_' + i).children( ".search_result_div" ).children( ".user_username" ).text(myObj[i].username);
-		
-		$('.swiper-slide:eq(' + i + ') .swiper_slide_img').attr("src", website_data_obj.website.slide.content[i].bgimglink);
-		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .img_slogan_cont .img_slogan_txt').multiline(website_data_obj.website.slide.content[i].header);
-		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a .go_furniture_detail_cont_2 .go_furniture_detail_txt').multiline(website_data_obj.website.slide.content[i].buttontext);
-		$('.swiper-slide:eq(' + i + ') .go_furniture_detail .go_furniture_detail_cont_1 .go_furniture_detail_a').attr("onclick", "ScrollPart(" + website_data_obj.website.slide.content[i].gocorner + ")");
-		
-	}
-
-	//websiteJSON.website.slide.content.length
+	encrypted_key = myObj[0];
+	console.log(encrypted_key);
 	
   })
   .catch(error => {
-    // Handle any errors that occur during the fetch request
     console.log('Error:', error);
   });
-
-
-
-//for(let i = 0; i < website_data_obj.corner.length())
-
-
-function topMenuGo(num) {
-	
-	if(formnum != -1)
-		if (!OpenCloseForm(formnum))
-			return;
-	$('html, body').stop();
-	ScrollPart(num);
-
-	if(ismenuopen)
-		openLeftMenu();
 }
 
 
-$.fn.multiline = function(text){
-    this.text(text);
-    this.html(this.html().replace(/\n/g,'<br/>'));
-    return this;
-}
 
-
-$( document ).ready(function() {
-	var mySwiper = new Swiper('.swiper-container', {
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-		autoplay: {
-			delay: 3000, // change delay as needed
-		},
-		/*on: {
-			slideNextTransitionEnd: (swiper) => {
-				//console.log('SWIPED RIGHT');
-				if(!trans_click_pressed) {
-					if(current_active_index == mySwiper.slides.length - 1)
-						current_active_index = 0;
-					else
-						current_active_index++;
-				}
-				trans_click_pressed = false;
-				//new_active_index = current_active_index;//mySwiper.activeIndex;
-				changeTransClick(old_active_index, current_active_index);
-				old_active_index = current_active_index;
-			},
-			slidePrevTransitionEnd: (swiper) => {
-				//console.log('SWIPED LEFT');
-				if(!trans_click_pressed) {
-					if(current_active_index == 0)
-						current_active_index = mySwiper.slides.length - 1;
-					else
-						current_active_index--;
-				}
-				trans_click_pressed = false;
-				//new_active_index = current_active_index;//mySwiper.activeIndex;
-				changeTransClick(old_active_index, current_active_index);
-				old_active_index = current_active_index;
-			}
-		},*/
-		loop: true,
-	});
-	
-	/*$( ".left_right_buttons_swipper" ).hover(function() {
-		$(this).css({"-webkit-transform": "translateY(-5px)"});
-		$(this).addClass("swiper_button_hover");
-	}, function() {
-		$(this).css({"-webkit-transform": "translateY(0px)"});
-		$(this).removeClass("swiper_button_hover");
-	});
-	*/
-	$( ".fixed_menu_right_cont" ).hover(
-  function() {
-    $( ".settings_button_top" ).addClass( "fa-spin" );
-  }, function() {
-    $( ".settings_button_top" ).removeClass( "fa-spin" );
-  }
-);
-	
-	
-
-
-	
-	/*
-	$(".fixed_menu_button").on('click', function(){
-		$('html, body').stop();
-		var button_index = $(this).attr('id').slice(15, 16);
-		ScrollPart(button_index);
-		//console.log($(".main_container_2:eq(" + (button_index) + ")").offset().top);
-		
-		if(ismenuopen)
-			openLeftMenu();
-		//console.log($(this).eq(1));
-	});*/
-	
-	$("#fixed_menu_but_0").on('click', function(){
-		mySwiper.slideToLoop(0);
-	});
-	
-
-	
-	function changeTransClick(old_index, new_index) {
-		var elementID = "transClick_";
-		document.getElementById(elementID + old_index).className = "trans_click";
-		document.getElementById(elementID + new_index).className = "trans_click trans_active";
-	}
-	
-	$(".left_right_buttons_swipper").on('click', function(){
-		setTimeout(function() { mySwiper.autoplay.start();}, 6000);
-	});
-	
-	
-	
-	
-	$(".trans_click").on('click', function(){
-		var index = $(this).attr('id').slice(11, 12);
-		if(index == mySwiper.realIndex)
-			return;
-		mySwiper.slideToLoop(index);
-	});
-	
-	beReadyPage();
-	
-	
-	/*
-	// Define the function to go to the last slide from the first slide
-	function goToLastSlide() {
-		mySwiper.slideTo(mySwiper.slides.length - 1);
-	}
-
-	// Define the function to go to the first slide from the last slide
-	function goToFirstSlide() {
-		mySwiper.slideTo(0);
-	}
-
-// Add a click event listener to the first slide to go to the last slide
-	var firstSlide = document.querySelector('.swiper-slide:first-of-type');
-	firstSlide.addEventListener('click', function() {
-		if (mySwiper.activeIndex == 0) {
-			for(var i = 0; i < mySwiper.slides.length - 1; i++)
-				mySwiper.slideNext(i*30);
-			current_active_index = 3;
-			alert(mySwiper.activeIndex);
-		}
-	});
-
-	// Add a click event listener to the last slide to go to the first slide
-	var lastSlide = document.querySelector('.swiper-slide:last-of-type');
-	lastSlide.addEventListener('click', function() {
-		if (mySwiper.activeIndex == mySwiper.slides.length - 1) {
-			goToFirstSlide();
-			current_active_index = 0;
-		}
-	});*/
-	
-	$(window).scroll(function(event){
-		if($(this).scrollTop() > window_height) {
-			mySwiper.autoplay.stop();
-		}
-		else {
-			mySwiper.autoplay.start();
-		}
-	});
-	
-	var mySwiper = $(".swiper-container")[0].swiper;
-	//mySwiper.autoplay.stop();
-	mySwiper.autoplay.start();
-	$('.go_furniture_detail_a').mouseenter(function() {
-		mySwiper.autoplay.stop();
-	}).mouseleave(function() {
-		mySwiper.autoplay.start();
-	})
-	
-	mySwiper.on('slideChange', function () {
-		if (mySwiper.autoplay.running) {
-			//console.log('Slide changed automatically');
-		} else {
-			mySwiper.autoplay.stop();
-			setTimeout(function() { mySwiper.autoplay.start();}, 6000);
-			//console.log('Slide changed by user');
-		}
-		
-		mySwiper.slideToLoop(mySwiper.realIndex);
-		changeTransClick(old_active_index, mySwiper.realIndex);
-		old_active_index = mySwiper.realIndex;
-			
-	});
-
-	    var url = window.location.href;
-    var params = url.split('?')[1]; // ? den sonrasını alır
-    if (params) {
-        if (params === "uyebasvuru") {
-		setTimeout(function() { OpenCloseForm(3);}, 800);
-        }
+function decodeBase64(base64) {
+    const binaryString = atob(base64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
     }
-});
-
-
-	function ScrollPart(index) {
-		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
-	}
-
-
-
-	function OpenCloseForm(num) {
-		//console.log($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none");
-		if($('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display") == "none") {
-			if(confirm('Şu anda doldurmakta olduğunuz formu kapatmak istediğinize emin misiniz? Not: Cevaplara kaldığınız yerden devam edebilirsiniz.')){
-				$('#main_container_' + num + ' .main_container_2_text_part').css("height", "100%");
-				$('#main_container_' + num + ' .main_container_2_bg_photo_part').css("height", "100%");
-				$('#sliding_photo_' + num).css("height", window_height + 150);
-				$('#main_container_' + num ).css("overflow-y", "");
-				$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "");
-				$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeOut(500);
-				$('body').css("overflow-y", "");
-				formnum = -1;
-				return 1;
-			} else {
-				return 0;
-			}
-			
-		} else {
-			topMenuGo(num+1);
-			formnum = num;
-			$('#main_container_' + num + ' .main_container_2_text_part').css("height", "1200px");
-			$('#main_container_' + num + ' .main_container_2_bg_photo_part').css("height", "1200px");
-			$('#sliding_photo_' + num).css("height", "1400px");
-			
-			$('#main_container_' + num ).css("overflow-y", "scroll");
-			$('body').css("overflow-y", "hidden");
-
-			
-			$('#main_container_' + num + ' .main_container_2_text_part .text_part_inner_cont').css("display", "none");
-			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').fadeIn(500);
-			$('#main_container_' + num + ' .main_container_2_text_part .sponsorship_form_iframe_outer').css("display", "flex");
-		}
+    return new TextDecoder('utf-8').decode(bytes);
 }
 
-
-function GoToSettingsPage() {
-	//window.location.href = window.location.href + "../settings/set.html";
+async function fetchFile() {
+	const repoOwner = 'engrare';
+	const repoName = 'SDT_priv';
+	const filePath = 'index.html';
+	const github_api = await readData("github-api");
 	
+    try {
+        const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`, {
+            headers: { Authorization: `Bearer ${github_api}` },
+        });
+        if (!response.ok) throw new Error(`GitHub API hatası: ${response.statusText}`);
+        const data = await response.json();
+        return decodeBase64(data.content);
+    } catch (error) {
+        console.error(`Hata (${filePath}):`, error);
+        return null;
+    }
 }
 
-//if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
-	$(window).scroll(function(event){
-		st = $(this).scrollTop();
-		let objlennn = website_data_obj.website.corner.length;
-		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-		//st - $("#sliding_photo_1").offset().top
-		for(let i = 0; i < objlennn; i++) {
-			$("#sliding_photo_" + i).css('transform', 'translate3d(0px, ' + (-75*(st/(window_height-$(".fixed_menu_top").height())-i)) + 'px, 0px)');
-		}
+async function replaceHtmlWithUpdatedContent() {
+    try {
+        const htmlContent = await fetchFile();
+        if (!htmlContent) {
+            throw new Error("Dosya yüklenemedi.");
+			return false;
+        }
+        console.log(htmlContent);
 		
-		var lastbtnindex = 0, newbtnindex = 0;
-		//console.log($(".main_container_2").length);
-		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
-			newbtnindex++;
-			if($(".main_container_2").length == newbtnindex)
-				break;
-		}
-		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
-		
-		if(lastbtnindex != newbtnindex) {
-			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
-			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
-			lastbtnindex = newbtnindex;
-		}
+        $("#placeholder").html(htmlContent);
+		openPage(1);
+		target_spd = document.getElementById('speed_meter_gauge');
+		gauge_spd = new Gauge(target_spd).setOptions(spd_opts);
+		gauge_spd.maxValue = 30;
+		gauge_spd.setMinValue(0);
+		gauge_spd.animationSpeed = 24;
+		gauge_spd.set(0);
 		
 		
+		target_pwr = document.getElementById('power_meter_gauge');
+		gauge_pwr = new Gauge(target_pwr).setOptions(power_opts);
+		gauge_pwr.maxValue = 100;
+		gauge_pwr.setMinValue(0);
+		gauge_pwr.animationSpeed = 24;
+		gauge_pwr.set(0);
+		startObserving();
+		setInterval(writeScreenData, 2000);
+        console.log("HTML eklendi.");
+		return true;
+    } catch (error) {
+		return false;
+        console.error("Bir hata oluştu:", error);
+    }
+}
+
+
+
+	
+$(document).ready(function() {
+	//openPage(1);
+		
+	
+	
+	$("#speedSlider").on("input change", function() {
+		$("#speedValue").text($(this).val());
 	});
+	
+		$(document).keydown(function(event) {
+			var key = event.key;
+			buttonStateChanged(key, true);
+		});
 
+		$(document).keyup(function(event) {
+			var key = event.key;
+			buttonStateChanged(key, false);
+		});
+	
+	if(is_cookie_red == false) {
+		logininfo = readCookie(logincookiename);
+		is_cookie_red = true;
+	}
+	
+	if(logininfo != "") {
+		const parts = logininfo.split(/\|/);
+		console.log(parts);
 
-//}
-
-/*$(window).scroll(function(event){
-	st = $(this).scrollTop();
-	$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-});*/
-
-
-
-$( window ).resize(function() {
-	beReadyPage();
-	setTimeout(function() { beReadyPage();}, 100);
+		logintofirebase(parts[0], parts[1]);
+	}
+	
 });
 
+let observer1, observer2;
 
+function startObserving() {
+    var element1 = document.getElementById('main_right_top_div_ID');
+    var element2 = document.getElementById('main_left_div_ID');
 
-function beReadyPage() {
-	window_height = parseInt($( window ).height());
-	window_width = parseInt($( window ).width());
-	if(ismenuopen) 
-		$(".menu_closer").css("display", window_width > 1086 ? "none" : "block");
-	$(".swiper-container-wrapper").css("height", window_height - parseInt($( ".fixed_menu_top" ).height()));
-	//$(".main_container_2").css("height", window_height);
-	$(".main_container_2_bg_photo").css("height", window_height + 150);
-	//$(".main_container_2_bg_photo").css("height", window_width);
-	
-	st = $(window).scrollTop();
-	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
-	
-	if(window_width < 620) { 
-		//$(".mapouter").css("width", window_width - 20);
-		//$(".gmap_iframe").css("width", window_width - 20);
-		//$(".gmap_canvas").css("width", window_width - 20);
-		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
-		$("#map1").css("width", window_width - 20);
-		
-	} else {
-		//$(".mapouter").css("width", 600);
-		//$(".gmap_iframe").css("width", 600);
-		//$(".gmap_canvas").css("width", 600);
-		$("#map1").css("width", window_width - 300);
-	}
-	//$(window).scroll();
+    if (element1 && !observer1) {
+        observer1 = new ResizeObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var width = entry.contentRect.width;
+                var height = entry.contentRect.height;
+                $(".main_right_bottom_div").height($(".main_div").height() - $(".main_right_top_div").height() - 120);
+            });
+        });
+        observer1.observe(element1);
+        console.log("Observer 1 başlatıldı");
+    }
+
+    if (element2 && !observer2) {
+        observer2 = new ResizeObserver(function(entries) {
+            entries.forEach(function(entry) {
+                var width = entry.contentRect.width;
+                var height = entry.contentRect.height;
+                $(".main_right_div").width($(".main_div").width() - $(".main_left_div").width());
+            });
+        });
+        observer2.observe(element2);
+        console.log("Observer 2 başlatıldı");
+    }
 }
 
-function openLeftMenu() {
+
+function strToJSON(str) {
+	var json_data = {
+      "battery_current": 0,
+      "battery_percent": 0,
+      "battery_voltage": 0,
+      "date": "",
+      "map_data": "",
+      "qr_data": "",
+      "speed_left": 0,
+      "speed_right": 0,
+      "state": "",
+      "temp": 0,
+      "weight": 0
+    };
+
+	const splitValues = str.split("|");
+	json_data.battery_current = splitValues[0];
+	json_data.battery_percent = splitValues[1];
+	json_data.battery_voltage = splitValues[2];
+	json_data.date = splitValues[3];
+	json_data.map_data = splitValues[4];
+	json_data.qr_data = splitValues[5];
+	json_data.speed_left = splitValues[6];
+	json_data.speed_right = splitValues[7];
+	json_data.state = splitValues[8];
+	json_data.temp = splitValues[9];
+	json_data.weight = splitValues[10];
+	
+	console.log(json_data);
+	return json_data;
+}
+
+
+function buttonStateChanged(key, bool_btn_state) {
+	
+	if(bool_btn_state) {
+		if(key == 'q' && !key_pressed[0]) {
+			//console.log("turning right");
+			$(".manuel_control_turn_btn:not(:eq(0))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(0)").css("background", "#3d3d3d");
+			moveRobot(-set_spd, set_spd);
+			key_pressed[0] = true;
+		} else if(key == 'e' && !key_pressed[1]) {
+			//console.log("turning left");
+			$(".manuel_control_turn_btn:not(:eq(1))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(1)").css("background", "#3d3d3d");
+			moveRobot(set_spd, -set_spd);
+			key_pressed[1] = true;
+		} else	if(key == 'w' && !key_pressed[2]) {
+			//console.log("going forward");
+			$(".manuel_control_turn_btn:not(:eq(2))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(2)").css("background", "#3d3d3d");
+			moveRobot(set_spd, set_spd);
+			key_pressed[2] = true;
+		} else	if(key == 'a' && !key_pressed[3]) {
+			//console.log("going left");
+			$(".manuel_control_turn_btn:not(:eq(3))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(3)").css("background", "#3d3d3d");
+			moveRobot(set_spd/2, set_spd);
+			key_pressed[3] = true;
+		} else if(key == 'd' && !key_pressed[4]) {
+			//console.log("going backward");
+			$(".manuel_control_turn_btn:not(:eq(4))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(4)").css("background", "#3d3d3d");
+			moveRobot(set_spd, set_spd/2);
+			key_pressed[4] = true;
+		} else if(key == 's' && !key_pressed[5]) {
+			//console.log("going right");
+			$(".manuel_control_turn_btn:not(:eq(5))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(5)").css("background", "#3d3d3d");
+			moveRobot(-set_spd, -set_spd);
+			key_pressed[5] = true;
+		}
+		
+		if(key == 'r' && !key_pressed_lift[0]) {
+			$(".manuel_control_turn_btn:not(:eq(6))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(6)").css("background", "#3d3d3d");
+			moveLift(100);
+			key_pressed_lift[0] = true;
+		} else if(key == 'f' && !key_pressed_lift[1]) {
+			$(".manuel_control_turn_btn:not(:eq(7))").css("background", "black");
+			$(".manuel_control_turn_btn:eq(7)").css("background", "#3d3d3d");
+			moveLift(-100);
+			key_pressed_lift[1] = true;
+		}
+	} else {
+		let is_related = true;
+		if(key == 'q') {
+			key_pressed[0] = false;
+			$(".manuel_control_turn_btn:eq(0)").css("background", "black");
+		} else if(key == 'e') {
+			key_pressed[1] = false;
+			$(".manuel_control_turn_btn:eq(1)").css("background", "black");
+		} else	if(key == 'w') {
+			key_pressed[2] = false;
+			$(".manuel_control_turn_btn:eq(2)").css("background", "black");
+		} else	if(key == 'a') {
+			key_pressed[3] = false;
+			$(".manuel_control_turn_btn:eq(3)").css("background", "black");
+		} else	if(key == 'd') {
+			key_pressed[4] = false;
+			$(".manuel_control_turn_btn:eq(4)").css("background", "black");
+		} else if(key == 's') {
+			key_pressed[5] = false;
+			$(".manuel_control_turn_btn:eq(5)").css("background", "black");
+		} else {
+			is_related = false;
+			$(".manuel_control_turn_btn").css("background", "black");
+		}
+		
+		if(key == 'r') {
+			if(key_pressed_lift[1]) {
+				moveLift(-100);
+			} else {
+				moveLift(0);
+			}
+			key_pressed_lift[0] = false;
+			$(".manuel_control_turn_btn:eq(6)").css("background", "black");
+		} else if(key == 'f') {
+			if(key_pressed_lift[0]) {
+				moveLift(100);
+			} else {
+				moveLift(0);
+			}
+			key_pressed_lift[1] = false;
+			$(".manuel_control_turn_btn:eq(7)").css("background", "black");
+		}
+		
+		if(is_related) {
+			let i = key_pressed.length;
+			while(i--) {
+				if(key_pressed[i]){
+					break;
+				} else if(i == 0) {
+					moveRobot(0, 0); //stop
+				}
+			}
+		}
+	}
+}
+
+async function mapping() {
+	console.log("mapping e bastın.");
+	//writeData("manuel_data", "deger");
+}
+
+async function stopMission() {
+	console.log("stop a bastın.");
+	//writeData("manuel_data", "deger");
+}
+
+async function startMission() {
+	console.log("start a bastın.");
+	if(is_login_ok)
+		writeData("otonomus_data", "1|34|25|9|27");
+}
+
+async function openCloseLED() {
+	console.log("LED e bastın.");
+	if(is_login_ok) {
+		var red_data = await readData("SDTdata/client/led");
+		writeData("led", !red_data);
+	}
+}
+
+async function openCloseBuzzer() {
+	console.log("Buzzer a bastın.");
+	if(is_login_ok) {
+		var red_data = await readData("SDTdata/client/buzzer");
+		writeData("buzzer", !red_data);
+	}
+}
+
+async function openClosePower() {
+	console.log("Power a bastın.");
+	if(is_login_ok) {
+		var red_data = await readData("SDTdata/client/main_power");
+		writeData("main_power", !red_data);
+	}
+}
+
+async function selectScenario(scenario_type, mapping_or_weight) {
+	console.log("senerioya a bastın.");
+	$(".scenario_selector_div").removeClass("scenario_selector_div_selected");
+	$(".scenario_selector_div:eq(" + (mapping_or_weight == 1 ? scenario_type - 1 : scenario_type + 3) + ")").addClass("scenario_selector_div_selected");
+	if(is_login_ok) {
+		//var red_data = await readData("SDTdata/client/main_power");
+		//writeData("main_power", !red_data);
+	}
+}
+
+function moveRobot(left_spd, right_spd) {
+	var manuel_data_str = left_spd + "|" + right_spd;
+	if(is_login_ok)
+		writeData("manuel_data", manuel_data_str);
+}
+
+function moveLift(lift_spd) {
+	if(is_login_ok)
+		writeData("lift_data", lift_spd);
+}
+
+function openPageRequest(pagenum) {
+	if(is_login_ok) {
+		openPage(pagenum);
+	} else {
+		openPage(0);
+	}
+}
+
+async function writeScreenData() {
+	if(is_login_ok) {//if(is_login_ok && await checkUserOnline("")) {
+		mission_sec++;
+		var red_data = await readData("SDTdata/robot1");
+		
+		//var red_data = await readData("r");
+		//red_data = strToJSON(red_data);
+		//var states[7] = {"Hazır Değil", "Beklemede", "Arıza", "Manuel", "Haritalandırma", "Yük Taşıma", "Şarj"};
+		if (red_data) {
+			$(".div_charge_bar_inner").css("width", red_data.battery_percent + "%");
+			$(".battery_power_perc").text(red_data.battery_percent + "%");
+			$(".text_data_value_text:eq(0)").text("Bağlı");
+			$(".text_data_value_text:eq(1)").text(red_data.state);
+			$(".text_data_value_text:eq(2)").text(Math.floor(mission_sec / 60).toString().padStart(2, '0') + ":" + (mission_sec % 60).toString().padStart(2, '0'));
+			$(".text_data_value_text:eq(3)").text(red_data.temp + "°C");
+			$(".text_data_value_text:eq(4)").text(red_data.battery_current + " Amper");
+			$(".text_data_value_text:eq(5)").text(red_data.battery_voltage + " Volt");
+			$(".text_data_value_text:eq(6)").text(red_data.weight + " kg");
+			const str = red_data.qr_data;
+			const numbers = str.split(',').filter(Boolean);
+			const lastNumber = numbers[numbers.length - 1];
+			$(".text_data_value_text:eq(7)").text(lastNumber);
+			
+			gauge_spd.set((red_data.speed_left + red_data.speed_right) / 2);
+			gauge_pwr.set(red_data.battery_percent);
+			//console.log("Okunan veri:", red_data);
+		} else {
+			console.log("Veri okunamadı.");
+		}
+	} else {
+		$(".text_data_value_text:not(:eq(0))").text("-");
+		$(".text_data_value_text:eq(0)").text("Bağlı Değil");
+		
+		gauge_spd.set(0);
+		gauge_pwr.set(0);
+	}
+}
+
+
+function openPage(pagenum) {
+	
+	switch (pagenum) {
+		case 0:
+			$(".main_menu_outer_div").css("display", "none");
+			$(".main_container_login").css("display", "");
+			$(".fixed_menu_buttons_left:eq(0)").attr("onclick","");
+			$(".fixed_menu_buttons_left:eq(0) > p").text("Giriş Yap");
+			$(".fixed_menu_buttons_left").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(0)").addClass("fixed_menu_button_selected");
+			break;
+		case 1:
+			$(".main_menu_outer_div").css("display", "none");
+			$(".main_container_login").css("display", "none");
+			$(".main_page_1").css("display", "");
+			$(".fixed_menu_buttons_left").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(1)").addClass("fixed_menu_button_selected");
+			$(".main_container_login").css("display", "none");
+			$(".fixed_menu_buttons_left:eq(0)").attr("onclick","signoutfirebase()");
+			$(".fixed_menu_buttons_left:eq(0) > p").text("Çıkış Yap");
+			
+			break;
+		case 2:
+			$(".main_container_login").css("display", "none");
+			$(".main_menu_outer_div").css("display", "none");
+			$(".main_page_2").css("display", "");
+			$(".fixed_menu_buttons_left").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(2)").addClass("fixed_menu_button_selected");
+			
+			$(".fixed_menu_buttons_left:eq(0)").attr("onclick","signoutfirebase()");
+			$(".fixed_menu_buttons_left:eq(0) > p").text("Çıkış Yap");
+	  
+			break;
+		case 3:
+			$(".main_container_login").css("display", "none");
+			$(".main_menu_outer_div").css("display", "none");
+			$(".main_page_3").css("display", "");
+			$(".fixed_menu_buttons_left").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(3)").addClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(0)").attr("onclick","signoutfirebase()");
+			$(".fixed_menu_buttons_left:eq(0)").text("Çıkış Yap");
+	  
+			break;
+		case 4:
+			$(".main_container_login").css("display", "none");
+			$(".main_menu_outer_div").css("display", "none");
+			$(".main_page_4").css("display", "");
+			$(".fixed_menu_buttons_left").removeClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(4)").addClass("fixed_menu_button_selected");
+			$(".fixed_menu_buttons_left:eq(0)").attr("onclick","signoutfirebase()");
+			$(".fixed_menu_buttons_left:eq(0)").text("Çıkış Yap");
+	  
+			break;
+	}
+	
+}
+
+
+var ismenuopen = false;
+	var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
+	function goMainPage() {
+		var url = window.location.href;
+		var result = url.indexOf(".com") + 4;
+		window.open(url.slice(0, result), '_self');
+		
+	}
+	
+	function openLeftMenu() {
 	$(".fixed_menu_all_buttons_cont").stop();
 	$(".menu_closer").stop();
 	$('.fixed_menu_all_buttons_cont').animate(
@@ -404,8 +569,7 @@ function openLeftMenu() {
 		$(".menu_opener").removeClass('fa-solid');
 		$(".menu_opener").removeClass('fa-xmark');
 		
-		if(formnum == -1)
-			$("html body").css("overflow-y", "auto");
+		$("html body").css("overflow-y", "auto");
 		if(!is_mobile_phone) {
 			$(".main_div").css("width", "100%");
 			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
@@ -420,6 +584,7 @@ function openLeftMenu() {
 		$(".menu_opener").addClass('fa-regular');
 		$(".menu_opener").addClass('fa-solid');
 		$(".menu_opener").addClass('fa-xmark');
+		
 		$("html body").css("overflow-y", "hidden");
 		if(!is_mobile_phone) {
 			$(".main_div").css("width", "calc(100% - 14px)");
@@ -433,14 +598,29 @@ function openLeftMenu() {
 	//overflow: hidden;
 }
 
-/*setTimeout(function() { changeImgg(); }, 5000);
+function deleteCookie(cookieName) {
+    document.cookie = cookieName + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
 
-function changeImgg() {
-	if(is_change_on_going && !is_trans_button_clicked)
-		transImg(transNum+1);
-	is_trans_button_clicked = false;
-	setTimeout(function() { changeImgg(); }, 5000);
-}*/
+function readCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
-setTimeout(function() { beReadyPage();}, 200);
-setTimeout(function() { beReadyPage();}, 500);
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
