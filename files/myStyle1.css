@@ -86,6 +86,8 @@ p {
 	background: #000000;
     box-shadow: 0px 4px 0px 0px rgb(13 57 82 / 46%);
 	z-index: 10;
+	color: #0a465a;
+    	font-weight: bold;
 }
 
 
@@ -190,10 +192,6 @@ p {
 	align-items: center;
 	position: relative;
 	padding: 0px 20px;
-	background: #a6e1ff;
-	border-radius: 10px 0px 0px 10px;
-	color: #193452;
-	font-weight: bold;
 }
 
 .fixed_menu_logo_text_part {
