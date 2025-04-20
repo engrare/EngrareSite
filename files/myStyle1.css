@@ -190,6 +190,10 @@ p {
 	align-items: center;
 	position: relative;
 	padding: 0px 20px;
+	background: #a6e1ff;
+	border-radius: 10px 0px 0px 10px;
+	color: #193452;
+	font-weight: bold;
 }
 
 .fixed_menu_logo_text_part {
