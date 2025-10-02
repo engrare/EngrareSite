@@ -7,6 +7,7 @@ var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Oper
 
 var website_data_obj;
 
+/*
 fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json')
   .then(response => response.json())
   .then(myObj => {
@@ -68,6 +69,7 @@ fetch('https://raw.githubusercontent.com/eylulberil/engrare-data/main/data.json'
     // Handle any errors that occur during the fetch request
     console.log('Error:', error);
   });
+  */
 
 
 
