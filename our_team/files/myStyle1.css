@@ -861,6 +861,7 @@ p {
 	display: flex;
 	justify-content: center;
     align-items: center;
+	overflow: hidden;
 }
 
 .main_container_inner {
