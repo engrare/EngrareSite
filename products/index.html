@@ -108,12 +108,24 @@
 				<i class="fa fa-bars menu_opener"></i>
 			</div>
 			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left fixed_menu_button_selected" id="fixed_menu_but_0" onClick="topMenuGo(0)">
-					<p>Engrare</p>
+				<div class="fixed_menu_button fixed_menu_buttons_left <!--fixed_menu_button_selected-->" onclick="ScrollPart(1)">
+					<i class="fa-solid fa-house fixed_menu_buttons_favs"></i><p style="text-decoration: underline 3px;">Engrare</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_lang"  onclick="alert('Translating the website future is not available right now. Thank you for your understanding.');">
-					<p>Language</p>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/products'">
+					<i class="fa-solid fa-drone fixed_menu_buttons_favs"></i><p>Ürünlerimiz</p>
 				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/our_team'">
+					<i class="fa-solid fa-screen-users fixed_menu_buttons_favs"></i><p>Ekibimiz</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(2)">
+					<i class="fa-solid fa-handshake fixed_menu_buttons_favs"></i><p>Referanslar</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(3)">
+					<i class="fa-solid fa-phone-rotary fixed_menu_buttons_favs"></i><p>İletişim</p>
+				</div>
+				<!--<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_lang"  onclick="alert('Translating the website future is not available right now. Thank you for your understanding.');">
+					<i class="fa-solid fa-language fixed_menu_buttons_favs"></i><p>Language</p>
+				</div>-->
 			</div>
 			
 		</div>
@@ -215,41 +227,54 @@
 			</div>
 		</div>
 		<div class="product_text_contant_main">
-			<h1>ÜRÜN BAŞLIĞI</h1>
-			<p>Ürün açıklama yazısı yazı yazı yazı</p>
+			<h1 id="product_header">ÜRÜN BAŞLIĞI</h1>
+			<p id="product_info">Ürün açıklama yazısı yazı yazı yazı</p>
 		</div>
 		
 	</div>
 </div>
 
-<div class="main_container_2">
-	<div class="main_container_2_bg_photo_part">
-		<img src="../files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" />
-	</div>
-	<div class="main_container_2_text_part">
-		<h1>Örnek Başlık</h1>
-		<h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<a href="https://www.google.com/" class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Detayını gör</p>
+<div class="main_container">
+	<div class="main_container_inner">
+		<h1 style="font-size: -webkit-xxx-large;">DİĞER ÜRÜNLERİMİZ</h1>
+		<div class="main_container_card_outer">
+			<div class="main_container_card">
+				<img class="product_card_img" src="files\photos\drone_photo.png"/>
+				<div class="product_card_bottom_info">
+					<h2>Dronox</h2>
+					<p style="text-align: left; margin-block-start: 0em;">Döner Kanatlı İHA'mız 15dk uçuş süresine ve 1.3kg'a kadar yük taşıma kapasitesine sahip otonom bir İHA'dır.</p>
+					<a class="go_furniture_detail_a" style="margin: 0px;" href="?dronox">
+						<div class="go_furniture_detail_cont_2">
+							<p class="go_furniture_detail_txt">Ürün Detaylarına Git</p>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>
-	</div>
-</div>
-
-
-<div class="main_container_2">
-	<div class="main_container_2_bg_photo_part">
-		<img src="../files/photos/furniture_photo_example_4.jpg" class="main_container_2_bg_photo" />
-	</div>
-	<div class="main_container_2_text_part">
-		<h1>Örnek Başlık</h1>
-		<h3>örnek yazı 2 bu bir yazıdır<br /> istediğiniz kadar uzatabilirsiniz.</h3>
-		<!--<a href="https://www.google.com/" class="go_furniture_detail_a">
-			<div class="go_furniture_detail_cont_2">
-				<p class="go_furniture_detail_txt">Detayını gör</p>
+			<div class="main_container_card">
+				<img class="product_card_img" src="files\photos\sdt_photo.jpg"/>
+				<div class="product_card_bottom_info">
+					<h2>Eightlever</h2>
+					<p style="text-align: left; margin-block-start: 0em;">Sanayinin en özgün sekizgen tasarımlı aracı hem işlevsel hem de kararlı otonom yazılımı sayesinde çok kullanışlı.</p>
+					<a class="go_furniture_detail_a" style="margin: 0px;" href="?sdt">
+						<div class="go_furniture_detail_cont_2">
+							<p class="go_furniture_detail_txt">Ürün Detaylarına Git</p>
+						</div>
+					</a>
+				</div>
 			</div>
-		</a>-->
+			<div class="main_container_card">
+				<img class="product_card_img" src="files\photos\robolig_photo.jpg"/>
+				<div class="product_card_bottom_info">
+					<h2>Taşımacım</h2>
+					<p style="text-align: left; margin-block-start: 0em;">Taşımacım engebeli arazilerde görev yapabilen manuel kontrollü ve robot kolu sayesinde ufak düzeltme taşıma görevlerini yapabilmektedir. Önündeki dönerli top toplama mekanizması sayesinde de haznesine aynı anda 10 adet top saklayabilmektedir.</p>
+					<a class="go_furniture_detail_a" style="margin: 0px;" href="?tasimacim">
+						<div class="go_furniture_detail_cont_2">
+							<p class="go_furniture_detail_txt">Ürün Detaylarına Git</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -323,6 +348,7 @@ website
 </div>
 <div class="copywrite_part">
 <p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel©®™ ve onun ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
+</div>
 </div>
 </body>
 </html>

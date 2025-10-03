@@ -108,7 +108,7 @@
 				<i class="fa fa-bars menu_opener"></i>
 			</div>
 			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left <!--fixed_menu_button_selected-->" onClick="window.location.href = 'https://www.engrare.com'">
+				<div class="fixed_menu_button fixed_menu_buttons_left <!--fixed_menu_button_selected-->" onclick="ScrollPart(1)">
 					<i class="fa-solid fa-house fixed_menu_buttons_favs"></i><p style="text-decoration: underline 3px;">Engrare</p>
 				</div>
 				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/products'">
@@ -117,15 +117,15 @@
 				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/our_team'">
 					<i class="fa-solid fa-screen-users fixed_menu_buttons_favs"></i><p>Ekibimiz</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/preferences'">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(2)">
 					<i class="fa-solid fa-handshake fixed_menu_buttons_favs"></i><p>Referanslar</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/contact'">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(3)">
 					<i class="fa-solid fa-phone-rotary fixed_menu_buttons_favs"></i><p>İletişim</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_lang"  onclick="alert('Translating the website future is not available right now. Thank you for your understanding.');">
+				<!--<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_lang"  onclick="alert('Translating the website future is not available right now. Thank you for your understanding.');">
 					<i class="fa-solid fa-language fixed_menu_buttons_favs"></i><p>Language</p>
-				</div>
+				</div>-->
 			</div>
 			
 		</div>
@@ -197,7 +197,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Geleceği Havadan Keşfedin</h1>
 						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(1)" target="_blank"> <!--ScrollPart(1)-->
+						<a class="go_furniture_detail_a" href="https://www.engrare.com/products?dronox"> <!--ScrollPart(1)-->
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Dronox'un Detayına Git</p>
 							</div>
@@ -213,7 +213,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Sen de ENGRARE'lı ol</h1>
 						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(5)">
+						<a class="go_furniture_detail_a" href="https://www.engrare.com/our_team">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Üyelik Başvurusu Yap</p>
 							</div>
@@ -228,7 +228,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Keşfimize Destek Ol!</h1>
 						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(2)">
+						<a class="go_furniture_detail_a" href="https://docs.google.com/forms/d/e/1FAIpQLSdnS6v8xfdv8wYeqp5fnFl70ZXsQyZGB7irnU-t_jNkXx7yMg/viewform?usp=sf_link" target="_blank">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Sponsorluk Başvurusu Yap</p>
 							</div>
@@ -243,7 +243,7 @@
 						<div class="img_slogan_cont">
 							<h1 class="img_slogan_txt">Sanayinin 8 Köşeli Gözdesi</h1>
 						</div>
-						<a class="go_furniture_detail_a" onclick="ScrollPart(4)">
+						<a class="go_furniture_detail_a" href="https://www.engrare.com/products?sdt">
 							<div class="go_furniture_detail_cont_2">
 								<p class="go_furniture_detail_txt">Ürün Detaylarına Git</p>
 							</div>
@@ -275,7 +275,7 @@
 
 <div class="main_container">
 	<div class="main_container_inner">
-		<h1>ÜRÜNLERİMİZ</h1>
+		<h1 style="font-size: -webkit-xxx-large;">ÜRÜNLERİMİZ</h1>
 		<div class="main_container_card_outer">
 			<div class="main_container_card">
 				<img class="product_card_img" src="files\photos\drone_photo.png"/>
@@ -321,7 +321,7 @@
 	<div class="main_container_inner">
 		<h1 style="margin-top: 30px;">BİZ KİMİZ?</h1>
 		<h3 style="margin-bottom: 40px;">Bizler Marmara Üniversitende kurulmuş ve Teknofest'e katılarak gelişmeyi ve gelişimimizden öğrendiklerimiz sayesinde bu gelişimi girişime dönüştürmeyi hedefleyen bir topluluğuz. Kendimiz gibi düşünenleri arıyoruz. Eğer sen de bizim gibiysen aramıza katılabilirsin.</h3>
-		<a class="go_furniture_detail_a" style="margin: 0px 0px 40px 0px;" href="./products/index.html?tasimacim">
+		<a class="go_furniture_detail_a" style="margin: 0px 0px 40px 0px;" href="./our_team/index.html">
 			<div class="go_furniture_detail_cont_2">
 				<p class="go_furniture_detail_txt">Başvuru Formu İçin Tıkla</p>
 			</div>
@@ -331,10 +331,28 @@
 
 <div class="main_container">
 	<div class="main_container_inner">
-		<h1 style="margin-top: 30px;">BİZE GÜVENEN FİRMALAR</h1>
-		<div class="main_container_card_outer">
+		<h1 style="margin-top: 30px;">BİZİ DESTEKLEYEN ORGANİZASYONLAR</h1>
+		<div class="main_container_sponsor_card_outer">
 			<div class="main_sponsor_car">
-				<img class="product_card_img" src="files\photos\marmara_universitesi_logo.png"/>
+				<img class="sponsor_card_logo" src="files\photos\marmara_universitesi_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\laq_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\tubitak_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\KOSGEB_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\teknofest_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\mmk_logo.png"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="files\photos\tusas_logo.png"/>
 			</div>
 		</div>
 	</div>

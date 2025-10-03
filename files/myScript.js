@@ -95,6 +95,19 @@ $.fn.multiline = function(text){
     return this;
 }
 
+function ScrollPart(index) {
+	var scroll_pos;
+	if(index == 1)
+		scroll_pos = 0;
+	else if(index == 2)
+		scroll_pos = $('body').height() - window_height -  $(".main_container:eq(2)").height();
+	else
+		scroll_pos = $('body').height() - window_height;
+	//console.log(scroll_pos);
+	if(ismenuopen)
+		openLeftMenu();
+	$('html, body').animate({scrollTop: scroll_pos}, 400);
+}
 
 $( document ).ready(function() {
 	var mySwiper = new Swiper('.swiper-container', {
@@ -260,20 +273,22 @@ $( document ).ready(function() {
 		old_active_index = mySwiper.realIndex;
 			
 	});
+	
 
-	    var url = window.location.href;
+	var url = window.location.href;
     var params = url.split('?')[1]; // ? den sonrasını alır
+	console.log(params);
     if (params) {
-        if (params === "uyebasvuru") {
-		setTimeout(function() { OpenCloseForm(3);}, 800);
-        }
+        if (params === "ref") {
+			ScrollPart(2);
+        } else if(params === "contact") {
+			ScrollPart(3);
+		}
     }
 });
 
 
-	function ScrollPart(index) {
-		$('html, body').animate({scrollTop: $(".main_container_2:eq(" + index + ")").offset().top - $(".fixed_menu_top").height()}, 400);
-	}
+
 
 
 
@@ -320,27 +335,6 @@ function GoToSettingsPage() {
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
 	$(window).scroll(function(event){
 		st = $(this).scrollTop();
-		let objlennn = website_data_obj.website.corner.length;
-		//$(".main_container_2_bg_photo").css("top", (st*(150.0/(window_height*2))-150));
-		//st - $("#sliding_photo_1").offset().top
-		for(let i = 0; i < objlennn; i++) {
-			$("#sliding_photo_" + i).css('transform', 'translate3d(0px, ' + (-75*(st/(window_height-$(".fixed_menu_top").height())-i)) + 'px, 0px)');
-		}
-		
-		var lastbtnindex = 0, newbtnindex = 0;
-		//console.log($(".main_container_2").length);
-		while(st - $(".main_container_2:eq(" + newbtnindex + ")").offset().top + $(".fixed_menu_top").height() >= -1) {
-			newbtnindex++;
-			if($(".main_container_2").length == newbtnindex)
-				break;
-		}
-		//newbtnindex = Math.floor(st/(window_height - 60)) + 1;
-		
-		if(lastbtnindex != newbtnindex) {
-			$(".fixed_menu_button").removeClass("fixed_menu_button_selected");
-			$(".fixed_menu_button:eq( " + newbtnindex + " )").addClass("fixed_menu_button_selected");
-			lastbtnindex = newbtnindex;
-		}
 		
 		
 	});

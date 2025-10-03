@@ -88,7 +88,7 @@ p {
     box-shadow: 0px 4px 0px 0px rgb(0 0 0 / 62%);
 	z-index: 10;
 	color: #ffffff;
-    	font-weight: bold;
+    font-weight: bold;
 }
 
 
@@ -191,6 +191,30 @@ p {
 	
 	.fixed_menu_right_cont  {
 		display: block;
+	}
+	
+	
+	.fixed_menu_cont {
+		flex-direction: row !important;
+	}
+	
+	.main_container_inner {
+		width: calc(100% - 100px) !important;
+	}
+	
+	.go_furniture_detail_cont_1 {
+		width: calc(100% - 50px) !important;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.main_container_card_outer {
+		flex-direction: column !important;
+	}
+	
+	.main_container_card {
+		width: calc(100% - 20px) !important;
+		margin-bottom: 40px !important;
 	}
 }
 
@@ -407,6 +431,11 @@ p {
     1px 15px 35px rgba(16,16,16,0.2),
     1px 20px 60px rgba(16,16,16,0.4);
 	}
+	
+	
+	.main_container_sponsor_card_outer {
+		justify-content: center;
+	}
 }
 
 @media only screen and (max-width: 600px) and (min-width: 351px){
@@ -418,7 +447,9 @@ p {
 		height: 45px;
 	}
 	
-	
+	.main_container_sponsor_card_outer {
+		justify-content: center;
+	}
 	
 	.main_container_2 {
 		height: calc(100vh - 45px);
@@ -560,14 +591,6 @@ p {
 }
 /*$(".fixed_menu_container").css("margin-right", 25);*/
 
-@media only screen and (max-width: 1000px) { /*1000px TEN SONRA ÇALIŞIR VE 0PX E KADAR DEVAM EDER*/
-	.search_part_a {
-		display: none !important;
-	}
-	.fixed_menu_cont {
-		flex-direction: row !important;
-	}
-}
 
 @media only screen and (min-width: 1001px) { 
 	.fixed_menu_container {
@@ -851,7 +874,12 @@ p {
 	margin-bottom: 40px;
 }
 
-
+.main_container_sponsor_card_outer {
+	width: 100%;
+	display: flex;
+	margin-bottom: 40px;
+	flex-wrap: wrap;
+}
 
 .main_container_card {
 	width: calc(33% - 20px);
@@ -861,6 +889,7 @@ p {
 	display: flex;
     flex-direction: column;
     align-items: center;
+	overflow: hidden;
 }
 
 .product_card_bottom_info {
@@ -879,10 +908,19 @@ p {
 	object-fit: cover;
 }
 
+.sponsor_card_logo {
+	height: -webkit-fill-available;
+	object-fit: cover;
+	border-radius: 4px;
+	filter: contrast(80%) grayscale(20%);
+    margin: 10px;
+}
+
 .main_sponsor_car {
 	width: 140px;
 	height: 100px;
 	margin-right: 20px;
+	margin-bottom: 10px;
 	background: #15171a;
 	border-radius: 3px;
 	display: flex;
@@ -1241,11 +1279,11 @@ background-position: 20%;
 }
 
 .img_slogan_txt {
-	text-align: center;
-	   text-decoration: none;
-	   paint-order: stroke fill;
-   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-   display: inline-block;
+	text-decoration: none;
+	/*paint-order: stroke fill;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);*/
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: inline-block;
 }
 
 

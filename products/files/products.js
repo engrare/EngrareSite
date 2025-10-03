@@ -1,8 +1,51 @@
 //Copyright 2023 Kaya Sertel. All Rights Reserved.
 
-var window_height, window_width, old_active_index = 0, current_active_index = 0, trans_click_pressed = false;
+var window_height, window_width, old_active_index = 0, current_active_index = 0, trans_click_pressed = false, ismenuopen = false;
+var is_mobile_phone = ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) ? true : false;
 
 $( document ).ready(function() {
+	var url = window.location.href;
+    var params = url.split('?')[1]; // ? den sonrasını alır
+	console.log(params);
+    if (params) {
+        if (params === "sdt") {
+			$("#product_header").text("AGV Eightlever");
+			$("#product_info").text("Sanayinin en özgün sekizgen tasarımlı aracı hem işlevsel hem de kararlı otonom yazılımı sayesinde çok kullanışlı.");
+			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+        } else if(params === "tasimacim") {
+			$("#product_header").text("Taşımacım");
+			$("#product_info").text("Taşımacım engebeli arazilerde görev yapabilen manuel kontrollü ve robot kolu sayesinde ufak düzeltme taşıma görevlerini yapabilmektedir. Önündeki dönerli top toplama mekanizması sayesinde de haznesine aynı anda 10 adet top saklayabilmektedir.");
+			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+		} else {
+			$("#product_header").text("Dronox");
+			$("#product_info").text("Döner Kanatlı İHA'mız 15dk uçuş süresine ve 1.3kg'a kadar yük taşıma kapasitesine sahip otonom bir İHA'dır.");
+			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			
+		}
+    }
+	
+	
 	var mySwiper = new Swiper('.swiper-container', {
 		speed: 200,
 		navigation: {
@@ -154,6 +197,8 @@ $( document ).ready(function() {
 		changeTransClick(old_active_index, mySwiper.realIndex);
 		old_active_index = mySwiper.realIndex;
 	});
+	
+
 });
 
 //if( !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) )) {
@@ -202,14 +247,47 @@ function beReadyPage() {
 	}
 }
 
-/*setTimeout(function() { changeImgg(); }, 5000);
+function openLeftMenu() {
+	$(".fixed_menu_all_buttons_cont").stop();
+	$(".menu_closer").stop();
+	$('.fixed_menu_all_buttons_cont').animate(
+		{ left: ismenuopen ? -200 : 0 }, 200);
+	if(ismenuopen) {
+		$(".menu_closer").fadeOut(200);
+		$(".menu_opener").addClass('fa-bars');
+		$(".menu_opener").addClass('fa');
+		
+		$(".menu_opener").removeClass('fa-regular');
+		$(".menu_opener").removeClass('fa-solid');
+		$(".menu_opener").removeClass('fa-xmark');
+		
+		$("html body").css("overflow-y", "auto");
+		if(!is_mobile_phone) {
+			$(".main_div").css("width", "100%");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) - 14);
+		}
+		//console.log(is_mobile_phone);
+	}
+	else {
+		$(".menu_closer").fadeIn(200);
+		$(".menu_opener").removeClass('fa-bars');
+		$(".menu_opener").removeClass('fa');
+		
+		$(".menu_opener").addClass('fa-regular');
+		$(".menu_opener").addClass('fa-solid');
+		$(".menu_opener").addClass('fa-xmark');
+		$("html body").css("overflow-y", "hidden");
+		if(!is_mobile_phone) {
+			$(".main_div").css("width", "calc(100% - 14px)");
+			$(".fixed_menu_right_cont").css("width", parseInt($( ".fixed_menu_right_cont" ).width()) + 14.5);
+		}
+	}
+	//fa-regular fa-solid fa-xmark
 
-function changeImgg() {
-	if(is_change_on_going && !is_trans_button_clicked)
-		transImg(transNum+1);
-	is_trans_button_clicked = false;
-	setTimeout(function() { changeImgg(); }, 5000);
-}*/
+	ismenuopen = !ismenuopen;
+
+	//overflow: hidden;
+}
 
 setTimeout(function() { beReadyPage();}, 200);
 setTimeout(function() { beReadyPage();}, 500);
