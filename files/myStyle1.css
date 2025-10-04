@@ -955,8 +955,7 @@ p {
 .main_sponsor_car {
 	width: 140px;
 	height: 100px;
-	margin-right: 20px;
-	margin-bottom: 10px;
+	margin: 5px;
 	background: #15171a;
 	border-radius: 3px;
 	display: flex;
