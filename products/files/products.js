@@ -7,43 +7,48 @@ $( document ).ready(function() {
 	var url = window.location.href;
     var params = url.split('?')[1]; // ? den sonrasını alır
 	console.log(params);
-    //if (params) {
-        if (params === "sdt") {
-			$("#product_header").text("AGV Eightlever");
-			$("#product_info").text("Sanayinin en özgün sekizgen tasarımlı aracı hem işlevsel hem de kararlı otonom yazılımı sayesinde çok kullanışlı.");
+    if (params) {
+		$(".container_1").css("display", "");
+		$(".main_container_inner h1").text("DİĞER ÜRÜNLERİMİZ");
+        if (params === "eightlever") {
+			$("#product_header").text("Eightlever");
+			$("#product_info").text("Sekizgen tasarımı ile sanayideki en özgün araçlardan biri olan bu robotik sistem, sahip olduğu ileri düzey otonom yazılım sayesinde hem yüksek performans hem de istikrarlı bir çalışma sunmaktadır. Sistemin temel işlevi, dahili konveyör mekanizması ile yükleri almak ve çift kamera destekli otonom navigasyon sistemi ile söz konusu yükleri belirlenen hedef noktalara taşıyarak bırakmaktır. Robotun kontrolü, bir Grafiksel Kullanıcı Arayüzü (GUI) aracılığıyla sağlanmakta olup, Raspberry Pi tabanlı kontrolcüsü Firebase altyapısını kullanarak veri iletişimi ve komut aktarımını gerçekleştirmektedir. Tüm bu sistem, yerli kaynaklarla geliştirilmiş olan sdt.engrare.com web adresindeki kontrol paneli üzerinden uzaktan yönetilebilmektedir.");
 			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/sdt_photo_2.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/sdt_photo_3.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/sdt_photo_4.jpg");
 			$(".trans_button_img:eq(0)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(1)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(2)").attr("src","./files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(3)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/sdt_photo_2.jpg");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/sdt_photo_3.jpg");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/sdt_photo_4.jpg");
         } else if(params === "tasimacim") {
 			$("#product_header").text("Taşımacım");
-			$("#product_info").text("Taşımacım engebeli arazilerde görev yapabilen manuel kontrollü ve robot kolu sayesinde ufak düzeltme taşıma görevlerini yapabilmektedir. Önündeki dönerli top toplama mekanizması sayesinde de haznesine aynı anda 10 adet top saklayabilmektedir.");
+			$("#product_info").text("Bu taşıyıcı robot, engebeli ve zorlu arazilerde görev yapabilmek üzere tasarlanmıştır. Temel olarak manuel kontrol ile kullanılmakta ve üzerinde bulunan robot kolu sayesinde küçük ölçekli taşıma, yerleştirme ve düzeltme gibi görevleri yerine getirebilmektedir. Robotun ön kısmında entegre edilmiş döner bir top toplama mekanizması bulunur. Bu sistem, aracın hareket halindeyken topları toplayarak haznesine aktarmasını sağlamakta olup, hazne aynı anda 10 adet topu depolayacak kapasiteye sahiptir. Arazi kabiliyetini artırmak amacıyla, yüksek torklu Fırçasız Doğru Akım (BLDC) motorlar ve özel bir süspansiyon sistemi ile donatılmıştır. Bu teknik altyapı, aracın aşırı yüksek engeller ve engebeli zeminlerde takılmadan ilerlemesine ve görevlerini kesintisiz sürdürmesine olanak tanımaktadır.");
 			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/robolig_photo_2.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/robolig_photo_3.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/robolig_photo_4.jpg");
 			$(".trans_button_img:eq(0)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(1)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(2)").attr("src","./files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(3)").attr("src","./files/photos/robolig_photo.jpg");
-		} else {
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/robolig_photo_2.jpg");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/robolig_photo_3.jpg");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/robolig_photo_4.jpg");
+		} else if(params === "dronox"){
 			$("#product_header").text("Dronox");
-			$("#product_info").text("Döner Kanatlı İHA'mız 15dk uçuş süresine ve 1.3kg'a kadar yük taşıma kapasitesine sahip otonom bir İHA'dır.");
+			$("#product_info").text("Döner kanatlı İnsansız Hava Aracımız (İHA), 15 dakikaya varan uçuş süresi ve 1.3 kilograma kadar taşıma kapasitesi ile dikkat çeken, tam otonom bir sistem olarak tasarlanmıştır. Taşıma mekanizması olarak, iki adet elektromıknatıs ile donatılmıştır. Bu sistem, her biri 650 grama kadar ağırlık alabilen ve cırt cırt ile açılıp kapanan özel kutuları taşımak için kullanılmaktadır. Söz konusu kutuların, elektromıknatıslar ile etkileşime girebilmesi amacıyla üzerlerinde demir levha bulunmaktadır. İHA'nın otonom uçuş misyonu iki temel aşamadan oluşmaktadır: İlk Görev: İHA, görev gereği olarak, öncelikle tamamen otonom bir şekilde \"sonsuzluk\" işareti formunda bir uçuş rotasını başarıyla tamamlamaktadır. \n İkinci Görev: Bu aşamada, bir Raspberry Pi bilgisayarı ve Global Shutter özellikli bir kamera ile entegre bir şekilde çalışarak belirli bir alanın taramasını gerçekleştirmekte ve nesne tespiti yapmaktadır. Bu verileri işleyerek, otonom uçuş kararları almakta ve görevini sürdürmektedir.");
 			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/drone_photo_2.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/drone_photo_3.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/drone_photo_4.jpg");
 			$(".trans_button_img:eq(0)").attr("src","./files/photos/drone_photo.png");
-			$(".trans_button_img:eq(1)").attr("src","./files/photos/drone_photo.png");
-			$(".trans_button_img:eq(2)").attr("src","./files/photos/drone_photo.png");
-			$(".trans_button_img:eq(3)").attr("src","./files/photos/drone_photo.png");
-			
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/drone_photo_2.jpg");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/drone_photo_3.jpg");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/drone_photo_4.jpg");
 		}
-    //}
+    } else {
+		$(".container_1").css("display", "none");
+		$(".main_container_inner h1").text("ÜRÜNLERİMİZ");
+		
+	}
 	
 	
 	var mySwiper = new Swiper('.swiper-container', {

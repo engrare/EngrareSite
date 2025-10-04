@@ -103,7 +103,7 @@ $( document ).ready(function() {
 			prevEl: '.swiper-button-prev'
 		},
 		autoplay: {
-			delay: 3000, // change delay as needed
+			delay: 6500, // change delay as needed
 		},
 		/*on: {
 			slideNextTransitionEnd: (swiper) => {
@@ -261,7 +261,7 @@ $( document ).ready(function() {
 			
 	});
 
-	    var url = window.location.href;
+	var url = window.location.href;
     var params = url.split('?')[1]; // ? den sonrasını alır
     if (params) {
         if (params === "uyebasvuru") {
@@ -277,7 +277,9 @@ $( document ).ready(function() {
 			scroll_pos = 0;
 		else
 			scroll_pos = $('body').height() - window_height -  $(".main_container:eq(0)").height();
-		console.log(scroll_pos);
+		
+		if(ismenuopen)
+			openLeftMenu();
 			
 		$('html, body').animate({scrollTop: scroll_pos}, 400);
 	}
