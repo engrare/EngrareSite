@@ -108,19 +108,19 @@
 				<i class="fa fa-bars menu_opener"></i>
 			</div>
 			<div class="fixed_menu_all_buttons_cont">
-				<div class="fixed_menu_button fixed_menu_buttons_left <!--fixed_menu_button_selected-->" onclick="ScrollPart(1)">
-					<i class="fa-solid fa-house fixed_menu_buttons_favs"></i><p style="text-decoration: underline 3px;">Engrare</p>
+				<div class="fixed_menu_button fixed_menu_buttons_left"  onClick="window.location.href = 'https://www.engrare.com/'">
+					<i class="fa-solid fa-house fixed_menu_buttons_favs"></i><p>Engrare</p>
 				</div>
 				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/products'">
-					<i class="fa-solid fa-drone fixed_menu_buttons_favs"></i><p>Ürünlerimiz</p>
+					<i class="fa-solid fa-drone fixed_menu_buttons_favs"></i><p style="text-decoration: underline 3px;">Ürünlerimiz</p>
 				</div>
 				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com/our_team'">
 					<i class="fa-solid fa-screen-users fixed_menu_buttons_favs"></i><p>Ekibimiz</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(2)">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com?ref'">
 					<i class="fa-solid fa-handshake fixed_menu_buttons_favs"></i><p>Referanslar</p>
 				</div>
-				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(3)">
+				<div class="fixed_menu_button fixed_menu_buttons_left" onClick="window.location.href = 'https://www.engrare.com?contact'">
 					<i class="fa-solid fa-phone-rotary fixed_menu_buttons_favs"></i><p>İletişim</p>
 				</div>
 				<!--<div class="fixed_menu_button fixed_menu_buttons_left" id="fixed_menu_but_lang"  onclick="alert('Translating the website future is not available right now. Thank you for your understanding.');">
@@ -228,7 +228,7 @@
 		</div>
 		<div class="product_text_contant_main">
 			<h1 id="product_header">ÜRÜN BAŞLIĞI</h1>
-			<p id="product_info">Ürün açıklama yazısı yazı yazı yazı</p>
+			<p id="product_info" style="text-align: left;">Ürün açıklama yazısı yazı yazı yazı</p>
 		</div>
 		
 	</div>
@@ -262,7 +262,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="main_container_card">
+			<div class="main_container_card" style="margin-right: 0px; width: 33%;">
 				<img class="product_card_img" src="files\photos\robolig_photo.jpg"/>
 				<div class="product_card_bottom_info">
 					<h2>Taşımacım</h2>
@@ -281,34 +281,37 @@
 
 
 
-<div class="contect_part">
+<div class="contect_part main_container_2">
 	<div class="contect_part_cont">
 		<div class="contect_part_cont_2">
 
 			<div class="social_media">
 				<div class="social_and_text_part">
-					<h1 class="contect_social_header">İletişim Adreslerimiz</h1>
+					<h1 class="contect_social_header">İLETİŞİM</h1>
 						<div class="wrapper social_media_part" style="margin: 0px;">
 							<div class="social_grup_cont">
-								<a href="https://wa.me/xxxxxxxxxxxxx" target="_blank"><div class="icon whatsapp">
+								<a href="https://wa.me/905412989803" target="_blank"><div class="icon whatsapp">
 									<div class="tooltip">WhatsApp</div>
 										<span><i class="fa-brands fa-whatsapp"></i></span>
 									</div>
 								</a>
-								<div class="icon facebook">
-									<div class="tooltip">Facebook</div>
-									<span><i class="fa-brands fa-facebook"></i></span>
-								</div>
+								<a href="https://www.linkedin.com/company/engrare/about/" target="_blank">
+									<div class="icon linkedin">
+										<div class="tooltip">LinkedIn</div>
+										<span><i class="fa-brands fa-linkedin"></i></span>
+									</div>
+								</a>
 							</div>
 							<div class="social_grup_cont">
-  <div class="icon twitter">
-    <div class="tooltip">Twitter</div>
-    <span><i class="fa-brands fa-twitter"></i></span>
+  <div class="icon xtwitter">
+    <div class="tooltip">X</div>
+    <span><i class="fa-brands fa-x-twitter"></i></span>
   </div>
-  <div class="icon instagram">
+  <a href="https://www.instagram.com/eng.rare/" target="_blank"><div class="icon instagram">
     <div class="tooltip">Instagram</div>
     <span><i class="fa-brands fa-instagram"></i></span>
   </div>
+	  </a>
  <!-- <div class="icon telegram">
     <div class="tooltip">Telegram</div>
     <span><i class="fa-brands fa-telegram"></i></span>
@@ -322,16 +325,33 @@
     <span><i class="fa fa-map"></i></span>
   </div>-->
   </div>
-  <a href="https://goo.gl/maps/4X9SkuMErJdEcfG67" target="_blank"><div class="icon map TURKEY">
+<div class="social_grup_cont">
+  <a href="https://maps.app.goo.gl/B9vYVUaMijcD9bns8" target="_blank"><div class="icon map TURKEY">
     <div class="tooltip">Adresi gör</div>
     <span><i class="fa fa-map"></i></span>
   </div></a>
+	<a href="mailto:info@engrare.com" method="GET" enctype="text/plain">
+		  <button class="mail_button">
+         <div class="icon mail" type="submit">
+    <div class="tooltip">Mail</div>
+    <span><i class="fa-regular fa-envelope"></i></span>
+  </div></button>
+		</a>
+	</div>
 
-
+</div>
+					
 </div>
 <div class="maps">
 	<div class="maps_cont">
-		<div class="mapouter"><div class="gmap_canvas"><iframe id="map1" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20265.11950600773!2d28.814277741375136!3d40.97227340451063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa30b3442ca47%3A0xda51320c46e3abe!2zQXRhdMO8cmsgSGF2YWxpbWFuxLE!5e0!3m2!1str!2str!4v1676562000600!5m2!1str!2str"></iframe></div><style></style></div>
+		<div class="mapouter"><div class="gmap_canvas"><iframe id="map1" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1506.5817246596514!2d29.131488877676745!3d40.9559980557768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac77debfec47d%3A0x7a7592ba572b48b9!2sM5%20(Makine%20ve%20End%C3%BCstri%20M%C3%BChendisli%C4%9Fi)!5e0!3m2!1str!2str!4v1696669891312!5m2!1str!2str"></iframe>
+			
+			
+
+			
+			
+			
+			</div><style></style></div>
 		<!--<div class="mapouter"><div class="gmap_canvas"><iframe id="map2" width="600" height="400" title="Google Maps" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=pinaldi&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div><style></style></div>-->
 	</div>
 </div>
@@ -345,9 +365,8 @@ website
 </div>
 </div>
 </div>
-</div>
 <div class="copywrite_part">
-<p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel©®™ ve onun ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
+<p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare®</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
 </div>
 </div>
 </body>

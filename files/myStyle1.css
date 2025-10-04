@@ -213,8 +213,10 @@ p {
 	}
 	
 	.main_container_card {
-		width: calc(100% - 20px) !important;
+		width: 100% !important;
 		margin-bottom: 40px !important;
+		margin-right: 0px !important;
+		
 	}
 }
 
@@ -360,6 +362,10 @@ p {
 	display: block;
 }
 
+.main_container_inner h1 {
+	font-size: 50px !important;
+}
+
 
 
 @media only screen and (max-width: 350px) {
@@ -436,6 +442,25 @@ p {
 	.main_container_sponsor_card_outer {
 		justify-content: center;
 	}
+	
+	
+	.img_slogan_txt {
+		font-size: 45px !important;
+	}
+	
+	
+	.go_furniture_detail_cont_1 {
+        width: calc(100% - 25px) !important;
+    }
+	
+	.main_container_inner {
+        width: calc(100% - 40px) !important;
+    }
+	
+	
+	.main_container_inner h1 {
+		font-size: 30px !important;
+	}
 }
 
 @media only screen and (max-width: 600px) and (min-width: 351px){
@@ -443,9 +468,26 @@ p {
 		font-size: 15px;
 		margin: 6px 8px;
 	}
+	
+	.main_container_inner h1 {
+		font-size: 40px !important;
+	}
+	
+	.main_container_inner {
+        width: calc(100% - 50px) !important;
+    }
+	
 	.fixed_menu_top {
 		height: 45px;
 	}
+	
+	.img_slogan_txt {
+		font-size: 56px !important;
+	}
+	
+	.go_furniture_detail_cont_1 {
+        width: calc(100% - 30px) !important;
+    }
 	
 	.main_container_sponsor_card_outer {
 		justify-content: center;
@@ -735,12 +777,6 @@ p {
 	display: flex;
 	justify-content: center;
 	margin: 20px;
-}
-
-.img_slogan_txt {
-	margin: 0px;
-	font-size: 70px;
-	font-family: Atkinson Hyperlegible, sans-serif;
 }
 
 
@@ -1154,9 +1190,8 @@ background-position: 20%;
 .mail_button {
 	border: 0px;
     background: none;
-	    padding-block: 0px;
+	padding-block: 0px;
 	padding: 0px;
-		
     padding-inline: 0px;
 }
 
@@ -1279,13 +1314,15 @@ background-position: 20%;
 }
 
 .img_slogan_txt {
+	margin: 0px;
+	font-size: 70px;
+	font-family: Atkinson Hyperlegible, sans-serif;
 	text-decoration: none;
 	/*paint-order: stroke fill;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.4);*/
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 	display: inline-block;
 }
-
 
 
 @media only screen and (max-width: 701px) {

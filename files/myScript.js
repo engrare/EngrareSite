@@ -367,8 +367,8 @@ function beReadyPage() {
 	//$(".main_container_2_bg_photo").css("height", window_width);
 	
 	st = $(window).scrollTop();
-	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
-		$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
+	//$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+	$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
 	
 	if(window_width < 620) { 
 		//$(".mapouter").css("width", window_width - 20);

@@ -438,6 +438,9 @@ p {
 	.main_container_sponsor_card_outer {
 		justify-content: center;
 	}
+	
+	
+
 }
 
 @media only screen and (max-width: 600px) and (min-width: 351px){
@@ -447,6 +450,10 @@ p {
 	}
 	.fixed_menu_top {
 		height: 45px;
+	}
+	
+	.img_slogan_txt {
+		font-size: 56px !important;
 	}
 	
 	.main_container_sponsor_card_outer {
@@ -740,9 +747,14 @@ p {
 }
 
 .img_slogan_txt {
+	text-decoration: none;
 	margin: 0px;
 	font-size: 70px;
+	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+	display: inline-block;
 	font-family: Atkinson Hyperlegible, sans-serif;
+	/*paint-order: stroke fill;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);*/
 }
 
 
@@ -1281,13 +1293,7 @@ background-position: 20%;
    paint-order: stroke fill;
 }
 
-.img_slogan_txt {
-	text-decoration: none;
-	/*paint-order: stroke fill;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.4);*/
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-	display: inline-block;
-}
+
 
 
 

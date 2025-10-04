@@ -7,43 +7,43 @@ $( document ).ready(function() {
 	var url = window.location.href;
     var params = url.split('?')[1]; // ? den sonrasını alır
 	console.log(params);
-    if (params) {
+    //if (params) {
         if (params === "sdt") {
 			$("#product_header").text("AGV Eightlever");
 			$("#product_info").text("Sanayinin en özgün sekizgen tasarımlı aracı hem işlevsel hem de kararlı otonom yazılımı sayesinde çok kullanışlı.");
-			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
-			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(0)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/sdt_photo.jpg");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/sdt_photo.jpg");
         } else if(params === "tasimacim") {
 			$("#product_header").text("Taşımacım");
 			$("#product_info").text("Taşımacım engebeli arazilerde görev yapabilen manuel kontrollü ve robot kolu sayesinde ufak düzeltme taşıma görevlerini yapabilmektedir. Önündeki dönerli top toplama mekanizması sayesinde de haznesine aynı anda 10 adet top saklayabilmektedir.");
-			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
-			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(0)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/robolig_photo.jpg");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/robolig_photo.jpg");
 		} else {
 			$("#product_header").text("Dronox");
 			$("#product_info").text("Döner Kanatlı İHA'mız 15dk uçuş süresine ve 1.3kg'a kadar yük taşıma kapasitesine sahip otonom bir İHA'dır.");
-			$(".swiper_slide_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".swiper_slide_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".trans_button_img:eq(0)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".trans_button_img:eq(1)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".trans_button_img:eq(2)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
-			$(".trans_button_img:eq(3)").attr("src","C:/Users/kayas/Desktop/EngrareSite-main/files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/drone_photo.png");
+			$(".trans_button_img:eq(0)").attr("src","./files/photos/drone_photo.png");
+			$(".trans_button_img:eq(1)").attr("src","./files/photos/drone_photo.png");
+			$(".trans_button_img:eq(2)").attr("src","./files/photos/drone_photo.png");
+			$(".trans_button_img:eq(3)").attr("src","./files/photos/drone_photo.png");
 			
 		}
-    }
+    //}
 	
 	
 	var mySwiper = new Swiper('.swiper-container', {
@@ -226,24 +226,28 @@ $( window ).resize(function() {
 function beReadyPage() {
 	window_height = parseInt($( window ).height());
 	window_width = parseInt($( window ).width());
+	if(ismenuopen) 
+		$(".menu_closer").css("display", window_width > 1086 ? "none" : "block");
 	//$(".swiper-container-wrapper").css("height", window_height - parseInt($( ".fixed_menu_top" ).height()));
 	//$(".main_container_2").css("height", window_height);
 	$(".main_container_2_bg_photo").css("height", window_height + 150);
 	//$(".main_container_2_bg_photo").css("height", window_width);
 	
 	st = $(window).scrollTop();
-	$(".main_container_2_bg_photo").css('transform', 'translate3d(0px, ' + (st*(150.0/(window_height*2))-150) + 'px, 0px)');
+	$("#map1").css("height", window_height - $(".social_and_text_part").outerHeight( true ) - $(".copywrite_part").outerHeight( true ) - $(".fixed_menu_top").height() - 40);
 	
-	if(window_width < 620) { 
+	if(window_width < 700) { 
 		//$(".mapouter").css("width", window_width - 20);
 		//$(".gmap_iframe").css("width", window_width - 20);
 		//$(".gmap_canvas").css("width", window_width - 20);
-		document.getElementById('map1').style.width = ((window_width - 20) + "px");
+		//document.getElementById('map1').style.width = ((window_width - 20) + "px");
+		$("#map1").css("width", window_width - 20);
+		
 	} else {
 		//$(".mapouter").css("width", 600);
 		//$(".gmap_iframe").css("width", 600);
 		//$(".gmap_canvas").css("width", 600);
-		document.getElementById('map1').style.width = '600px';
+		$("#map1").css("width", window_width - 300);
 	}
 }
 

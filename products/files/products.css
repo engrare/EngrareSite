@@ -208,9 +208,14 @@ p {
 	}
 	
 	.main_container_card {
-		width: calc(100% - 20px) !important;
+		width: 100% !important;
+		margin-right: 0px !important;
 		margin-bottom: 40px !important;
 	}
+	
+	.main_container_inner {
+        width: calc(100% - 50px) !important;
+    }
 }
 
 .fixed_menu_logo_part {
@@ -906,14 +911,12 @@ p {
 }
 
 .container_1 {
-	height: 80vh;
 	width: 100%;
 }
 
 
 .main_container_2 {
 	position: relative;
-	height: 100vh;
 	width: 100%;
 }
 
@@ -1072,6 +1075,20 @@ p {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
 }
 
+.wrapper .linkedin:hover,
+.wrapper .linkedin:hover .tooltip,
+.wrapper .linkedin:hover .tooltip::before {
+  background-color: #004182;
+  color: #ffffff;
+}
+
+.wrapper .mail:hover,
+.wrapper .mail:hover .tooltip,
+.wrapper .mail:hover .tooltip::before {
+  background-color: #de5347;
+  color: #ffffff;
+}
+
 .wrapper .facebook:hover,
 .wrapper .facebook:hover .tooltip,
 .wrapper .facebook:hover .tooltip::before {
@@ -1079,10 +1096,10 @@ p {
   color: #ffffff;
 }
 
-.wrapper .twitter:hover,
-.wrapper .twitter:hover .tooltip,
-.wrapper .twitter:hover .tooltip::before {
-  background-color: #46c1f6;
+.wrapper .xtwitter:hover,
+.wrapper .xtwitter:hover .tooltip,
+.wrapper .xtwitter:hover .tooltip::before {
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -1135,7 +1152,20 @@ background-position: 20%;
   color: #ffffff;
 }
 
+.mail_button {
+	border: 0px;
+    background: none;
+	padding-block: 0px;
+	padding: 0px;
+    padding-inline: 0px;
+}
+
+.wrapper .mail {
+	margin-top: 0px;
+}
+
 .swiper_container_wrapper_outer {
+	margin: 20px;
 	width: 600px;
 	height: 600px;
 	position: relative;
@@ -1217,10 +1247,14 @@ background-position: 20%;
 }
 
 .contect_part {
+	overflow: hidden;
 	width: 100%;
-	background-color: #2d3633;
+	background-color: #131518;
 	color: white;
 	position: relative;
+	display: flex;
+	    flex-direction: column;
+    justify-content: space-between;
 	z-index: 6;
 }
 
@@ -1260,7 +1294,7 @@ background-position: 20%;
 }
 
 .social_and_text_part {
-	padding: 22px 0px;
+	padding: 40px 0px;
 	display: flex; 
     justify-content: space-around;
 }
@@ -1314,7 +1348,7 @@ background-position: 20%;
 		align-items: center;
 	}
 	.maps {
-		height: 430px;
+		padding-bottom: 10px;
 	}
 	
 	.maps_cont {
@@ -1335,10 +1369,6 @@ background-position: 20%;
 		margin-bottom: 5px;
 		padding-top: 20px;
 		margin-top: 0px;
-	}
-	
-	.maps {
-		height: 450px;
 	}
 	
 	.maps_cont {
@@ -1363,12 +1393,10 @@ background-position: 20%;
 	}
 	
 	.maps {
-		height: 450px;
-		padding: 20px 0px;
+		padding: 20px 20px;
 	}
 	
 	.maps_cont {
-		height: 450px;
 	}
 }
 
@@ -1377,7 +1405,7 @@ background-position: 20%;
 	display: block;
 	position: relative;
 	width: 100%;
-	background-color: #555a63;
+	background-color: #0b0d10;
 }
 
 .copywrite_text {
