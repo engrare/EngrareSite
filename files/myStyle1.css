@@ -944,7 +944,7 @@ p {
 
 .sponsor_card_logo {
 	height: 80%;
-	height: -webkit-fill-available;
+	/*height: -webkit-fill-available;*/
 	object-fit: cover;
 	border-radius: 4px;
 	filter: contrast(80%) grayscale(20%);
@@ -1408,4 +1408,5 @@ background-position: 20%;
 	padding-top: 12px;
 	padding-bottom: 12px;
 }
+
 
