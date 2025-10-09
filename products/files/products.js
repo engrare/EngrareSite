@@ -35,11 +35,11 @@ $( document ).ready(function() {
 		} else if(params === "dronox"){
 			$("#product_header").text("Dronox");
 			$("#product_info").text("Döner kanatlı İnsansız Hava Aracımız (İHA), 15 dakikaya varan uçuş süresi ve 1.3 kilograma kadar taşıma kapasitesi ile dikkat çeken, tam otonom bir sistem olarak tasarlanmıştır. Taşıma mekanizması olarak, iki adet elektromıknatıs ile donatılmıştır. Bu sistem, her biri 650 grama kadar ağırlık alabilen ve cırt cırt ile açılıp kapanan özel kutuları taşımak için kullanılmaktadır. Söz konusu kutuların, elektromıknatıslar ile etkileşime girebilmesi amacıyla üzerlerinde demir levha bulunmaktadır. İHA'nın otonom uçuş misyonu iki temel aşamadan oluşmaktadır: İlk Görev: İHA, görev gereği olarak, öncelikle tamamen otonom bir şekilde \"sonsuzluk\" işareti formunda bir uçuş rotasını başarıyla tamamlamaktadır. \n İkinci Görev: Bu aşamada, bir Raspberry Pi bilgisayarı ve Global Shutter özellikli bir kamera ile entegre bir şekilde çalışarak belirli bir alanın taramasını gerçekleştirmekte ve nesne tespiti yapmaktadır. Bu verileri işleyerek, otonom uçuş kararları almakta ve görevini sürdürmektedir.");
-			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/drone_photo.png");
+			$(".swiper_slide_img:eq(0)").attr("src","./files/photos/drone_photo.jpg");
 			$(".swiper_slide_img:eq(1)").attr("src","./files/photos/drone_photo_2.jpg");
 			$(".swiper_slide_img:eq(2)").attr("src","./files/photos/drone_photo_3.jpg");
 			$(".swiper_slide_img:eq(3)").attr("src","./files/photos/drone_photo_4.jpg");
-			$(".trans_button_img:eq(0)").attr("src","./files/photos/drone_photo.png");
+			$(".trans_button_img:eq(0)").attr("src","./files/photos/drone_photo.jpg");
 			$(".trans_button_img:eq(1)").attr("src","./files/photos/drone_photo_2.jpg");
 			$(".trans_button_img:eq(2)").attr("src","./files/photos/drone_photo_3.jpg");
 			$(".trans_button_img:eq(3)").attr("src","./files/photos/drone_photo_4.jpg");
@@ -107,14 +107,6 @@ $( document ).ready(function() {
 		$(this).removeClass("swiper_button_hover");
 	});
 	*/
-	
-	$(".icon.whatsapp").on('click', function(){
-		window.open('https://wa.me/xxxxxxxxxxxxx', '_blank');
-	});
-	
-	$(".icon.map.TURKEY").on('click', function(){
-		window.open('https://goo.gl/maps/4X9SkuMErJdEcfG67', '_blank');
-	});
 	
 	function changeTransClick(old_index, new_index) {
 		var elementID = "transClick_";
