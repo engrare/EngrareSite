@@ -96,6 +96,7 @@ $.fn.multiline = function(text){
 }
 
 
+
 $( document ).ready(function() {
 	var mySwiper = new Swiper('.swiper-container', {
 		navigation: {
@@ -283,6 +284,21 @@ $( document ).ready(function() {
 			
 		$('html, body').animate({scrollTop: scroll_pos}, 400);
 	}
+
+var loadCounter = 0;
+var googleFormLoader = function() {
+	loadCounter += 1;
+	if(loadCounter === 1) {
+		if(is_mobile_phone)
+			$('#google_form_id').css("height", "4900px");
+		else
+			$('#google_form_id').css("height", "4750px");
+	} else if (loadCounter === 2) {
+		$('#google_form_id').css("height", "500px");
+		ScrollPart(2);
+		loadCounter = 0;
+	}
+}
 
 
 
