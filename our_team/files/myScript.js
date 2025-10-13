@@ -290,9 +290,9 @@ var googleFormLoader = function() {
 	loadCounter += 1;
 	if(loadCounter === 1) {
 		if(is_mobile_phone)
-			$('#google_form_id').css("height", "5100px");
+			$('#google_form_id').css("height", "5200px");
 		else
-			$('#google_form_id').css("height", "4900px");
+			$('#google_form_id').css("height", "5000px");
 	} else if (loadCounter === 2) {
 		$('#google_form_id').css("height", "500px");
 		ScrollPart(2);
@@ -450,3 +450,4 @@ function changeImgg() {
 
 setTimeout(function() { beReadyPage();}, 200);
 setTimeout(function() { beReadyPage();}, 500);
+
