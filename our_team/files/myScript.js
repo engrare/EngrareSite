@@ -272,27 +272,27 @@ $( document ).ready(function() {
 });
 
 
-	function ScrollPart(index) {
-		var scroll_pos;
-		if(index == 1)
-			scroll_pos = 0;
-		else
-			scroll_pos = $('body').height() - window_height -  $(".main_container:eq(0)").height();
+function ScrollPart(index) {
+	var scroll_pos;
+	if(index == 1)
+		scroll_pos = 0;
+	else
+		scroll_pos = $('body').height() - window_height -  $(".main_container:eq(0)").height();
+	
+	if(ismenuopen)
+		openLeftMenu();
 		
-		if(ismenuopen)
-			openLeftMenu();
-			
-		$('html, body').animate({scrollTop: scroll_pos}, 400);
-	}
+	$('html, body').animate({scrollTop: scroll_pos}, 400);
+}
 
 var loadCounter = 0;
 var googleFormLoader = function() {
 	loadCounter += 1;
 	if(loadCounter === 1) {
 		if(is_mobile_phone)
-			$('#google_form_id').css("height", "4900px");
+			$('#google_form_id').css("height", "5100px");
 		else
-			$('#google_form_id').css("height", "4750px");
+			$('#google_form_id').css("height", "4900px");
 	} else if (loadCounter === 2) {
 		$('#google_form_id').css("height", "500px");
 		ScrollPart(2);
