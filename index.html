@@ -1,0 +1,512 @@
+<!--Copyright 2025 Kaya Sertel & ENGRARE®. All Rights Reserved.-->
+<!DOCTYPE html>
+<html lang="tr" dir="ltr" data-cast-api-enabled="true">
+<head>
+<meta charset="UTF-8">
+<title>Engrare | Teknoloji & İnovasyon Takımı</title>
+<link rel="icon" type="image/png" href="./files/photos/title_icon.png" sizes="48x48">
+
+<meta name="author" content="Engrare" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="website">
+<meta name="facebook-domain-verification" content="1h3h5nufxylejgv2ar00gf8e2o5nhf" />
+<meta property="og:image" content="https://www.engrare.com/files/photos/engrare_logo.png" />
+<meta property="og:image:width" content="100" />
+<meta property="og:image:height" content="100" />
+<meta property="twitter:image" content="https://www.engrare.com/files/photos/engrare_logo.png" />
+<meta property="og:title" content="Engrare - Futuristic Tech">
+<meta property="og:url" content="https://www.engrare.com">
+<meta property="og:description" content="Marmara Üniversitesi teknoloji ve inovasyon takımı Engrare.">
+<meta content="Marmara Üniversitesi bünyesindeki teknoloji takımımız Engrare hakkında bilgi edinebilir, takıma üye veya sponsor olmak için başvurabilirsiniz." name="description">
+<noscript>
+<style>
+.main_noscript_div {
+	height: 300px;
+	width: 450px;
+	position: fixed;
+	z-index: 20;
+	top: 50%;
+	left: 50%;
+	margin-left: -227px;
+	margin-top: -152px;
+	background-color: #15171a;
+	color: white;
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	border-radius: 12px;
+	border: solid 2px rgba(255,255,255,0.2);
+}
+.noscript_text {
+	font-size: 20px;
+	text-align: center;
+	margin: 30px 40px;
+}
+.noscript_header {
+	text-align: center;
+	margin: 20px;
+}
+.noscript_button {
+	font-size: 18px;
+	position: fixed;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+	margin-left: 50%;
+	left: -75px;
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	cursor: pointer;
+	border-radius: 8px;
+	border: none;
+}
+.cover_page {
+	background-color: black;
+	opacity: 0.9;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 19;
+}
+</style>
+<div class="main_noscript_div">
+<h1 class="noscript_header">JavaScript Hatası</h1>
+<h3 class="noscript_text">Tarayıcınızda JavaScript kapalı görünüyor.</h3>
+<form target="_blank" action="https://support.google.com/adsense/answer/12654?hl=tr"><button class="noscript_button">Yardım</button></form>
+</div>
+<div class="cover_page"></div>
+</noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- Swiper library & styles -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+
+<!-- jQuery & FontAwesome 6 Official CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="./files/myScript.js?v=6" defer></script>
+<link rel="stylesheet" href="./files/myStyle1.css?v=6">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3QXMNF91LK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-3QXMNF91LK');
+</script>
+
+</head>
+
+<body>
+
+<div class="menu_closer" onclick="openLeftMenu()"></div>
+
+<!-- Top Fixed Navigation -->
+<div class="fixed_menu_top noselect">
+	<div class="fixed_menu_cont">
+		<div class="fixed_menu_left_cont">
+			<div class="fixed_menu_button bar_button" onclick="openLeftMenu()" aria-label="Menüyü Aç">
+				<i class="fa-solid fa-bars menu_opener"></i>
+			</div>
+			<div class="fixed_menu_all_buttons_cont">
+				<div class="fixed_menu_button fixed_menu_buttons_left active_nav_item" onclick="ScrollPart(1)">
+					<i class="fa-solid fa-house fixed_menu_buttons_favs"></i><p>Engrare</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="window.location.href = './products/index.html'">
+					<i class="fa-solid fa-drone fixed_menu_buttons_favs"></i><p>Ürünlerimiz</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left nav_join_cta" onclick="window.location.href = './our_team/index.html#basvuru'">
+					<i class="fa-solid fa-user-plus fixed_menu_buttons_favs"></i><p>Ekibe Katıl</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(2)">
+					<i class="fa-solid fa-handshake fixed_menu_buttons_favs"></i><p>Referanslar</p>
+				</div>
+				<div class="fixed_menu_button fixed_menu_buttons_left" onclick="ScrollPart(3)">
+					<i class="fa-solid fa-phone fixed_menu_buttons_favs"></i><p>İletişim</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="fixed_menu_logo_part" onclick="ScrollPart(1)">
+			<img src="./files/photos/engrare_logo.png" height="80%" alt="Engrare Logo">
+			<div class="fixed_menu_logo_text_part">
+				<p class="fixed_menu_logo_text">Engrare</p>
+				<hr class="fixed_menu_logo_hr" />
+				<p class="fixed_menu_logo_text">FUTURISTIC TECH</p>
+			</div>
+		</div>
+
+		<!-- Mobile Header Quick Join CTA -->
+		<div class="fixed_menu_right_cont">
+			<a href="./our_team/index.html#basvuru" class="mobile_top_join_btn">
+				<i class="fa-solid fa-user-plus"></i>
+				<span>Üye Ol</span>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="main_div">
+
+<div class="fixed_menu_space"></div>
+
+<!-- HERO SLIDER SECTION -->
+<div class="main_container_2 hero_slider_section">
+<div class="swiper-container-wrapper">
+	<div class="swiper-container swiper_cont">
+		<div class="swiper-wrapper">
+			<!-- SLIDE 1: TEAM MEMBERSHIP -->
+			<div class="swiper-slide">
+				<div class="slide_overlay"></div>
+				<div class="go_furniture_detail noselect">
+					<div class="go_furniture_detail_cont_1">
+						<div class="img_slogan_cont">
+							<h1 class="img_slogan_txt">Sen de ENGRARE'lı Ol!</h1>
+						</div>
+						<div class="hero_cta_group">
+							<a class="go_furniture_detail_a primary_cta_btn" href="./our_team/index.html#basvuru">
+								<div class="go_furniture_detail_cont_2">
+									<i class="fa-solid fa-user-plus"></i>
+									<p class="go_furniture_detail_txt">Üyelik Başvurusu Yap</p>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<img class="swiper_slide_img" alt="Engrare Ekibine Katıl" src="./files/photos/uyelik_photo.jpg"/>
+			</div>
+
+			<!-- SLIDE 2: DRONOX -->
+			<div class="swiper-slide">
+				<div class="slide_overlay"></div>
+				<div class="go_furniture_detail noselect">
+					<div class="go_furniture_detail_cont_1">
+						<div class="img_slogan_cont">
+							<h1 class="img_slogan_txt">Geleceği Havadan Keşfedin</h1>
+						</div>
+						<div class="hero_cta_group">
+							<a class="go_furniture_detail_a" href="./products/index.html?dronox">
+								<div class="go_furniture_detail_cont_2">
+									<p class="go_furniture_detail_txt">Dronox'u İncele</p>
+									<i class="fa-solid fa-arrow-right"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<img class="swiper_slide_img" alt="Dronox Otonom İHA" src="./files/photos/drone_photo.jpg"/>
+			</div>
+
+			<!-- SLIDE 3: EIGHTLEVER -->
+			<div class="swiper-slide">
+				<div class="slide_overlay"></div>
+				<div class="go_furniture_detail noselect">
+					<div class="go_furniture_detail_cont_1">
+						<div class="img_slogan_cont">
+							<h1 class="img_slogan_txt">Sanayinin 8 Köşeli Gözdesi</h1>
+						</div>
+						<div class="hero_cta_group">
+							<a class="go_furniture_detail_a" href="./products/index.html?eightlever">
+								<div class="go_furniture_detail_cont_2">
+									<p class="go_furniture_detail_txt">Eightlever'ı İncele</p>
+									<i class="fa-solid fa-arrow-right"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<img class="swiper_slide_img" alt="Eightlever Sanayi Robotu" src="./files/photos/sdt_photo.jpg"/>
+			</div>
+
+			<!-- SLIDE 4: SPONSORSHIP -->
+			<div class="swiper-slide">
+				<div class="slide_overlay"></div>
+				<div class="go_furniture_detail noselect">
+					<div class="go_furniture_detail_cont_1">
+						<div class="img_slogan_cont">
+							<h1 class="img_slogan_txt">Keşfimize Destek Ol!</h1>
+						</div>
+						<div class="hero_cta_group">
+							<a class="go_furniture_detail_a" href="https://docs.google.com/forms/d/e/1FAIpQLSdnS6v8xfdv8wYeqp5fnFl70ZXsQyZGB7irnU-t_jNkXx7yMg/viewform?usp=sf_link" target="_blank" rel="noopener">
+								<div class="go_furniture_detail_cont_2">
+									<p class="go_furniture_detail_txt">Sponsorluk Başvurusu</p>
+									<i class="fa-solid fa-arrow-right"></i>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<img class="swiper_slide_img" alt="Sponsorluk" src="./files/photos/money_black.jpg"/>
+			</div>
+		</div>
+	</div>
+
+	<!-- Navigation buttons -->
+	<div class="swiper-button-prev left_right_buttons_swipper"></div>
+	<div class="swiper-button-next left_right_buttons_swipper"></div>
+	<div class="transition_sign">
+		<div class="transition_sign_cont">
+			<div class="trans_click trans_active" id="transClick_0"></div>
+			<div class="trans_click" id="transClick_1"></div>
+			<div class="trans_click" id="transClick_2"></div>
+			<div class="trans_click" id="transClick_3"></div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- ABOUT & RECRUITMENT SECTION -->
+<div class="main_container recruitment_section" id="join_section">
+	<div class="main_container_inner">
+		<div class="section_header_block">
+			<h1 class="section_title">BİZ KİMİZ?</h1>
+			<p class="section_lead">
+				Marmara Üniversitesi bünyesinde otonom İHA, kara araçları ve robotik sistemler geliştiren teknoloji takımıyız. Deneyim şartı aranmaksızın tüm bölümlerden öğrencileri ekibimize bekliyoruz.
+			</p>
+		</div>
+
+		<div class="roles_grid">
+			<a href="./our_team/index.html?role=yazilim#basvuru" class="role_card">
+				<div class="role_card_top">
+					<div class="role_icon_wrap"><i class="fa-solid fa-laptop-code"></i></div>
+					<i class="fa-solid fa-chevron-right role_arrow"></i>
+				</div>
+				<div class="role_card_body">
+					<h3>Yazılım</h3>
+					<p>Gömülü sistem, görüntü işleme ve otonom yazılım.</p>
+				</div>
+			</a>
+
+			<a href="./our_team/index.html?role=elektronik#basvuru" class="role_card">
+				<div class="role_card_top">
+					<div class="role_icon_wrap"><i class="fa-solid fa-microchip"></i></div>
+					<i class="fa-solid fa-chevron-right role_arrow"></i>
+				</div>
+				<div class="role_card_body">
+					<h3>Elektronik</h3>
+					<p>PCB tasarım, sensör ve güç sistemleri.</p>
+				</div>
+			</a>
+
+			<a href="./our_team/index.html?role=mekanik#basvuru" class="role_card">
+				<div class="role_card_top">
+					<div class="role_icon_wrap"><i class="fa-solid fa-gears"></i></div>
+					<i class="fa-solid fa-chevron-right role_arrow"></i>
+				</div>
+				<div class="role_card_body">
+					<h3>Mekanik</h3>
+					<p>3B CAD tasarım, analiz ve üretim.</p>
+				</div>
+			</a>
+
+			<a href="./our_team/index.html?role=organizasyon#basvuru" class="role_card">
+				<div class="role_card_top">
+					<div class="role_icon_wrap"><i class="fa-solid fa-bullhorn"></i></div>
+					<i class="fa-solid fa-chevron-right role_arrow"></i>
+				</div>
+				<div class="role_card_body">
+					<h3>Sponsorluk & Medya</h3>
+					<p>Kurumsal iletişim, sosyal medya ve raporlama.</p>
+				</div>
+			</a>
+		</div>
+
+		<div class="join_action_row">
+			<a class="go_furniture_detail_a primary_cta_btn" href="./our_team/index.html#basvuru">
+				<div class="go_furniture_detail_cont_2">
+					<i class="fa-solid fa-user-plus"></i>
+					<p class="go_furniture_detail_txt">Ekibe Katıl — Başvuru Formu</p>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<div class="main_container products_section">
+	<div class="main_container_inner">
+		<div class="section_header_block">
+			<h1 class="section_title">ÜRÜNLERİMİZ</h1>
+		</div>
+
+		<div class="main_container_card_outer">
+			<div class="main_container_card" onclick="window.location.href='./products/index.html?dronox'">
+				<div class="product_card_img_wrap">
+					<img class="product_card_img" src="./files/photos/drone_photo.jpg" alt="Dronox Otonom İHA"/>
+				</div>
+				<div class="product_card_bottom_info">
+					<h2>Dronox</h2>
+					<p>15 dk uçuş süreli, görüntü işleme ve elektromıknatıs kargo sistemli otonom İHA.</p>
+					<div class="product_card_actions">
+						<a class="go_furniture_detail_a card_btn_secondary" href="./products/index.html?dronox">
+							<div class="go_furniture_detail_cont_2">
+								<p class="go_furniture_detail_txt">Ürünü İncele</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="main_container_card" onclick="window.location.href='./products/index.html?eightlever'">
+				<div class="product_card_img_wrap">
+					<img class="product_card_img" src="./files/photos/sdt_photo.jpg" alt="Eightlever Otonom Araç"/>
+				</div>
+				<div class="product_card_bottom_info">
+					<h2>Eightlever</h2>
+					<p>Çift kamera destekli otonom navigasyona ve konveyör sistemine sahip sanayi robotu.</p>
+					<div class="product_card_actions">
+						<a class="go_furniture_detail_a card_btn_secondary" href="./products/index.html?eightlever">
+							<div class="go_furniture_detail_cont_2">
+								<p class="go_furniture_detail_txt">Ürünü İncele</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="main_container_card" onclick="window.location.href='./products/index.html?tasimacim'">
+				<div class="product_card_img_wrap">
+					<img class="product_card_img" src="./files/photos/robolig_photo.jpg" alt="Taşımacım Arazi Robotu"/>
+				</div>
+				<div class="product_card_bottom_info">
+					<h2>Taşımacım</h2>
+					<p>Robot kolu ve döner top toplama mekanizmasına sahip zorlu arazi robotu.</p>
+					<div class="product_card_actions">
+						<a class="go_furniture_detail_a card_btn_secondary" href="./products/index.html?tasimacim">
+							<div class="go_furniture_detail_cont_2">
+								<p class="go_furniture_detail_txt">Ürünü İncele</p>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- SPONSORS / SUPPORTERS SECTION -->
+<div class="main_container sponsors_section" id="ref_section">
+	<div class="main_container_inner">
+		<div class="section_header_block">
+			<h1 class="section_title">DESTEKÇİLERİMİZ</h1>
+		</div>
+		<div class="main_container_sponsor_card_outer">
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/marmara_universitesi_logo.png" alt="Marmara Üniversitesi"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/laq_logo.png" alt="LAQ"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/tubitak_logo.png" alt="TÜBİTAK"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/KOSGEB_logo.png" alt="KOSGEB"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/teknofest_logo.png" alt="TEKNOFEST"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/mmk_logo.png" alt="MMK"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/tusas_logo.png" alt="TUSAŞ"/>
+			</div>
+			<div class="main_sponsor_car">
+				<img class="sponsor_card_logo" src="./files/photos/t3_logo.png" alt="T3 Vakfı"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- CONTACT & MAP SECTION -->
+<div class="contect_part main_container_2" id="contact_section">
+	<div class="contect_part_cont">
+		<div class="contect_part_cont_2">
+			<div class="social_media">
+				<div class="social_and_text_part">
+					<div class="contact_header_block">
+						<h1 class="contect_social_header">İLETİŞİM</h1>
+					</div>
+					<div class="wrapper social_media_part">
+						<div class="social_grup_cont">
+							<a href="https://wa.me/905412989803" target="_blank" rel="noopener" aria-label="WhatsApp">
+								<div class="icon whatsapp">
+									<div class="tooltip">WhatsApp</div>
+									<span><i class="fa-brands fa-whatsapp"></i></span>
+								</div>
+							</a>
+							<a href="https://www.linkedin.com/company/engrare/about/" target="_blank" rel="noopener" aria-label="LinkedIn">
+								<div class="icon linkedin">
+									<div class="tooltip">LinkedIn</div>
+									<span><i class="fa-brands fa-linkedin-in"></i></span>
+								</div>
+							</a>
+						</div>
+						<div class="social_grup_cont">
+							<a href="https://x.com/EngrareCo" target="_blank" rel="noopener" aria-label="X (Twitter)">
+								<div class="icon xtwitter">
+									<div class="tooltip">X</div>
+									<span><i class="fa-brands fa-x-twitter"></i></span>
+								</div>
+							</a>
+							<a href="https://www.instagram.com/eng.rare/" target="_blank" rel="noopener" aria-label="Instagram">
+								<div class="icon instagram">
+									<div class="tooltip">Instagram</div>
+									<span><i class="fa-brands fa-instagram"></i></span>
+								</div>
+							</a>
+						</div>
+						<div class="social_grup_cont">
+							<a href="https://maps.app.goo.gl/B9vYVUaMijcD9bns8" target="_blank" rel="noopener" aria-label="Haritada Gör">
+								<div class="icon map TURKEY">
+									<div class="tooltip">Adresi Gör</div>
+									<span><i class="fa-solid fa-location-dot"></i></span>
+								</div>
+							</a>
+							<a href="mailto:info@engrare.com" aria-label="E-posta Gönder">
+								<button class="mail_button" type="button">
+									<div class="icon mail">
+										<div class="tooltip">Mail</div>
+										<span><i class="fa-solid fa-envelope"></i></span>
+									</div>
+								</button>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="maps">
+					<div class="maps_cont">
+						<div class="mapouter">
+							<div class="gmap_canvas">
+								<iframe id="map1" width="600" height="380" title="Google Maps - Engrare Atölye" class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1506.5817246596514!2d29.131488877676745!3d40.9559980557768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac77debfec47d%3A0x7a7592ba572b48b9!2sM5%20(Makine%20ve%20End%C3%BCstri%20M%C3%BChendisli%C4%9Fi)!5e0!3m2!1str!2str!4v1696669891312!5m2!1str!2str"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="copywrite_part">
+		<p class="copywrite_text">Bu websitesinin tüm hakları Kaya Sertel ve <b>Engrare®</b> ekibine aittir. 3. kişilerin kullanımına kapalıdır.</p>
+	</div>
+</div>
+
+<!-- MOBILE STICKY BOTTOM CONVERSION BAR -->
+<div class="mobile_sticky_join_bar">
+	<p class="mobile_sticky_title">ENGRARE Ekibine Katıl!</p>
+	<a href="./our_team/index.html#basvuru" class="mobile_sticky_join_btn">
+		<span>Başvur</span>
+		<i class="fa-solid fa-arrow-right"></i>
+	</a>
+</div>
+
+</div>
+</body>
+</html>
